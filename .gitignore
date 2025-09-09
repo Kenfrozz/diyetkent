@@ -95,9 +95,52 @@ CLAUDE.md
 android/app/google-services.json
 ios/Runner/GoogleService-Info.plist
 lib/firebase_options.dart
+firebase.json
+.firebaserc
+firestore.rules
+firestore.indexes.json
+storage.rules
+firebase-debug.log
+firebase-debug.*.log
+
+# Flutter lock files (platform specific fingerprints)
+pubspec.lock
+
+# Android specific sensitive files
+android/local.properties
+android/gradle.properties
+android/key.properties
+android/**/*.keystore
+android/**/*.jks
+android/.gradle/
+android/app/build/
+android/**/build/
+
+# iOS specific sensitive files
+ios/**/*.mobileprovision
+ios/**/*.p12
+ios/**/*.cer
+ios/Flutter/Generated.xcconfig
+ios/Flutter/flutter_export_environment.sh
+ios/Runner/GeneratedPluginRegistrant.*
+
+# Build and cache directories
+build/
+.dart_tool/build/
+**/build/
+**/.gradle/
+**/node_modules/
+functions/node_modules/
+functions/lib/
+
+# Fingerprint and certificate files
+**/*fingerprint*
+**/*certificate*
 
 # API keys ve configuration
+.env
 .env.local
 .env.development
 .env.production
 config.json
+*.env
