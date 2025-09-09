@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "554822623359",
+    "project_id": "diyetkent-67a1a",
+    "storage_bucket": "diyetkent-67a1a.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:554822623359:android:86f270dc93cd80d15f5f4a",
+        "android_client_info": {
+          "package_name": "com.kenfroz.diyetkent"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAq-Nb9wPdv2qF9JqDCw7bFpdg17yTowQM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

@@ -1,0 +1,41 @@
+# Coverage ignore yapılandırması
+# Bu dosya code coverage raporlarında göz ardı edilecek dosyaları belirtir
+
+# Generated dosyalar
+ignore:
+  # Isar generated files
+  - "**/*.g.dart"
+  - "**/*.freezed.dart"
+  
+  # Build runner generated files
+  - "**/*.config.dart"
+  - "**/*.part.dart"
+  
+  # Mock generated files
+  - "**/*.mocks.dart"
+  - "**/mock_*.dart"
+  
+  # Main app entry points
+  - "lib/main.dart"
+  - "lib/firebase_options.dart"
+  
+  # Test files
+  - "test/**"
+  - "integration_test/**"
+  - "**/test_*.dart"
+  
+  # Platform specific generated code
+  - "android/**"
+  - "ios/**"
+  - "linux/**"
+  - "macos/**"
+  - "windows/**"
+  - "web/**"
+  
+  # Third party or auto-generated
+  - "lib/l10n/**"
+  - "**/.dart_tool/**"
+  
+  # Specific files that don't need coverage
+  - "lib/utils/constants.dart"
+  - "lib/config/**"

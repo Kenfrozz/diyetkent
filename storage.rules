@@ -1,0 +1,50 @@
+rules_version = '2';
+
+// DiyetKent Firebase Storage Security Rules - Clean and valid
+service firebase.storage {
+  match /b/{bucket}/o {
+    // Chat medya dosyaları
+    match /chats/{chatId}/{type}/{fileName} {
+      allow read: if request.auth != null;
+      allow write: if request.auth != null
+        && (type == 'images' || type == 'videos' || type == 'documents' || type == 'audios')
+        && request.resource.size < getMaxFileSize(type);
+    }
+
+    // Profil fotoğrafları
+    match /profile_pictures/{userId}/{fileName} {
+      allow read: if request.auth != null;
+      allow write: if request.auth != null
+        && request.auth.uid == userId
+        && request.resource.size < 5 * 1024 * 1024
+        && fileName.matches('.*\\.(jpg|jpeg|png|webp)$');
+    }
+
+    // Story medya dosyaları
+    match /stories/{userId}/{fileName} {
+      allow read: if request.auth != null;
+      allow write: if request.auth != null
+        && request.auth.uid == userId
+        && request.resource.size < 25 * 1024 * 1024;
+    }
+
+    // Test dosyaları (geliştirme için)
+    match /test/{fileName} {
+      allow read, write: if request.auth != null;
+    }
+
+    // Diğer yollar: varsayılan olarak yazma yok
+    match /{allPaths=**} {
+      allow read: if request.auth != null;
+      allow write: if false;
+    }
+  }
+}
+
+function getMaxFileSize(type) {
+  return type == 'images' ? 10 * 1024 * 1024 :
+         type == 'videos' ? 50 * 1024 * 1024 :
+         type == 'documents' ? 20 * 1024 * 1024 :
+         type == 'audios' ? 20 * 1024 * 1024 :
+         5 * 1024 * 1024;
+}

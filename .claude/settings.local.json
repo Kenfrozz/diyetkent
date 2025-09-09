@@ -1,0 +1,32 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(flutter packages pub run build_runner build:*)",
+      "Bash(find:*)",
+      "Bash(firebase deploy:*)",
+      "Bash(flutter run:*)",
+      "Bash(flutter analyze:*)",
+      "Bash(flutter build:*)",
+      "Bash(del:*)",
+      "Bash(task-master list:*)",
+      "Bash(task-master:*)",
+      "Bash(flutter pub:*)",
+      "Bash(grep:*)",
+      "Bash(flutter clean:*)",
+      "Bash(./gradlew:*)",
+      "Bash(firebase projects:list:*)",
+      "Bash(firebase firestore:rules:get:*)",
+      "Bash(firebase help:*)",
+      "Bash(firebase use:*)",
+      "Bash(firebase run:*)",
+      "Bash(tree:*)",
+      "Bash(dart analyze:*)",
+      "Bash(dir:*)",
+      "Bash(flutter test:*)",
+      "Bash(sed:*)",
+      "Bash(dart run build_runner build:*)"
+    ],
+    "deny": [],
+    "ask": []
+  }
+}

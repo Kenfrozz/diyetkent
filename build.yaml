@@ -1,0 +1,12 @@
+targets:
+  $default:
+    builders:
+      mockito|mockBuilder:
+        generate_for:
+          - test/**/*.dart
+      drift_dev|drift_dev:
+        generate_for:
+          - lib/database/drift/database.dart
+          - lib/database/drift/**/*.dart
+        options:
+          skip_verification_code: true
