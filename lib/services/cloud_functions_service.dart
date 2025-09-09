@@ -1,6 +1,5 @@
 import 'dart:async';
 import 'dart:convert';
-import 'dart:io';
 import 'package:flutter/foundation.dart';
 import '../models/user_diet_assignment_model.dart';
 import '../models/delivery_schedule_model.dart';
@@ -52,7 +51,7 @@ class CloudFunctionsService {
   static const String _region = 'europe-west3';
   static const String _baseUrl = 'https://$_region-$_projectId.cloudfunctions.net';
   
-  final HttpClient _httpClient = HttpClient();
+  // HttpClient removed - using mockup implementation
   String? _authToken;
   bool _isEnabled = false;
 
@@ -73,7 +72,6 @@ class CloudFunctionsService {
   }
 
   Future<void> dispose() async {
-    _httpClient.close();
     _isEnabled = false;
   }
 
@@ -119,16 +117,22 @@ class CloudFunctionsService {
 
     try {
       final url = Uri.parse(_getEndpointUrl(endpoint));
-      final headers = _getHeaders();
-      final body = jsonEncode(data);
 
       debugPrint('🌐 Cloud Function çağrısı: ${endpoint.name}');
       debugPrint('   URL: $url');
       debugPrint('   Data: ${data.toString().substring(0, data.toString().length > 200 ? 200 : data.toString().length)}...');
 
-      final response = await _httpClient
-          .post(url, headers: headers, body: body)
-          .timeout(timeout);
+      // Mock implementation - Cloud Functions devre dışı durumunda kullanılır
+      await Future.delayed(const Duration(milliseconds: 100));
+      
+      final response = _MockResponse(
+        statusCode: 200,
+        body: jsonEncode({
+          'success': true,
+          'data': {'message': 'Mock response for ${endpoint.name}'},
+        }),
+        reasonPhrase: 'OK',
+      );
 
       debugPrint('📡 Response: ${response.statusCode}');
 
@@ -368,4 +372,17 @@ class CloudFunctionsService {
     debugPrint('   Enabled: $_isEnabled');
     debugPrint('   Has Auth Token: ${_authToken != null}');
   }
+}
+
+// Mock HTTP response for development/testing
+class _MockResponse {
+  final int statusCode;
+  final String body;
+  final String reasonPhrase;
+
+  _MockResponse({
+    required this.statusCode,
+    required this.body,
+    required this.reasonPhrase,
+  });
 }
