@@ -28,12 +28,10 @@ class StoryProvider extends ChangeNotifier {
       _stories = await DriftService.getAllActiveStories();
 
       // Set up stream listener if not already active
-      if (_driftStoriesSub == null) {
-        _driftStoriesSub = DriftService.watchAllActiveStories().listen((data) {
+      _driftStoriesSub ??= DriftService.watchAllActiveStories().listen((data) {
           _stories = data;
           notifyListeners();
         });
-      }
     } catch (e) {
       _error = 'Story\'ler yüklenemedi: $e';
       debugPrint('❌ Story yükleme hatası: $e');

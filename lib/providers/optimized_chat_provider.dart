@@ -269,7 +269,7 @@ class OptimizedChatProvider extends ChangeNotifier {
           try {
             final userDoc = await FirebaseFirestore.instance
                 .collection('users')
-                .doc(chat.otherUserId!)
+                .doc(chat.otherUserId)
                 .get();
                 
             if (userDoc.exists) {

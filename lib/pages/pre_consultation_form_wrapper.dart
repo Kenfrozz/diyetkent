@@ -12,11 +12,11 @@ class PreConsultationFormWrapper extends StatelessWidget {
   final String? dietitianId;
 
   const PreConsultationFormWrapper({
-    Key? key,
+    super.key,
     this.formId,
     required this.userId,
     this.dietitianId,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {

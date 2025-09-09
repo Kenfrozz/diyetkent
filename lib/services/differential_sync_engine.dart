@@ -288,13 +288,13 @@ class DifferentialSyncEngine {
     final totalDuration = DateTime.now().difference(startTime);
     final totalSynced = chatResult.syncedCount +
         groupResult.syncedCount +
-        messageResults.fold<int>(0, (sum, r) => sum + r.syncedCount);
+        messageResults.fold<int>(0, (total, r) => total + r.syncedCount);
 
     final totalSkipped = chatResult.skippedCount + groupResult.skippedCount;
 
     final totalBytesTransferred = chatResult.bytesTransferred +
         groupResult.bytesTransferred +
-        messageResults.fold<int>(0, (sum, r) => sum + r.bytesTransferred);
+        messageResults.fold<int>(0, (total, r) => total + r.bytesTransferred);
 
     debugPrint('🎉 Smart Batch Sync tamamlandı: ${totalDuration.inSeconds}s');
     debugPrint('📊 Toplam: $totalSynced sync, $totalSkipped atlandı');
@@ -442,14 +442,14 @@ class DifferentialSyncEngine {
 
     final keys = prefs
         .getKeys()
-        .where((key) => key.startsWith('${_checksumPrefix}${collection}_'));
+        .where((key) => key.startsWith('$_checksumPrefix${collection}_'));
 
     for (final key in keys) {
       final value = prefs.getString(key);
       if (value != null) {
         try {
           final data = jsonDecode(value);
-          final id = key.replaceFirst('${_checksumPrefix}${collection}_', '');
+          final id = key.replaceFirst('$_checksumPrefix${collection}_', '');
           checksums[id] = ChecksumInfo(
             checksum: data['checksum'],
             updatedAt: DateTime.fromMillisecondsSinceEpoch(data['updatedAt']),
@@ -467,7 +467,7 @@ class DifferentialSyncEngine {
   static Future<void> _saveChecksum(
       String collection, String id, String checksum) async {
     final prefs = await SharedPreferences.getInstance();
-    final key = '${_checksumPrefix}${collection}_$id';
+    final key = '$_checksumPrefix${collection}_$id';
     final value = jsonEncode({
       'checksum': checksum,
       'updatedAt': DateTime.now().millisecondsSinceEpoch,
@@ -479,7 +479,7 @@ class DifferentialSyncEngine {
   /// Son sync zamanını al
   static Future<DateTime?> _getLastSyncTime(String key) async {
     final prefs = await SharedPreferences.getInstance();
-    final millis = prefs.getInt('${_lastSyncPrefix}$key');
+    final millis = prefs.getInt('$_lastSyncPrefix$key');
     return millis != null ? DateTime.fromMillisecondsSinceEpoch(millis) : null;
   }
 
@@ -487,7 +487,7 @@ class DifferentialSyncEngine {
   static Future<void> _updateLastSyncTime(String key) async {
     final prefs = await SharedPreferences.getInstance();
     await prefs.setInt(
-        '${_lastSyncPrefix}$key', DateTime.now().millisecondsSinceEpoch);
+        '$_lastSyncPrefix$key', DateTime.now().millisecondsSinceEpoch);
   }
 
   /// Checksum cache temizleme (24 saatten eski)
@@ -576,14 +576,14 @@ class ComprehensiveSyncResult {
     return {
       'totalSynced': totalSynced,
       'totalSkipped': totalSkipped,
-      'efficiency': efficiency.toStringAsFixed(1) + '%',
+      'efficiency': '${efficiency.toStringAsFixed(1)}%',
       'duration': '${totalDuration.inSeconds}s',
       'bytesTransferred':
           '${(totalBytesTransferred / 1024).toStringAsFixed(1)} KB',
       'chatsSynced': chatResult.syncedCount,
       'groupsSynced': groupResult.syncedCount,
       'messagesSynced':
-          messageResults.fold<int>(0, (sum, r) => sum + r.syncedCount),
+          messageResults.fold<int>(0, (total, r) => total + r.syncedCount),
     };
   }
 }

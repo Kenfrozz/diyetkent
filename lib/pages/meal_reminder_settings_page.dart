@@ -52,7 +52,7 @@ class _MealReminderSettingsPageState extends State<MealReminderSettingsPage> {
     });
 
     try {
-      await DriftService.saveMealReminderPreferences(_preferences!);
+      await DriftService.saveMealReminderPreferences(_preferences);
       
       // Hatırlatmaları yenile
       final userId = AuthService.currentUserId;

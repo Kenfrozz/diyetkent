@@ -13,11 +13,11 @@ class PreConsultationFormPageProvider extends StatefulWidget {
   final String? dietitianId;
 
   const PreConsultationFormPageProvider({
-    Key? key,
+    super.key,
     this.formId,
     required this.userId,
     this.dietitianId,
-  }) : super(key: key);
+  });
 
   @override
   State<PreConsultationFormPageProvider> createState() => _PreConsultationFormPageProviderState();
@@ -190,7 +190,7 @@ class _PreConsultationFormPageProviderState extends State<PreConsultationFormPag
                 
                 // Form Content
                 Expanded(
-                  child: Container(
+                  child: SizedBox(
                     width: PreConsultationFormTheme.getContentWidth(context),
                     child: PageView(
                       controller: _pageController,

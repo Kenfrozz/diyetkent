@@ -5,7 +5,7 @@ import '../models/tag_model.dart';
 import '../widgets/tag_creation_dialog.dart';
 
 class TagsPageNew extends StatefulWidget {
-  const TagsPageNew({Key? key}) : super(key: key);
+  const TagsPageNew({super.key});
 
   @override
   State<TagsPageNew> createState() => _TagsPageNewState();

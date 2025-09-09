@@ -306,7 +306,7 @@ class ExportService {
               pw.Expanded(
                 child: _buildSummaryItem(
                   'Mevcut BMI',
-                  '${latestData.bmi?.toStringAsFixed(1) ?? 'N/A'}',
+                  latestData.bmi?.toStringAsFixed(1) ?? 'N/A',
                   _getBMICategory(latestData.bmi),
                   font, fontBold,
                 ),

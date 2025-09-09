@@ -67,7 +67,7 @@ class DietFileService {
       // Diyetisyen yetkisi kontrolü (bu kontrol başka bir serviste olmalı)
       // Şimdilik basit kontrol yapıyoruz
       
-      final fileId = '${DateTime.now().millisecondsSinceEpoch}_${userId}';
+      final fileId = '${DateTime.now().millisecondsSinceEpoch}_$userId';
       String? fileUrl;
       String? fileName;
       String? fileType;

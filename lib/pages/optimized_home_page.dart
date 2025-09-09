@@ -238,15 +238,15 @@ class _OptimizedHomePageState extends State<OptimizedHomePage> with TickerProvid
         onRefresh: _handleRefresh,
         child: TabBarView(
           controller: _tabController,
-          children: [
+          children: const [
             // Sohbetler tab - Optimize edilmiş chat provider kullanır
-            const ChatListPageNew(),
+            ChatListPageNew(),
             
             // Hikayeler tab
-            const StoriesPage(),
+            StoriesPage(),
             
             // Aramalar tab
-            const CallsPage(),
+            CallsPage(),
           ],
         ),
       ),

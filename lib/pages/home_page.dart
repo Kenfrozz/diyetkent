@@ -398,7 +398,7 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
               );
             },
             backgroundColor: const Color(0xFF25D366),
-            heroTag: "new_chat",
+            heroTag: 'new_chat',
             child: const Icon(Icons.chat, color: Colors.white),
           );
         }

@@ -368,7 +368,7 @@ class MediaService {
 
       // Boyutu kontrol et (maks. 25MB)
       final fileSize = await fileToUpload.length();
-      debugPrint('📁 Video boyutu (yükleme öncesi): ${fileSize} bytes');
+      debugPrint('📁 Video boyutu (yükleme öncesi): $fileSize bytes');
       if (fileSize > 25 * 1024 * 1024) {
         throw Exception('Video boyutu 25MB\'dan büyük olamaz');
       }

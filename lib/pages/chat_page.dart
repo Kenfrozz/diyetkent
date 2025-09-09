@@ -1385,7 +1385,9 @@ class _ChatPageState extends State<ChatPage> {
         return;
       }
       final pos = await Geolocator.getCurrentPosition(
-        desiredAccuracy: LocationAccuracy.high,
+        locationSettings: const LocationSettings(
+          accuracy: LocationAccuracy.high,
+        ),
       );
       await MessageService.sendLocationMessage(
         chatId: widget.chat.chatId,
