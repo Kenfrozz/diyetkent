@@ -89,7 +89,6 @@ coverage/
 .claude/
 .taskmaster/
 .mcp.json
-CLAUDE.md
 
 # Firebase configuration files (sensitive data içerir)
 android/app/google-services.json
