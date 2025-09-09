@@ -327,6 +327,6 @@ class LocalFileStorageService {
     }
 
     // Check length (most filesystems have limits)
-    return fileName.length > 0 && fileName.length <= 255;
+    return fileName.isNotEmpty && fileName.length <= 255;
   }
 }

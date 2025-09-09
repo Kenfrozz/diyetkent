@@ -156,19 +156,17 @@ class MealBehaviorAnalyticsService {
 
     // Get or create analytics model
     // var analytics = await DriftService.getUserBehaviorAnalytics(userId); // TODO: Implement user behavior analytics
-    var analytics = null;
+    UserBehaviorAnalyticsModel? analytics;
 
     final now = DateTime.now();
     final periodStart = allBehaviors.map((b) => b.createdAt).reduce((a,b) => a.isBefore(b) ? a : b);
 
 
-    if (analytics == null) {
-      analytics = UserBehaviorAnalyticsModel.create(
-        userId: userId,
-        periodStart: periodStart,
-        periodEnd: now,
-      );
-    }
+    analytics ??= UserBehaviorAnalyticsModel.create(
+      userId: userId,
+      periodStart: periodStart,
+      periodEnd: now,
+    );
     
     // Update the analytics with the latest data
     analytics.updateAnalytics(allBehaviors);

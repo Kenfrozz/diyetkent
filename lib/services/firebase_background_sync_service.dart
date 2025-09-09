@@ -261,7 +261,7 @@ class FirebaseBackgroundSyncService {
               try {
                 final userDoc = await FirebaseFirestore.instance
                     .collection('users')
-                    .doc(chat.otherUserId!)
+                    .doc(chat.otherUserId)
                     .get();
                 if (userDoc.exists) {
                   final userData = userDoc.data()!;

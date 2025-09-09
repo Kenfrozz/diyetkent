@@ -1617,10 +1617,7 @@ class MessageService {
       // İlk kez görülen medya: arka planda indir ve Isar'a path yaz
       final cached = await MediaCacheManager.getCachedPathIfExists(url);
       String? path = cached;
-      if (path == null) {
-        // indir
-        path = await MediaCacheManager.downloadToCache(url);
-      }
+      path ??= await MediaCacheManager.downloadToCache(url);
       if (path != null && path.isNotEmpty) {
         await DriftService.updateMessageLocalMediaPath(msg.messageId, path);
       }
