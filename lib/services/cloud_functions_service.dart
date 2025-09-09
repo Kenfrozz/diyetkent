@@ -92,18 +92,6 @@ class CloudFunctionsService {
     }
   }
 
-  Map<String, String> _getHeaders() {
-    final headers = <String, String>{
-      'Content-Type': 'application/json',
-      'Accept': 'application/json',
-    };
-
-    if (_authToken != null) {
-      headers['Authorization'] = 'Bearer $_authToken';
-    }
-
-    return headers;
-  }
 
   Future<CloudFunctionResponse<T>> _makeRequest<T>(
     CloudFunctionEndpoint endpoint,

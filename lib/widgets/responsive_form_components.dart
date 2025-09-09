@@ -10,13 +10,13 @@ class ResponsiveFormSection extends StatelessWidget {
   final bool isRequired;
   
   const ResponsiveFormSection({
-    Key? key,
+    super.key,
     required this.title,
     required this.children,
     this.icon,
     this.subtitle,
     this.isRequired = false,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -115,10 +115,10 @@ class ResponsiveFormRow extends StatelessWidget {
   final double spacing;
   
   const ResponsiveFormRow({
-    Key? key,
+    super.key,
     required this.children,
     this.spacing = PreConsultationFormTheme.spacingM,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -154,7 +154,7 @@ class ResponsiveSliderTile extends StatelessWidget {
   final String Function(double)? valueFormatter;
   
   const ResponsiveSliderTile({
-    Key? key,
+    super.key,
     required this.title,
     this.subtitle,
     required this.value,
@@ -163,7 +163,7 @@ class ResponsiveSliderTile extends StatelessWidget {
     this.divisions,
     required this.onChanged,
     this.valueFormatter,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -292,7 +292,7 @@ class ResponsiveRadioGroup<T> extends StatelessWidget {
   final bool isRequired;
   
   const ResponsiveRadioGroup({
-    Key? key,
+    super.key,
     required this.title,
     this.subtitle,
     required this.value,
@@ -300,7 +300,7 @@ class ResponsiveRadioGroup<T> extends StatelessWidget {
     required this.labels,
     required this.onChanged,
     this.isRequired = false,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -449,13 +449,13 @@ class ResponsiveProgressHeader extends StatelessWidget {
   final Widget? extraInfo;
   
   const ResponsiveProgressHeader({
-    Key? key,
+    super.key,
     required this.currentStep,
     required this.stepTitles,
     required this.stepDescriptions,
     required this.completionPercentage,
     this.extraInfo,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {
