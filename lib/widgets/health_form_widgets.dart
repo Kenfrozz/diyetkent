@@ -81,7 +81,7 @@ class _HealthConditionSelectorState extends State<HealthConditionSelector> {
               selectedColor: Theme.of(context).primaryColor.withValues(alpha: 0.2),
               checkmarkColor: Theme.of(context).primaryColor,
             );
-          }).toList(),
+          }),
         ),
         
         const SizedBox(height: 16),
@@ -124,7 +124,7 @@ class _HealthConditionSelectorState extends State<HealthConditionSelector> {
                 onDeleted: widget.readOnly ? null : () => _removeCondition(condition),
                 backgroundColor: Theme.of(context).primaryColor.withValues(alpha: 0.1),
               );
-            }).toList(),
+            }),
           ),
         ],
       ],
@@ -213,7 +213,7 @@ class _MedicationInputState extends State<MedicationInput> {
                 ),
               ),
             );
-          }).toList(),
+          }),
           const SizedBox(height: 16),
         ],
         
@@ -383,7 +383,7 @@ class _AllergyTagsState extends State<AllergyTags> {
               selectedColor: Colors.red.withValues(alpha: 0.2),
               checkmarkColor: Colors.red,
             );
-          }).toList(),
+          }),
         ),
         
         const SizedBox(height: 16),
@@ -416,7 +416,7 @@ class _AllergyTagsState extends State<AllergyTags> {
                       value: severity,
                       child: Text(severity),
                     );
-                  }).toList(),
+                  }),
                   onChanged: (value) {
                     setState(() {
                       _selectedSeverity = value!;
@@ -473,7 +473,7 @@ class _AllergyTagsState extends State<AllergyTags> {
                 ),
               ),
             );
-          }).toList(),
+          }),
         ],
       ],
     );

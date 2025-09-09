@@ -163,7 +163,7 @@ void _schedulerIsolateEntry(SendPort mainSendPort) async {
 
   final schedulerWorker = _SchedulerWorker(mainSendPort);
   
-  await isolateReceivePort.listen((message) async {
+  isolateReceivePort.listen((message) async {
     if (message is Map<String, dynamic>) {
       await schedulerWorker.handleMessage(message);
     }

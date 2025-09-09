@@ -1,7 +1,7 @@
 import 'dart:async';
 import 'dart:convert';
+import 'dart:io';
 import 'package:flutter/foundation.dart';
-import 'package:http/http.dart' as http;
 import '../models/user_diet_assignment_model.dart';
 import '../models/delivery_schedule_model.dart';
 
@@ -52,7 +52,7 @@ class CloudFunctionsService {
   static const String _region = 'europe-west3';
   static const String _baseUrl = 'https://$_region-$_projectId.cloudfunctions.net';
   
-  final http.Client _httpClient = http.Client();
+  final HttpClient _httpClient = HttpClient();
   String? _authToken;
   bool _isEnabled = false;
 

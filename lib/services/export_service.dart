@@ -413,7 +413,7 @@ class ExportService {
                   font, false
                 ),
               ],
-            )).toList(),
+            )),
           ],
         ),
         if (healthData.length > 20)

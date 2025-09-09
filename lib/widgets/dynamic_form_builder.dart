@@ -298,8 +298,7 @@ class _DynamicFormBuilderState extends State<DynamicFormBuilder> {
                     ],
                     const SizedBox(height: 16),
                     ...visibleFields
-                        .map((field) => _buildField(field))
-                        .toList(),
+                        .map((field) => _buildField(field)),
                   ],
                 ),
               ),
@@ -526,7 +525,7 @@ class _DynamicFormBuilderState extends State<DynamicFormBuilder> {
             onChanged: widget.readOnly ? null : (value) => _handleFieldChanged(field.id, value),
             dense: true,
           );
-        }).toList(),
+        }),
       ],
     );
   }
