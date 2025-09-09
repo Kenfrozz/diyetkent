@@ -148,3 +148,33 @@ functions/lib/
 .env.production
 config.json
 *.env
+
+# Platform directories (Flutter auto-generated)
+# Sadece özel konfigürasyonlar tutulacak, gerisini Flutter otomatik oluşturur
+linux/
+macos/
+web/
+windows/
+
+# Android - sadece auto-generated kısmı ignore et
+android/.gradle/
+android/.kotlin/
+android/build/
+android/app/build/
+android/gradle/
+android/gradlew
+android/gradlew.bat
+
+# iOS - sadece auto-generated kısmı ignore et  
+ios/build/
+ios/**/*.pbxuser
+ios/**/*.mode1v3
+ios/**/*.mode2v3
+ios/**/*.perspectivev3
+ios/**/**/xcuserdata/
+ios/**/**/*.xcworkspace/xcuserdata/
+ios/Podfile.lock
+ios/Pods/
+ios/.symlinks/
+ios/Flutter/Generated.xcconfig
+ios/Flutter/flutter_export_environment.sh
