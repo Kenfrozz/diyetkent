@@ -474,8 +474,9 @@ class GroupService {
 
       if (name != null) updateData['name'] = name;
       if (description != null) updateData['description'] = description;
-      if (profileImageUrl != null)
+      if (profileImageUrl != null) {
         updateData['profileImageUrl'] = profileImageUrl;
+      }
 
       // Firebase'de güncelle
       await _firestore.collection('groups').doc(groupId).update(updateData);
@@ -485,8 +486,9 @@ class GroupService {
         'updatedAt': FieldValue.serverTimestamp(),
       };
       if (name != null) chatUpdateData['groupName'] = name;
-      if (profileImageUrl != null)
+      if (profileImageUrl != null) {
         chatUpdateData['groupImage'] = profileImageUrl;
+      }
       if (description != null) chatUpdateData['groupDescription'] = description;
 
       if (chatUpdateData.length > 1) {
@@ -557,11 +559,15 @@ class GroupService {
       await _firestore.collection('groups').doc(groupId).update(updateData);
 
       // Yerel grubu güncelle
-      if (messagePermission != null)
+      if (messagePermission != null) {
         group.messagePermission = messagePermission;
-      if (mediaPermission != null) group.mediaPermission = mediaPermission;
-      if (allowMembersToAddOthers != null)
+      }
+      if (mediaPermission != null) {
+        group.mediaPermission = mediaPermission;
+      }
+      if (allowMembersToAddOthers != null) {
         group.allowMembersToAddOthers = allowMembersToAddOthers;
+      }
       group.updatedAt = DateTime.now();
       await DriftService.updateGroupModel(group);
 
