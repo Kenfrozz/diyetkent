@@ -83,4 +83,21 @@ service-account*.json
 
 # Coverage
 coverage/
-*.lcov 
+*.lcov
+
+# Claude Code ve development tools (API keys içerir)
+.claude/
+.taskmaster/
+.mcp.json
+CLAUDE.md
+
+# Firebase configuration files (sensitive data içerir)
+android/app/google-services.json
+ios/Runner/GoogleService-Info.plist
+lib/firebase_options.dart
+
+# API keys ve configuration
+.env.local
+.env.development
+.env.production
+config.json
