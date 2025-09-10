@@ -47,7 +47,7 @@ class _HealthConditionSelectorState extends State<HealthConditionSelector> {
         Text(
           'Kronik Hastalıklarınız',
           style: Theme.of(context).textTheme.titleMedium?.copyWith(
-            color: const Color(0xFFE91D7C),
+            color: const Color(0xFF00796B),
             fontWeight: FontWeight.bold,
           ),
         ),

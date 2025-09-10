@@ -39,7 +39,7 @@ class ChatTile extends StatelessWidget {
                 child: Checkbox(
                   value: isSelected,
                   onChanged: (_) => onTap(),
-                  activeColor: const Color(0xFFE91D7C),
+                  activeColor: const Color(0xFF00796B),
                 ),
               )
             else
@@ -346,9 +346,9 @@ class ChatTile extends StatelessWidget {
       Colors.orange,
       Colors.purple,
       Colors.red,
-      Colors.pink,
+      Colors.teal,
       Colors.indigo,
-      Colors.pink,
+      Colors.teal,
     ];
 
     final hash = chat.otherUserId.hashCode;

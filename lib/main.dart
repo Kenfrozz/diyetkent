@@ -241,16 +241,10 @@ class _MyAppState extends State<MyApp> with WidgetsBindingObserver {
       child: MaterialApp(
         title: 'DiyetKent',
         theme: ThemeData(
-          primarySwatch: Colors.pink,
-          primaryColor: const Color(0xFFE91D7C), // Ana pembe renk
-          colorScheme: ColorScheme.fromSwatch(
-            primarySwatch: Colors.pink,
-          ).copyWith(
-            primary: const Color(0xFFE91D7C),
-            secondary: const Color(0xFFFFB3E4), // Açık pembe
-          ),
+          primarySwatch: Colors.teal,
+          primaryColor: const Color(0xFF00796B), // WhatsApp yeşili
           appBarTheme: const AppBarTheme(
-            backgroundColor: Color(0xFFE91D7C),
+            backgroundColor: Color(0xFF00796B),
             foregroundColor: Colors.white,
             elevation: 0,
           ),
