@@ -4,9 +4,9 @@ import 'package:flutter/material.dart';
 /// Provides consistent Teal color scheme and responsive design components
 class PreConsultationFormTheme {
   // Primary Teal color palette
-  static const Color primaryTeal = Color(0xFF00796B);
-  static const Color primaryTealLight = Color(0xFF48A999);
-  static const Color primaryTealDark = Color(0xFF004D40);
+  static const Color primaryTeal = Color(0xFFE91D7C);
+  static const Color primaryTealLight = Color(0xFFFFB3E4);
+  static const Color primaryTealDark = Color(0xFFB71C5C);
   
   // Secondary colors
   static const Color accentTeal = Color(0xFF26C6DA);

@@ -127,7 +127,7 @@ class _MediaMessageWidgetState extends State<MediaMessageWidget> {
       constraints: const BoxConstraints(maxWidth: 280),
       padding: const EdgeInsets.all(12),
       decoration: BoxDecoration(
-        color: widget.isFromMe ? const Color(0xFF00796B) : Colors.grey[200],
+        color: widget.isFromMe ? const Color(0xFFE91D7C) : Colors.grey[200],
         borderRadius: BorderRadius.circular(12),
       ),
       child: Row(
@@ -249,7 +249,7 @@ class _MediaMessageWidgetState extends State<MediaMessageWidget> {
       constraints: const BoxConstraints(maxWidth: 280),
       padding: const EdgeInsets.all(12),
       decoration: BoxDecoration(
-        color: Colors.teal[50],
+        color: Colors.pink[50],
         borderRadius: BorderRadius.circular(12),
       ),
       child: Row(

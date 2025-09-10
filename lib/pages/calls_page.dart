@@ -172,7 +172,7 @@ class _CallsPageState extends State<CallsPage> {
       const Color(0xFFC62828),
       const Color(0xFFD84315),
       const Color(0xFF6A1B9A),
-      const Color(0xFF00796B),
+      const Color(0xFFE91D7C),
       const Color(0xFF5D4037),
     ];
 

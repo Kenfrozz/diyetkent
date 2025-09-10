@@ -13,7 +13,7 @@ class ArchivedChatsPage extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         title: const Text('Arşivlenmiş Sohbetler'),
-        backgroundColor: const Color(0xFF00796B),
+        backgroundColor: const Color(0xFFE91D7C),
         foregroundColor: Colors.white,
         actions: [
           PopupMenuButton<String>(

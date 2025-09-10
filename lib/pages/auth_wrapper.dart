@@ -19,7 +19,7 @@ class AuthWrapper extends StatelessWidget {
         if (snapshot.connectionState == ConnectionState.waiting) {
           return const Scaffold(
             body: Center(
-              child: CircularProgressIndicator(color: Color(0xFF00796B)),
+              child: CircularProgressIndicator(color: Color(0xFFE91D7C)),
             ),
           );
         }
@@ -37,7 +37,7 @@ class AuthWrapper extends StatelessWidget {
             if (ensureSnapshot.connectionState == ConnectionState.waiting) {
               return const Scaffold(
                 body: Center(
-                  child: CircularProgressIndicator(color: Color(0xFF00796B)),
+                  child: CircularProgressIndicator(color: Color(0xFFE91D7C)),
                 ),
               );
             }
@@ -49,7 +49,7 @@ class AuthWrapper extends StatelessWidget {
                   return const Scaffold(
                     body: Center(
                       child:
-                          CircularProgressIndicator(color: Color(0xFF00796B)),
+                          CircularProgressIndicator(color: Color(0xFFE91D7C)),
                     ),
                   );
                 }
