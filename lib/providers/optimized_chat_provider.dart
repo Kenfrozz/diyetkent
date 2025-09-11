@@ -273,8 +273,7 @@ class OptimizedChatProvider extends ChangeNotifier {
           try {
             String? contactName;
             if (chat.otherUserPhoneNumber != null && chat.otherUserPhoneNumber!.isNotEmpty) {
-              final contactService = ContactsService();
-              contactName = await contactService.getContactNameByPhone(chat.otherUserPhoneNumber!);
+              contactName = await ContactsService.getContactNameByPhone(chat.otherUserPhoneNumber!);
             }
             
             // Eğer rehber ismi varsa veya Firebase'den güncelleme gerekiyorsa
