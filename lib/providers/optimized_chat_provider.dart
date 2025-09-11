@@ -378,8 +378,8 @@ class OptimizedChatProvider extends ChangeNotifier {
               chat.otherUserContactName != contactName) {
             
             // Contact ismini güncelle
-            chat.otherUserContactName = contactName;
-            await DriftService.updateChatModel(chat);
+            final updatedChat = chat.copyWith(otherUserContactName: contactName);
+            await DriftService.updateChatModel(updatedChat);
             hasUpdates = true;
             
             debugPrint('📞 Chat ${chat.chatId} rehber ismi güncellendi: $contactName');
