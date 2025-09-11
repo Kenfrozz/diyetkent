@@ -8,7 +8,7 @@ Future<void> testExecutable(FutureOr<void> Function() testMain) async {
     () async {
       // Load fonts for consistent golden test rendering
       await loadAppFonts();
-      
+
       // Run the tests
       await testMain();
     },
@@ -22,8 +22,6 @@ Future<void> testExecutable(FutureOr<void> Function() testMain) async {
         Device.iphone11,
         Device.tabletPortrait,
       ],
-      
-      // Enable pumping before taking golden screenshots
       enableRealShadows: true,
     ),
   );

@@ -112,26 +112,31 @@ class MessageService {
           }
 
           // Mevcut kaydı güncelle - null safety kontrolü
-          if (local.lastMessage != null) {
-            local.lastMessage = data['lastMessage'] as String? ?? local.lastMessage;
-          }
-          
-          if (data['lastMessageTime'] is Timestamp) {
-            local.lastMessageTime = (data['lastMessageTime'] as Timestamp).toDate();
-          }
-          
-          local.isLastMessageFromMe = (data['isLastMessageFromMe'] as bool?) ?? local.isLastMessageFromMe;
-          local.isLastMessageRead = (data['isLastMessageRead'] as bool?) ?? local.isLastMessageRead;
-          local.unreadCount = perUserUnread;
-          
-          if (data['updatedAt'] is Timestamp) {
-            local.updatedAt = (data['updatedAt'] as Timestamp).toDate();
+          if (local != null) {
+            final newLastMessage = data['lastMessage'] as String?;
+            if (newLastMessage != null) {
+              local.lastMessage = newLastMessage;
+            }
+            
+            if (data['lastMessageTime'] is Timestamp) {
+              local.lastMessageTime = (data['lastMessageTime'] as Timestamp).toDate();
+            }
+            
+            local.isLastMessageFromMe = (data['isLastMessageFromMe'] as bool?) ?? local.isLastMessageFromMe;
+            local.isLastMessageRead = (data['isLastMessageRead'] as bool?) ?? local.isLastMessageRead;
+            local.unreadCount = perUserUnread;
+            
+            if (data['updatedAt'] is Timestamp) {
+              local.updatedAt = (data['updatedAt'] as Timestamp).toDate();
+            } else {
+              local.updatedAt = DateTime.now();
+            }
+            
+            // Update chat model
+            await DriftService.updateChatModel(local);
           } else {
-            local.updatedAt = DateTime.now();
+            debugPrint('⚠️ Local chat null, güncelleme atlandı: $chatId');
           }
-          
-          // Update chat model
-          await DriftService.updateChatModel(local);
         }
       } catch (e) {
         debugPrint('❌ Chat docs listener hata: $e');
@@ -450,22 +455,39 @@ class MessageService {
     String? type = 'text',
     String? replyToMessageId,
   }) async {
+    debugPrint('🚀 MessageService.sendMessage başlatıldı');
+    debugPrint('🚀 ChatID: $chatId, RecipientID: $recipientId, Text: $text');
+    
     final user = _auth.currentUser;
-    if (user == null) throw Exception('Kullanıcı giriş yapmamış');
+    if (user == null) {
+      debugPrint('❌ MessageService: Kullanıcı giriş yapmamış!');
+      throw Exception('Kullanıcı giriş yapmamış');
+    }
+    
+    debugPrint('✅ MessageService: Kullanıcı aktif - ${user.uid}');
 
     // Chat tipini kontrol et (bireysel mi grup mu?)
+    debugPrint('🔍 Chat bilgisi getiriliyor: $chatId');
     final chat = await DriftService.getChatById(chatId);
-    if (chat == null) throw Exception('Sohbet bulunamadı');
+    if (chat == null) {
+      debugPrint('❌ Chat bulunamadı: $chatId');
+      throw Exception('Sohbet bulunamadı');
+    }
+    
+    debugPrint('✅ Chat bulundu: ${chat.isGroup ? "Grup" : "Bireysel"}');
 
     // Grup sohbeti ise izin kontrolü yap
     if (chat.isGroup) {
+      debugPrint('👥 Grup sohbeti izin kontrolü yapılıyor...');
       await _checkGroupMessagePermission(chatId, user.uid, text);
     } else {
       // Bireysel sohbet: recipientId null ise chat.otherUserId'yi kullan
       recipientId ??= chat.otherUserId;
       if (recipientId == null) {
+        debugPrint('❌ Bireysel sohbet için recipientId gerekli!');
         throw Exception('Bireysel sohbet için recipientId gerekli');
       }
+      debugPrint('✅ Bireysel sohbet: Alıcı ID - $recipientId');
     }
 
     // Mesaj ID oluştur
@@ -486,11 +508,15 @@ class MessageService {
 
     try {
       // Yerel veritabanına kaydet
+      debugPrint('💾 Mesaj yerel veritabanına kaydediliyor...');
       await DriftService.saveMessage(localMessage);
+      debugPrint('✅ Mesaj yerel veritabanına kaydedildi');
+      
       // Aktif chate düşen mesajlar için otomatik okundu optimizasyonu
       unawaited(handleIncomingMessageReadOptimization(localMessage));
 
       // Firebase'e göndermeyi dene
+      debugPrint('🔥 Firebase\'e mesaj gönderiliyor...');
       // Cevaplanan mesajın meta bilgisini (metin ve gönderici) yerelden al
       String? replyToText;
       String? replyToSenderId;
@@ -506,6 +532,7 @@ class MessageService {
 
       // Grup veya bireysel mesajı Firebase'e gönder
       if (chat.isGroup) {
+        debugPrint('👥 Grup mesajı Firebase\'e gönderiliyor...');
         await _sendGroupMessageToFirebase(
           messageId: messageId,
           chatId: chatId,
@@ -516,7 +543,9 @@ class MessageService {
           replyToSenderId: replyToSenderId,
           timestamp: timestamp,
         );
+        debugPrint('✅ Grup mesajı Firebase\'e gönderildi!');
       } else {
+        debugPrint('👤 Bireysel mesaj Firebase\'e gönderiliyor...');
         await _sendMessageToFirebase(
           messageId: messageId,
           chatId: chatId,
@@ -528,19 +557,24 @@ class MessageService {
           replyToSenderId: replyToSenderId,
           timestamp: timestamp,
         );
+        debugPrint('✅ Bireysel mesaj Firebase\'e gönderildi!');
       }
 
       // Başarılı ise durumu güncelle
+      debugPrint('✅ Mesaj durumu delivered olarak güncelleniyor...');
       localMessage.status = MessageStatus.delivered;
       await DriftService.updateMessage(localMessage);
     } catch (e) {
       debugPrint('❌ Firebase mesaj gönderme hatası: $e');
+      debugPrint('❌ Hata detayı: ${e.toString()}');
+      
       // Mesaj yerel veritabanında kalır ve durum güncellenir
       localMessage.status = MessageStatus.failed;
       await DriftService.updateMessage(localMessage);
 
       // Sadece gerçek ağ hatalarında offline mesajını göster
       if (_isNetworkError(e)) {
+        debugPrint('🌐 Ağ hatası tespit edildi, çevrimdışı mesaj gösterilecek');
         throw Exception(
           'Mesaj çevrimdışı olarak kaydedildi. Çevrimiçi olduğunuzda gönderilecek.',
         );
@@ -549,6 +583,7 @@ class MessageService {
       // Diğer hatalarda gerçek hata mesajını ilet
       final String errorMessage =
           (e is FirebaseException) ? (e.message ?? e.code) : e.toString();
+      debugPrint('💥 Firebase Exception: $errorMessage');
       throw Exception('Mesaj gönderilemedi: $errorMessage');
     }
   }
@@ -1229,6 +1264,15 @@ class MessageService {
     String recipientId,
     String lastMessage,
   ) async {
+    final user = _auth.currentUser;
+    if (user == null) return;
+    
+    // Kendi kendine mesaj atma durumunu kontrol et
+    if (recipientId == user.uid) {
+      debugPrint('⚠️ Kendi kendine mesaj gönderme tespit edildi, alıcı chat güncellenmeyecek');
+      return;
+    }
+    
     try {
       // Tekil chat dokümanı üzerinde alıcı için unread sayısını artır
       await _firestore.collection('chats').doc(chatId).set({
@@ -1286,6 +1330,12 @@ class MessageService {
   ) async {
     final user = _auth.currentUser;
     if (user == null) return;
+    
+    // Kendi kendine mesaj atma durumunu kontrol et
+    if (recipientId == user.uid) {
+      debugPrint('⚠️ Kendi kendine mesaj gönderme tespit edildi, chat güncellenmeyecek');
+      return;
+    }
 
     try {
       // Önce mevcut chat'i kontrol et
@@ -1997,6 +2047,7 @@ class MessageService {
     String messageId,
   ) async {
     try {
+      // Firebase güncellemesi
       await _firestore
           .collection('chats')
           .doc(chatId)
@@ -2007,21 +2058,39 @@ class MessageService {
         'deliveredAt': FieldValue.serverTimestamp(),
       });
 
-      // Lokal mesajı güncelle
-      final message = await DriftService.getMessageById(messageId);
-      if (message != null) {
-        message.status = MessageStatus.delivered;
-        message.deliveredAt = DateTime.now();
-        await DriftService.updateMessage(message);
+      // Lokal mesajı güvenli şekilde güncelle
+      try {
+        final message = await DriftService.getMessageById(messageId);
+        if (message != null) {
+          try {
+            // Güvenli şekilde message fields güncelle - copyWith kullan
+            final updatedMessage = message.copyWith(
+              status: MessageStatus.delivered,
+              deliveredAt: message.deliveredAt ?? DateTime.now(),
+            );
+            await DriftService.updateMessage(updatedMessage);
+            debugPrint('✅ Mesaj yerel olarak delivered durumuna güncellendi: $messageId');
+          } catch (updateError) {
+            debugPrint('❌ Mesaj update hatası: $updateError');
+            // Bu hata kritik değil, mesaj zaten Firebase'e gönderildi
+          }
+        } else {
+          debugPrint('⚠️ Mesaj yerel veritabanında bulunamadı: $messageId');
+        }
+      } catch (localError) {
+        debugPrint('⚠️ Yerel mesaj güncelleme hatası: $localError');
+        // Firebase güncellemesi başarılıysa, yerel hata önemli değil
       }
     } catch (e) {
-      throw Exception('Mesaj iletildi güncelleme hatası: $e');
+      debugPrint('❌ Firebase mesaj delivered güncelleme hatası: $e');
+      // Firebase hatası varsa sessizce geç, mesaj zaten gönderildi
     }
   }
 
   // Mesajı okundu olarak işaretle
   static Future<void> markMessageAsRead(String chatId, String messageId) async {
     try {
+      // Firebase güncellemesi
       await _firestore
           .collection('chats')
           .doc(chatId)
@@ -2029,15 +2098,24 @@ class MessageService {
           .doc(messageId)
           .update({'isRead': true, 'readAt': FieldValue.serverTimestamp()});
 
-      // Lokal mesajı güncelle
-      final message = await DriftService.getMessageById(messageId);
-      if (message != null) {
-        message.status = MessageStatus.read;
-        message.readAt = DateTime.now();
-        await DriftService.updateMessage(message);
+      // Lokal mesajı güvenli şekilde güncelle
+      try {
+        final message = await DriftService.getMessageById(messageId);
+        if (message != null) {
+          message.status = MessageStatus.read;
+          message.readAt = DateTime.now();
+          await DriftService.updateMessage(message);
+          debugPrint('✅ Mesaj yerel olarak read durumuna güncellendi: $messageId');
+        } else {
+          debugPrint('⚠️ Mesaj yerel veritabanında bulunamadı: $messageId');
+        }
+      } catch (localError) {
+        debugPrint('⚠️ Yerel mesaj güncelleme hatası: $localError');
+        // Firebase güncellemesi başarılıysa, yerel hata önemli değil
       }
     } catch (e) {
-      throw Exception('Mesaj okundu güncelleme hatası: $e');
+      debugPrint('❌ Firebase mesaj read güncelleme hatası: $e');
+      // Firebase hatası varsa sessizce geç
     }
   }
 

@@ -517,12 +517,24 @@ class _ChatListPageNewState extends State<ChatListPageNew> {
   List<ChatModel> _getDisplayedChats(OptimizedChatProvider chatProvider) {
     final base = chatProvider.chats;
     if (_activeTagIds.isEmpty) return base;
+    
     // Mevcut chat listesine ek olarak etiket filtresi uygula - tags string'den List'e çevirmek gerekebilir
     return base
         .where((c) {
-          // tags string ise parse et, değilse direkt kullan  
-          final tagsList = c.tags is String ? (c.tags as String).split(',').map((e) => e.trim()).toList() : (c.tags as List<String>? ?? []);
-          return tagsList.any((t) => _activeTagIds.contains(t));
+          try {
+            // Null safety check önce
+            if (c.tags == null) return false;
+            
+            // tags string ise parse et, değilse direkt kullan  
+            final tagsList = c.tags is String 
+                ? (c.tags as String).split(',').map((e) => e.trim()).toList() 
+                : (c.tags is List ? (c.tags as List).cast<String>() : <String>[]);
+            
+            return tagsList.any((t) => _activeTagIds.contains(t));
+          } catch (e) {
+            debugPrint('❌ Tag filtresi hatası: $e');
+            return false;
+          }
         })
         .toList();
   }

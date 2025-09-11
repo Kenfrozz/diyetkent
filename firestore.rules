@@ -61,8 +61,15 @@ service cloud.firestore {
         ]) &&
         request.resource.data.chatId == chatId;
 
-      allow update: if isParticipantResource() &&
-        request.resource.data.diff(resource.data).changedKeys().hasOnly([
+      allow update: if (
+        // Mevcut participant ise
+        (isParticipantResource()) ||
+        // Yeni chat oluşturuluyor ve kullanıcı participant listesinde ise
+        (request.auth != null && 
+         request.resource.data.participants != null &&
+         request.resource.data.participants is list &&
+         request.resource.data.participants.hasAny([request.auth.uid]))
+      ) && request.resource.data.diff(resource.data).changedKeys().hasOnly([
           'lastMessage','lastMessageTime','isLastMessageFromMe','isLastMessageRead',
           'updatedAt','unreadCount','unreadCountByUser','isPinned','isMuted','isArchived',
           'tags','typingUsers','pinnedMessageIds','participantNames','deletedFor','deletedAtByUser',

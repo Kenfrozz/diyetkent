@@ -128,6 +128,58 @@ class MessageModel {
               : DateTime.fromMillisecondsSinceEpoch(map['deliveredAt']))
           : null;
   }
+
+  MessageModel copyWith({
+    String? messageId,
+    String? chatId,
+    String? senderId,
+    String? content,
+    MessageType? type,
+    MessageStatus? status,
+    DateTime? timestamp,
+    DateTime? readAt,
+    DateTime? deliveredAt,
+    String? mediaUrl,
+    String? mediaLocalPath,
+    String? thumbnailUrl,
+    double? mediaWidth,
+    double? mediaHeight,
+    int? mediaDuration,
+    String? replyToMessageId,
+    String? replyToContent,
+    String? replyToSenderId,
+    double? latitude,
+    double? longitude,
+    String? locationName,
+    bool? isEdited,
+    DateTime? editedAt,
+  }) {
+    return MessageModel.create(
+      messageId: messageId ?? this.messageId,
+      chatId: chatId ?? this.chatId,
+      senderId: senderId ?? this.senderId,
+      content: content ?? this.content,
+      type: type ?? this.type,
+      status: status ?? this.status,
+      mediaUrl: mediaUrl ?? this.mediaUrl,
+      mediaLocalPath: mediaLocalPath ?? this.mediaLocalPath,
+      thumbnailUrl: thumbnailUrl ?? this.thumbnailUrl,
+      mediaWidth: mediaWidth ?? this.mediaWidth,
+      mediaHeight: mediaHeight ?? this.mediaHeight,
+      mediaDuration: mediaDuration ?? this.mediaDuration,
+      replyToMessageId: replyToMessageId ?? this.replyToMessageId,
+      replyToContent: replyToContent ?? this.replyToContent,
+      replyToSenderId: replyToSenderId ?? this.replyToSenderId,
+      latitude: latitude ?? this.latitude,
+      longitude: longitude ?? this.longitude,
+      locationName: locationName ?? this.locationName,
+      isEdited: isEdited ?? this.isEdited,
+      editedAt: editedAt ?? this.editedAt,
+    )
+      ..timestamp = timestamp ?? this.timestamp
+      ..readAt = readAt ?? this.readAt
+      ..deliveredAt = deliveredAt ?? this.deliveredAt;
+  }
 }
 
 enum MessageType {

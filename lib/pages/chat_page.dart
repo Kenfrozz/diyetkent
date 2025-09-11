@@ -605,6 +605,8 @@ class _ChatPageState extends State<ChatPage> {
   Future<void> _sendMessage() async {
     final text = _messageController.text.trim();
     if (text.isEmpty || _isSendingMessage) return;
+    
+    debugPrint('🔥 MESAJ GÖNDERİLİYOR: $text');
 
     setState(() {
       _isSendingMessage = true;
@@ -612,11 +614,16 @@ class _ChatPageState extends State<ChatPage> {
 
     final currentUser = FirebaseAuth.instance.currentUser;
     if (currentUser == null) {
+      debugPrint('❌ KULLANICI GİRİŞ YAPMAMIL!');
       setState(() {
         _isSendingMessage = false;
       });
       return;
     }
+    
+    debugPrint('✅ Kullanıcı: ${currentUser.uid}');
+    debugPrint('✅ Chat ID: ${widget.chat.chatId}');
+    debugPrint('✅ Alıcı ID: ${widget.chat.otherUserId}');
 
     final replyId = _replyingToMessage?.messageId; // Temizlemeden önce kaydet
     final tempMessage = MessageModel.create(
@@ -643,12 +650,14 @@ class _ChatPageState extends State<ChatPage> {
     _scrollToBottom();
 
     try {
+      debugPrint('📤 MessageService.sendMessage çağrılıyor...');
       await MessageService.sendMessage(
         chatId: widget.chat.chatId,
         recipientId: widget.chat.otherUserId,
         text: text,
         replyToMessageId: replyId,
       );
+      debugPrint('✅ MessageService.sendMessage başarılı!');
       if (mounted) {
         setState(() {
           final index = _messages.indexWhere(
@@ -661,6 +670,8 @@ class _ChatPageState extends State<ChatPage> {
         });
       }
     } catch (e) {
+      debugPrint('❌ MESAJ GÖNDERME HATASI: $e');
+      debugPrint('❌ Hata türü: ${e.runtimeType}');
       if (mounted) {
         setState(() {
           final index = _messages.indexWhere(

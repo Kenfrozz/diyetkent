@@ -168,7 +168,21 @@ class UserService {
         return <String, bool>{};
       }
 
-      final typingUsers = data['typingUsers'] as Map<String, dynamic>;
+      final typingUsersRaw = data['typingUsers'];
+      if (typingUsersRaw == null) return <String, bool>{};
+      
+      // Type casting kontrolü
+      Map<String, dynamic> typingUsers;
+      if (typingUsersRaw is Map<String, dynamic>) {
+        typingUsers = typingUsersRaw;
+      } else if (typingUsersRaw is List) {
+        // List olarak geliyorsa boş map döndür
+        debugPrint('⚠️ TypingUsers beklenmedik şekilde List olarak geldi');
+        return <String, bool>{};
+      } else {
+        debugPrint('⚠️ TypingUsers beklenmedik tip: ${typingUsersRaw.runtimeType}');
+        return <String, bool>{};
+      }
       final result = <String, bool>{};
 
       final now = DateTime.now();
