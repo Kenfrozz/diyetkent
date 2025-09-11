@@ -111,8 +111,8 @@ class MessageService {
             local = localChat; // Mevcut chat'i kullan
           }
 
-          // Mevcut kaydı güncelle - null safety kontrolü
-          if (local != null) {
+          // Mevcut kaydı güncelle
+          {
             final newLastMessage = data['lastMessage'] as String?;
             if (newLastMessage != null) {
               local.lastMessage = newLastMessage;
@@ -134,8 +134,6 @@ class MessageService {
             
             // Update chat model
             await DriftService.updateChatModel(local);
-          } else {
-            debugPrint('⚠️ Local chat null, güncelleme atlandı: $chatId');
           }
         }
       } catch (e) {

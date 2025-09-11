@@ -42,7 +42,7 @@ class OptimizedChatProvider extends ChangeNotifier {
   bool _isRefreshing = false;
 
   // Getters
-  List<ChatModel> get chats => _filteredChats ?? [];
+  List<ChatModel> get chats => _filteredChats;
   List<ChatModel> get archivedChats =>
       _chats.where((chat) => chat.isArchived).toList();
   ChatFilter get currentFilter => _currentFilter;

@@ -522,13 +522,8 @@ class _ChatListPageNewState extends State<ChatListPageNew> {
     return base
         .where((c) {
           try {
-            // Null safety check önce
-            if (c.tags == null) return false;
-            
-            // tags string ise parse et, değilse direkt kullan  
-            final tagsList = c.tags is String 
-                ? (c.tags as String).split(',').map((e) => e.trim()).toList() 
-                : (c.tags is List ? (c.tags as List).cast<String>() : <String>[]);
+            // tags direkt kullan (null olamaz)
+            final tagsList = c.tags;
             
             return tagsList.any((t) => _activeTagIds.contains(t));
           } catch (e) {
