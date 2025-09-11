@@ -370,6 +370,7 @@ class _NewChatPageUpdatedState extends State<NewChatPageUpdated>
           otherUserId: contact.uid,
           otherUserName: contact.displayName,
           otherUserPhone: contact.phoneNumber,
+          otherUserContactName: contact.displayName, // Rehber ismi eklendi
           otherUserProfileImage: contact.profileImageUrl,
         );
 

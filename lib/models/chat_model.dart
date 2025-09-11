@@ -68,6 +68,7 @@ class ChatModel {
     required this.otherUserId,
     required this.otherUserName,
     required String otherUserPhone,
+    this.otherUserContactName, // Rehberdeki isim için eklendi
     this.otherUserProfileImage,
   }) {
     // Tutarlı chat ID oluştur: iki kullanıcı ID'sini sırala ve birleştir

@@ -6,6 +6,7 @@ import '../database/drift_service.dart';
 import '../models/chat_model.dart'; // Import ChatModel
 import '../services/notification_service.dart';
 import '../services/firebase_background_sync_service.dart';
+import '../services/contacts_service.dart';
 import 'dart:async';
 
 enum ChatFilter { all, unread, groups }
@@ -168,6 +169,9 @@ class OptimizedChatProvider extends ChangeNotifier {
 
       // 5. Chat'lerde "Bilinmeyen" isimli olanları güncelle
       await _updateUnknownChatNames();
+      
+      // 6. Rehber isimlerini güncelle
+      await _updateContactNames();
 
       debugPrint('✅ OptimizedChatProvider başarıyla başlatıldı');
 
@@ -254,7 +258,7 @@ class OptimizedChatProvider extends ChangeNotifier {
     }
   }
 
-  /// Bilinmeyen chat isimlerini Firebase'den güncelle
+  /// Bilinmeyen chat isimlerini Firebase'den güncelle ve rehber isimlerini kontrol et
   Future<void> _updateUnknownChatNames() async {
     try {
       bool hasUpdates = false;
@@ -263,21 +267,51 @@ class OptimizedChatProvider extends ChangeNotifier {
       for (final chat in _chats) {
         if (!chat.isGroup && 
             chat.otherUserId != null && 
-            chat.otherUserId!.isNotEmpty && 
-            (chat.otherUserName == null || chat.otherUserName == 'Bilinmeyen')) {
+            chat.otherUserId!.isNotEmpty) {
           
+          // Rehber ismini kontrol et ve güncelle
           try {
-            final userDoc = await FirebaseFirestore.instance
-                .collection('users')
-                .doc(chat.otherUserId)
-                .get();
-                
-            if (userDoc.exists) {
-              final userData = userDoc.data()!;
+            String? contactName;
+            if (chat.otherUserPhoneNumber != null && chat.otherUserPhoneNumber!.isNotEmpty) {
+              final contactService = ContactsService();
+              contactName = await contactService.getContactNameByPhone(chat.otherUserPhoneNumber!);
+            }
+            
+            // Eğer rehber ismi varsa veya Firebase'den güncelleme gerekiyorsa
+            bool needsContactUpdate = (contactName != null && contactName != chat.otherUserContactName);
+            bool needsFirebaseUpdate = (chat.otherUserName == null || chat.otherUserName == 'Bilinmeyen');
+            
+            if (needsContactUpdate || needsFirebaseUpdate) {
+              
+              String? firebaseDisplayName = chat.otherUserName;
+              String? firebasePhone = chat.otherUserPhoneNumber;
+              String? firebaseProfileImage = chat.otherUserProfileImage;
+              
+              // Firebase'den güncelleme gerekiyorsa al
+              if (needsFirebaseUpdate) {
+                try {
+                  final userDoc = await FirebaseFirestore.instance
+                      .collection('users')
+                      .doc(chat.otherUserId)
+                      .get();
+                      
+                  if (userDoc.exists) {
+                    final userData = userDoc.data()!;
+                    firebaseDisplayName = userData['displayName'] as String?;
+                    firebasePhone = userData['phoneNumber'] as String?;
+                    firebaseProfileImage = userData['profileImageUrl'] as String?;
+                  }
+                } catch (e) {
+                  debugPrint('⚠️ Chat ${chat.chatId} Firebase güncellenemedi: $e');
+                }
+              }
+              
+              // Chat'i güncelle
               final updatedChat = chat.copyWith(
-                otherUserName: userData['displayName'] as String?,
-                otherUserPhoneNumber: userData['phoneNumber'] as String?,
-                otherUserProfileImage: userData['profileImageUrl'] as String?,
+                otherUserName: firebaseDisplayName,
+                otherUserContactName: contactName, // Rehber ismi güncellendi
+                otherUserPhoneNumber: firebasePhone,
+                otherUserProfileImage: firebaseProfileImage,
               );
               
               await DriftService.saveChat(updatedChat);
@@ -285,7 +319,7 @@ class OptimizedChatProvider extends ChangeNotifier {
               hasUpdates = true;
             }
           } catch (e) {
-            debugPrint('⚠️ Chat ${chat.chatId} kullanıcı bilgisi güncellenemedi: $e');
+            debugPrint('⚠️ Chat ${chat.chatId} güncelleme hatası: $e');
           }
         }
       }
@@ -315,11 +349,52 @@ class OptimizedChatProvider extends ChangeNotifier {
       // Drift'ten güncel verileri yükle
       await _loadChatsFromDrift();
       
+      // Rehber isimlerini güncelle
+      await _updateContactNames();
+      
     } catch (e) {
       debugPrint('❌ Chat refresh hatası: $e');
     } finally {
       _isRefreshing = false;
       notifyListeners();
+    }
+  }
+
+  /// Rehber isimlerini güncelle
+  Future<void> _updateContactNames() async {
+    try {
+      bool hasUpdates = false;
+      
+      for (final chat in _chats) {
+        if (!chat.isGroup && 
+            chat.otherUserPhoneNumber != null && 
+            chat.otherUserPhoneNumber!.isNotEmpty) {
+          
+          final contactName = await ContactsService.getContactNameByPhone(
+            chat.otherUserPhoneNumber!,
+          );
+          
+          if (contactName != null && 
+              contactName.isNotEmpty && 
+              chat.otherUserContactName != contactName) {
+            
+            // Contact ismini güncelle
+            chat.otherUserContactName = contactName;
+            await DriftService.updateChatModel(chat);
+            hasUpdates = true;
+            
+            debugPrint('📞 Chat ${chat.chatId} rehber ismi güncellendi: $contactName');
+          }
+        }
+      }
+      
+      if (hasUpdates) {
+        debugPrint('✅ Rehber isimleri güncellendi');
+        await _loadChatsFromDrift();
+      }
+      
+    } catch (e) {
+      debugPrint('❌ Rehber güncelleme hatası: $e');
     }
   }
 

@@ -153,6 +153,7 @@ class _ForwardMessagePageState extends State<ForwardMessagePage> {
               otherUserId: uid,
               otherUserName: targetContact.displayName,
               otherUserPhone: targetContact.phoneNumber,
+              otherUserContactName: targetContact.displayName, // Rehber ismi eklendi
               otherUserProfileImage: targetContact.profileImageUrl,
             );
             await DriftService.saveChat(newChat);
