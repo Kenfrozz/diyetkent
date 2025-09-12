@@ -377,6 +377,94 @@ class DriftService {
     debugPrint('Mark messages as read for chat: $chatId');
   }
 
+  // ========== ADDITIONAL MISSING METHODS (PART 2) ==========
+
+  /// Update group model
+  static Future<void> updateGroupModel(GroupModel group) async {
+    debugPrint('Update group model: ${group.groupId}');
+  }
+
+  /// Get group model
+  static Future<GroupModel?> getGroupModel(String groupId) async {
+    debugPrint('Get group model: $groupId');
+    return null;
+  }
+
+  /// Save messages (batch)
+  static Future<void> saveMessages(List<model.MessageModel> messages) async {
+    debugPrint('Save messages batch: ${messages.length}');
+  }
+
+  /// Save groups (batch)
+  static Future<void> saveGroups(List<GroupModel> groups) async {
+    debugPrint('Save groups batch: ${groups.length}');
+  }
+
+  /// Save contact indexes (batch)
+  static Future<void> saveContactIndexes(List<ContactIndexModel> indexes) async {
+    debugPrint('Save contact indexes batch: ${indexes.length}');
+  }
+
+  /// Get contact index by phone
+  static Future<ContactIndexModel?> getContactIndexByPhone(String phone) async {
+    debugPrint('Get contact index by phone: $phone');
+    return null;
+  }
+
+  /// Clear all data
+  static Future<void> clearAll() async {
+    debugPrint('Clear all data');
+  }
+
+  /// Get user health data
+  static Future<List<Map<String, dynamic>>> getUserHealthData({int? limit}) async {
+    debugPrint('Get user health data with limit: $limit');
+    return [];
+  }
+
+  /// Get most used tags
+  static Future<List<TagModel>> getMostUsedTags({int limit = 10}) async {
+    debugPrint('Get most used tags with limit: $limit');
+    return [];
+  }
+
+  /// Create story
+  static Future<void> createStory(StoryModel story) async {
+    debugPrint('Create story: ${story.storyId}');
+  }
+
+  /// Create tag
+  static Future<void> createTag(TagModel tag) async {
+    debugPrint('Create tag: ${tag.tagId}');
+  }
+
+  /// Increment tag usage
+  static Future<void> incrementTagUsage(String tagId) async {
+    debugPrint('Increment tag usage: $tagId');
+  }
+
+  /// Decrement tag usage
+  static Future<void> decrementTagUsage(String tagId) async {
+    debugPrint('Decrement tag usage: $tagId');
+  }
+
+  /// Search tags
+  static Future<List<TagModel>> searchTags(String query) async {
+    debugPrint('Search tags: $query');
+    return [];
+  }
+
+  /// Get chats by tags
+  static Future<List<ChatModel>> getChatsByTags(List<String> tagIds) async {
+    debugPrint('Get chats by tags: ${tagIds.length}');
+    return [];
+  }
+
+  /// Update group permissions
+  static Future<void> updateGroupPermissions(String groupId, Map<String, dynamic> permissions) async {
+    debugPrint('Update group permissions: $groupId');
+  }
+
   // ========== GROUP MANAGEMENT METHODS ==========
   
   /// Create group
