@@ -18,7 +18,7 @@ import 'providers/optimized_chat_provider.dart';
 import 'providers/tag_provider.dart';
 import 'providers/story_provider.dart';
 import 'providers/group_provider.dart';
-import 'providers/pre_consultation_form_provider.dart';
+// Removed pre_consultation_form_provider (dietitian panel removed)
 import 'database/drift_service.dart';
 import 'services/user_service.dart';
 import 'services/firebase_usage_tracker.dart';
