@@ -69,8 +69,20 @@ class _OptimizedHomePageState extends State<OptimizedHomePage> with TickerProvid
       final user = FirebaseAuth.instance.currentUser;
       if (user?.uid == null) return;
 
-      // İsar'dan kullanıcı rolü al (Background sync tarafından güncel tutulur)
-      final role = await DriftService.getUserRole(user!.uid);
+      // Drift'den kullanıcı rolü al (Background sync tarafından güncel tutulur)
+      final roleString = await DriftService.getUserRole(user!.uid);
+      
+      // String'i UserRole enum'una çevir (role system basitleştirildi)
+      UserRole? role;
+      if (roleString == 'dietitian') {
+        role = UserRole.dietitian;
+      } else if (roleString == 'admin') {
+        role = UserRole.admin;
+      } else if (roleString == 'moderator') {
+        role = UserRole.moderator;
+      } else {
+        role = UserRole.user; // Default role
+      }
       
       if (mounted) {
         setState(() {
@@ -95,7 +107,7 @@ class _OptimizedHomePageState extends State<OptimizedHomePage> with TickerProvid
     final user = FirebaseAuth.instance.currentUser;
     if (user == null) return;
     
-    _incomingCallSub = DriftService.watchIncomingCalls(user.uid).listen((calls) async {
+    _incomingCallSub = DriftService.watchIncomingCalls().listen((calls) async {
       if (!mounted) return;
       
       // Sadece 'ringing' durumundaki aramaları işle

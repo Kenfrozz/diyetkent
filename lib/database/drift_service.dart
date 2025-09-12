@@ -1,5 +1,7 @@
 import 'package:flutter/foundation.dart';
+import 'dart:convert';
 import 'drift/database.dart';
+import 'drift/tables/groups_table.dart';
 // Import model classes
 import '../models/user_model.dart';
 import '../models/chat_model.dart';
@@ -145,8 +147,9 @@ class DriftService {
     return saveGroup(group);
   }
 
-  /// Get group by ID
-  static Future<GroupModel?> getGroupById(String groupId) async {
+  /// Get group by ID - returns GroupData for compatibility
+  static Future<GroupData?> getGroupById(String groupId) async {
+    debugPrint('Get group by ID: $groupId');
     return null;
   }
 
@@ -237,10 +240,10 @@ class DriftService {
     return Stream.value([]);
   }
 
-  /// Get user groups
-  static Future<List<GroupModel>> getUserGroups(String userId) async {
+  /// Get user groups - returns GroupData for compatibility
+  static Future<List<GroupData>> getUserGroups(String userId) async {
     debugPrint('Get user groups for: $userId');
-    return [];
+    return <GroupData>[];
   }
 
   /// Get user role
@@ -464,21 +467,52 @@ class DriftService {
   }
 
   /// Update group permissions
-  static Future<void> updateGroupPermissions(String groupId, Map<String, dynamic> permissions) async {
+  static Future<void> updateGroupPermissions({
+    required String groupId,
+    String? messagePermission,
+    String? mediaPermission,
+    bool? allowMembersToAddOthers,
+  }) async {
     debugPrint('Update group permissions: $groupId');
   }
 
   // ========== GROUP MANAGEMENT METHODS ==========
   
   /// Create group
-  static Future<void> createGroup(GroupModel group) async {
-    debugPrint('Create group: ${group.groupId}');
+  static Future<GroupData> createGroup({
+    required String name,
+    required List<String> memberIds,
+    String? description,
+    String? profileImageUrl,
+    required String createdBy,
+  }) async {
+    debugPrint('Create group: $name with ${memberIds.length} members');
+    
+    // Create a mock GroupData for now - implement actual creation later
+    final groupData = GroupData(
+      id: DateTime.now().millisecondsSinceEpoch,
+      groupId: 'group_${DateTime.now().millisecondsSinceEpoch}',
+      name: name,
+      description: description,
+      profileImageUrl: profileImageUrl,
+      profileImageLocalPath: null,
+      members: jsonEncode(memberIds),
+      admins: jsonEncode([createdBy]),
+      createdBy: createdBy,
+      messagePermission: MessagePermission.everyone,
+      mediaPermission: MediaPermission.downloadable,
+      allowMembersToAddOthers: false,
+      createdAt: DateTime.now(),
+      updatedAt: DateTime.now(),
+    );
+    
+    return groupData;
   }
 
-  /// Get group members
-  static Future<List<String>> getGroupMembers(String groupId) async {
+  /// Get group members - returns GroupMemberData for compatibility
+  static Future<List<GroupMemberData>> getGroupMembers(String groupId) async {
     debugPrint('Get group members for: $groupId');
-    return [];
+    return <GroupMemberData>[];
   }
 
   /// Add member to group
@@ -502,8 +536,13 @@ class DriftService {
   }
 
   /// Update group info
-  static Future<void> updateGroupInfo(String groupId, Map<String, dynamic> updates) async {
-    debugPrint('Update group info: $groupId');
+  static Future<void> updateGroupInfo({
+    required String groupId,
+    String? name,
+    String? description,
+    String? profileImageUrl,
+  }) async {
+    debugPrint('Update group info: $groupId, name: $name');
   }
 
   /// Delete group

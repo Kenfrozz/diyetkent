@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import '../database/drift_service.dart';
 import '../database/drift/database.dart';
+import '../database/drift/tables/groups_table.dart';
 import 'dart:async';
 import 'dart:convert';
 
@@ -362,7 +363,7 @@ class GroupProvider extends ChangeNotifier {
       final group = _groups.firstWhere((g) => g.groupId == groupId);
       // Simple permission check - admins can always send, others depend on messagePermission
       if (isUserAdmin(groupId)) return true;
-      return group.messagePermission == 'everyone';
+      return group.messagePermission == MessagePermission.everyone;
     } catch (e) {
       return false;
     }
