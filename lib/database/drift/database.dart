@@ -15,16 +15,10 @@ import 'tables/groups_table.dart';
 import 'tables/stories_table.dart';
 import 'tables/tags_table.dart';
 import 'tables/contact_indexes_table.dart';
-import 'tables/pre_consultation_forms_table.dart';
 import 'tables/call_logs_table.dart';
 import 'tables/health_data_table.dart';
-import 'tables/diet_files_table.dart';
-import 'tables/user_roles_table.dart';
-import 'tables/diet_packages_table.dart';
-import 'tables/user_diet_assignments_table.dart';
 import 'tables/meal_reminder_preferences_table.dart';
 import 'tables/meal_reminder_behaviors_table.dart';
-import 'tables/progress_reminders_table.dart';
 
 // DAOs
 import 'daos/chat_dao.dart';
@@ -34,15 +28,9 @@ import 'daos/group_dao.dart';
 import 'daos/story_dao.dart';
 import 'daos/tag_dao.dart';
 import 'daos/contact_index_dao.dart';
-import 'daos/pre_consultation_form_dao.dart';
 import 'daos/call_log_dao.dart';
 import 'daos/health_data_dao.dart';
-import 'daos/diet_file_dao.dart';
-import 'daos/user_role_dao.dart';
-import 'daos/diet_package_dao.dart';
-import 'daos/user_diet_assignment_dao.dart';
 import 'daos/meal_reminder_dao.dart';
-import 'daos/progress_reminder_dao.dart';
 
 part 'database.g.dart';
 
@@ -56,17 +44,11 @@ part 'database.g.dart';
     StoriesTable,
     TagsTable,
     ContactIndexesTable,
-    PreConsultationFormsTable,
     CallLogsTable,
     HealthDataTable,
-    DietFilesTable,
-    UserRolesTable,
-    DietPackagesTable,
-    UserDietAssignmentsTable,
     MealReminderPreferencesTable,
     MealReminderBehaviorsTable,
     UserBehaviorAnalyticsTable,
-    ProgressRemindersTable,
   ],
   daos: [
     ChatDao,
@@ -76,15 +58,9 @@ part 'database.g.dart';
     StoryDao,
     TagDao,
     ContactIndexDao,
-    PreConsultationFormDao,
     CallLogDao,
     HealthDataDao,
-    DietFileDao,
-    UserRoleDao,
-    DietPackageDao,
-    UserDietAssignmentDao,
     MealReminderDao,
-    ProgressReminderDao,
   ],
 )
 class AppDatabase extends _$AppDatabase {

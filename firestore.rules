@@ -1,17 +1,6 @@
 rules_version = '2';
 service cloud.firestore {
   match /databases/{database}/documents {
-    // Helper functions for role checking
-    function isDietitian(userId) {
-      return exists(/databases/$(database)/documents/userRoles/$(userId)) &&
-             (get(/databases/$(database)/documents/userRoles/$(userId)).data.role == 'dietitian' ||
-              get(/databases/$(database)/documents/userRoles/$(userId)).data.role == 'admin');
-    }
-    
-    function isAdmin(userId) {
-      return exists(/databases/$(database)/documents/userRoles/$(userId)) &&
-             get(/databases/$(database)/documents/userRoles/$(userId)).data.role == 'admin';
-    }
     // Users: allow authenticated read of basic user docs; write limited to owner
     match /users/{userId} {
       allow read: if request.auth != null;
@@ -160,92 +149,7 @@ service cloud.firestore {
       allow read, write: if request.auth != null && request.auth.uid == userId;
     }
 
-    // Diet Files collection (global - for backward compatibility)
-    match /dietFiles/{fileId} {
-      // Users can read diet files (temporarily allow all authenticated users for queries)
-      allow read: if request.auth != null;
-      
-      // Dietitians can create diet files for users
-      allow create: if request.auth != null && 
-        request.resource.data.dietitianId == request.auth.uid &&
-        isDietitian(request.auth.uid);
-      
-      // Dietitians can update their own created files
-      allow update: if request.auth != null && 
-        resource.data.dietitianId == request.auth.uid &&
-        isDietitian(request.auth.uid);
-    }
 
-    // Diet Files under user subcollection (recommended structure)
-    match /users/{userId}/dietFiles/{fileId} {
-      // Users can read their own diet files
-      allow read: if request.auth != null && request.auth.uid == userId;
-      
-      // Dietitians can create diet files for users
-      allow create: if request.auth != null && 
-        request.resource.data.dietitianId == request.auth.uid &&
-        isDietitian(request.auth.uid);
-      
-      // Dietitians can update their own created files
-      allow update: if request.auth != null && 
-        resource.data.dietitianId == request.auth.uid &&
-        isDietitian(request.auth.uid);
-    }
-
-    // User Roles collection
-    match /userRoles/{userId} {
-      // Users can read their own role
-      allow read: if request.auth != null;
-      
-      // TEMPORARY: Allow creating user roles for initial setup
-      // TODO: Restrict to admins only after initial roles are set
-      allow create, update: if request.auth != null;
-    }
-
-    // Diet Packages collection
-    match /dietPackages/{packageId} {
-      // Public packages can be read by everyone
-      allow read: if request.auth != null && 
-        (resource.data.isPublic == true || resource.data.dietitianId == request.auth.uid);
-      
-      // Only dietitians can create packages
-      allow create: if request.auth != null && 
-        isDietitian(request.auth.uid) &&
-        request.resource.data.dietitianId == request.auth.uid;
-      
-      // Only package owner can update
-      allow update: if request.auth != null && 
-        resource.data.dietitianId == request.auth.uid &&
-        isDietitian(request.auth.uid);
-      
-      // Only package owner can delete (if no active assignments)
-      allow delete: if request.auth != null && 
-        resource.data.dietitianId == request.auth.uid &&
-        isDietitian(request.auth.uid);
-    }
-
-    // User Diet Assignments collection  
-    match /userDietAssignments/{assignmentId} {
-      // Users can read their own assignments, dietitians can read their created assignments
-      allow read: if request.auth != null && (
-        resource.data.userId == request.auth.uid ||
-        (resource.data.dietitianId == request.auth.uid && isDietitian(request.auth.uid))
-      );
-      
-      // Only dietitians can create assignments
-      allow create: if request.auth != null && 
-        isDietitian(request.auth.uid) &&
-        request.resource.data.dietitianId == request.auth.uid;
-      
-      // Users can update their own data, dietitians can update assignments they created
-      allow update: if request.auth != null && (
-        (resource.data.userId == request.auth.uid && 
-         request.resource.data.diff(resource.data).changedKeys().hasOnly([
-           'userNotes', 'weightCurrent', 'userRating', 'userReview', 'isReviewed', 'updatedAt'
-         ])) ||
-        (resource.data.dietitianId == request.auth.uid && isDietitian(request.auth.uid))
-      );
-    }
 
     // Stories collection
     match /stories/{storyId} {

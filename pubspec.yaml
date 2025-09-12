@@ -92,11 +92,6 @@ dependencies:
   # Cihaz bilgileri için
   device_info_plus: ^11.5.0
   
-  # PDF ve DOCX işlemleri için
-  pdf: ^3.11.1
-  printing: ^5.12.0
-  archive: ^4.0.7
-  xml: ^6.5.0
 
 dependency_overrides:
   record_linux: ^1.0.0

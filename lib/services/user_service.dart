@@ -3,7 +3,6 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/foundation.dart';
 import '../database/drift_service.dart';
 import '../models/user_model.dart';
-import '../models/user_role_model.dart';
 import '../services/firebase_usage_tracker.dart';
 import 'dart:async';
 

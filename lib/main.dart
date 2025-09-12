@@ -236,7 +236,6 @@ class _MyAppState extends State<MyApp> with WidgetsBindingObserver {
         ChangeNotifierProvider(create: (_) => TagProvider()..initialize()),
         ChangeNotifierProvider(create: (_) => StoryProvider()),
         ChangeNotifierProvider(create: (_) => GroupProvider()),
-        ChangeNotifierProvider(create: (_) => PreConsultationFormProvider()),
       ],
       child: MaterialApp(
         title: 'DiyetKent',

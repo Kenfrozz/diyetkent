@@ -178,9 +178,6 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
               case 'settings':
                 _navigateToSettings();
                 break;
-              case 'dietitian_panel':
-                _navigateToDietitianPanel();
-                break;
               case 'logout':
                 _showLogoutDialog();
                 break;
@@ -453,11 +450,6 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
     Navigator.pushNamed(context, '/settings');
   }
 
-  void _navigateToDietitianPanel() {
-    Navigator.of(context).push(
-      MaterialPageRoute(builder: (_) => const DietitianDashboardPage()),
-    );
-  }
 
   void _showLogoutDialog() {
     showDialog(
