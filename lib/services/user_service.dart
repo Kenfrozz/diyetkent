@@ -342,98 +342,17 @@ class UserService {
     }
   }
 
-  // =============== ROL YÖNETİMİ ===============
-
-  // Kullanıcının Firestore'daki rolünü getir
-  static Future<UserRoleType?> getUserRole(String userId) async {
-    try {
-      final doc = await _firestore.collection('userRoles').doc(userId).get();
-      await FirebaseUsageTracker.incrementRead(1);
-      
-      if (!doc.exists) {
-        // Rol tanımlanmamışsa varsayılan olarak normal kullanıcı kabul et
-        await setUserRole(userId, UserRoleType.user);
-        return UserRoleType.user;
-      }
-
-      final data = doc.data() ?? {};
-      final roleString = data['role'] as String?;
-      return UserRoleType.values.firstWhere(
-        (role) => role.name == roleString,
-        orElse: () => UserRoleType.user,
-      );
-    } catch (e) {
-      debugPrint('Kullanıcı rolü getirilemedi: $e');
-      return UserRoleType.user;
-    }
-  }
-
-  // Kullanıcının rolünü Firestore'da ayarla
-  static Future<void> setUserRole(String userId, UserRoleType role) async {
-    try {
-      await _firestore.collection('userRoles').doc(userId).set({
-        'userId': userId,
-        'role': role.name,
-        'updatedAt': FieldValue.serverTimestamp(),
-      }, SetOptions(merge: true));
-      await FirebaseUsageTracker.incrementWrite(1);
-
-      // Yerel Drift'te da güncelle
-      final localUser = await DriftService.getUserByUserId(userId);
-      if (localUser != null) {
-        localUser.userRole = role;
-        localUser.updatedAt = DateTime.now();
-        await DriftService.updateUser(localUser);
-      }
-
-      debugPrint('✅ Kullanıcı rolü güncellendi: $userId -> ${role.name}');
-    } catch (e) {
-      debugPrint('❌ Kullanıcı rolü güncellenemedi: $e');
-      rethrow;
-    }
-  }
-
-  // Mevcut kullanıcının rolünü kontrol et ve gerekirse oluştur
-  static Future<void> ensureCurrentUserRole() async {
-    final user = _auth.currentUser;
-    if (user == null) return;
-
-    try {
-      final role = await getUserRole(user.uid);
-      debugPrint('👤 Mevcut kullanıcı rolü: ${role?.name ?? 'belirtilmemiş'}');
-    } catch (e) {
-      debugPrint('❌ Kullanıcı rolü kontrol edilemedi: $e');
-    }
-  }
-
-  // Kullanıcının diyetisyen olup olmadığını kontrol et
+  // =============== KULLANICI YÖNETİMİ (BASİTLEŞTİRİLDİ) ===============
+  
+  // Basitleştirilmiş kullanıcı rolü kontrol metodları - artık sadece stub implementasyonları
   static Future<bool> isCurrentUserDietitian() async {
-    final user = _auth.currentUser;
-    if (user == null) return false;
-
-    final role = await getUserRole(user.uid);
-    return role == UserRoleType.dietitian || role == UserRoleType.admin;
+    // Diyetisyen paneli kaldırıldığından dolayı her zaman false döndür
+    return false;
   }
 
   // Kullanıcının admin olup olmadığını kontrol et
   static Future<bool> isCurrentUserAdmin() async {
-    final user = _auth.currentUser;
-    if (user == null) return false;
-
-    final role = await getUserRole(user.uid);
-    return role == UserRoleType.admin;
-  }
-
-  // Tüm userRoles belgelerini senkronize et (geliştirme amaçlı)
-  static Future<void> syncAllUserRoles() async {
-    try {
-      final users = await DriftService.getAllUsers();
-      for (final user in users) {
-        await setUserRole(user.userId, user.userRole);
-      }
-      debugPrint('✅ Tüm kullanıcı rolleri senkronize edildi (${users.length} kullanıcı)');
-    } catch (e) {
-      debugPrint('❌ Rol senkronizasyonu başarısız: $e');
-    }
+    // Admin paneli de kaldırıldığından dolayı her zaman false döndür
+    return false;
   }
 }

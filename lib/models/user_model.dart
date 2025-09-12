@@ -1,8 +1,7 @@
-import 'user_role_model.dart';
+enum PrivacyType { everyone, contacts, nobody }
 
 class UserModel {
   late String userId;
-
   String? name;
   String? phoneNumber;
   String? profileImageUrl;
@@ -19,23 +18,16 @@ class UserModel {
   int? todayStepCount = 0;
   DateTime? lastStepUpdate;
 
-  // Kullanıcı rolü
-  UserRoleType userRole = UserRoleType.user;
-
   bool isOnline = false;
   DateTime? lastSeen;
 
   // Privacy ayarları
   PrivacyType lastSeenPrivacy = PrivacyType.everyone;
-
   PrivacyType profilePhotoPrivacy = PrivacyType.everyone;
-
   PrivacyType aboutPrivacy = PrivacyType.everyone;
 
-  DateTime createdAt = DateTime.now();
-  DateTime updatedAt = DateTime.now();
-
-  UserModel();
+  late DateTime createdAt;
+  late DateTime updatedAt;
 
   UserModel.create({
     required this.userId,
@@ -50,7 +42,6 @@ class UserModel {
     this.birthDate,
     this.todayStepCount = 0,
     this.lastStepUpdate,
-    this.userRole = UserRoleType.user,
     this.isOnline = false,
     this.lastSeen,
     this.lastSeenPrivacy = PrivacyType.everyone,
@@ -75,7 +66,6 @@ class UserModel {
       'birthDate': birthDate?.millisecondsSinceEpoch,
       'todayStepCount': todayStepCount,
       'lastStepUpdate': lastStepUpdate?.millisecondsSinceEpoch,
-      'userRole': userRole.name,
       'isOnline': isOnline,
       'lastSeen': lastSeen?.millisecondsSinceEpoch,
       'lastSeenPrivacy': lastSeenPrivacy.name,
@@ -104,40 +94,103 @@ class UserModel {
       lastStepUpdate: map['lastStepUpdate'] != null
           ? DateTime.fromMillisecondsSinceEpoch(map['lastStepUpdate'])
           : null,
-      userRole: UserRoleType.values.firstWhere(
-        (e) => e.name == map['userRole'],
-        orElse: () => UserRoleType.user,
-      ),
       isOnline: map['isOnline'] ?? false,
       lastSeen: map['lastSeen'] != null
           ? DateTime.fromMillisecondsSinceEpoch(map['lastSeen'])
           : null,
-      lastSeenPrivacy: PrivacyType.values.byName(
-        map['lastSeenPrivacy'] ?? 'everyone',
+      lastSeenPrivacy: PrivacyType.values.firstWhere(
+        (e) => e.name == map['lastSeenPrivacy'],
+        orElse: () => PrivacyType.everyone,
       ),
-      profilePhotoPrivacy: PrivacyType.values.byName(
-        map['profilePhotoPrivacy'] ?? 'everyone',
+      profilePhotoPrivacy: PrivacyType.values.firstWhere(
+        (e) => e.name == map['profilePhotoPrivacy'],
+        orElse: () => PrivacyType.everyone,
       ),
-      aboutPrivacy: PrivacyType.values.byName(
-        map['aboutPrivacy'] ?? 'everyone',
+      aboutPrivacy: PrivacyType.values.firstWhere(
+        (e) => e.name == map['aboutPrivacy'],
+        orElse: () => PrivacyType.everyone,
       ),
-    );
+    )
+      ..createdAt = map['createdAt'] != null
+          ? DateTime.fromMillisecondsSinceEpoch(map['createdAt'])
+          : DateTime.now()
+      ..updatedAt = map['updatedAt'] != null
+          ? DateTime.fromMillisecondsSinceEpoch(map['updatedAt'])
+          : DateTime.now();
   }
 
   // BMI hesaplama
-  double? get currentBMI {
+  double? get bmi {
     if (currentHeight == null || currentWeight == null || currentHeight! <= 0) {
       return null;
     }
-    double heightInMeters = currentHeight! / 100;
+    final heightInMeters = currentHeight! / 100;
     return currentWeight! / (heightInMeters * heightInMeters);
   }
 
-  // Diyetisyen mi kontrolü
-  bool get isDietitian => userRole == UserRoleType.dietitian || userRole == UserRoleType.admin;
+  // BMI kategorisi
+  String get bmiCategory {
+    final currentBmi = bmi;
+    if (currentBmi == null) return 'Bilinmiyor';
+    if (currentBmi < 18.5) return 'Zayıf';
+    if (currentBmi < 25) return 'Normal';
+    if (currentBmi < 30) return 'Fazla kilolu';
+    return 'Obez';
+  }
 
-  // Admin mi kontrolü
-  bool get isAdmin => userRole == UserRoleType.admin;
+  // İdeal kilo hesaplama (BMI 22.5 baz alınarak)
+  double? get idealWeight {
+    if (currentHeight == null || currentHeight! <= 0) return null;
+    final heightInMeters = currentHeight! / 100;
+    return 22.5 * (heightInMeters * heightInMeters);
+  }
+
+  // Kilo farkı
+  double? get weightDifference {
+    if (currentWeight == null || idealWeight == null) return null;
+    return currentWeight! - idealWeight!;
+  }
+
+  // Model kopyalama
+  UserModel copyWith({
+    String? userId,
+    String? name,
+    String? phoneNumber,
+    String? profileImageUrl,
+    String? profileImageLocalPath,
+    String? about,
+    double? currentHeight,
+    double? currentWeight,
+    int? age,
+    DateTime? birthDate,
+    int? todayStepCount,
+    DateTime? lastStepUpdate,
+    bool? isOnline,
+    DateTime? lastSeen,
+    PrivacyType? lastSeenPrivacy,
+    PrivacyType? profilePhotoPrivacy,
+    PrivacyType? aboutPrivacy,
+  }) {
+    return UserModel.create(
+      userId: userId ?? this.userId,
+      name: name ?? this.name,
+      phoneNumber: phoneNumber ?? this.phoneNumber,
+      profileImageUrl: profileImageUrl ?? this.profileImageUrl,
+      profileImageLocalPath: profileImageLocalPath ?? this.profileImageLocalPath,
+      about: about ?? this.about,
+      currentHeight: currentHeight ?? this.currentHeight,
+      currentWeight: currentWeight ?? this.currentWeight,
+      age: age ?? this.age,
+      birthDate: birthDate ?? this.birthDate,
+      todayStepCount: todayStepCount ?? this.todayStepCount,
+      lastStepUpdate: lastStepUpdate ?? this.lastStepUpdate,
+      isOnline: isOnline ?? this.isOnline,
+      lastSeen: lastSeen ?? this.lastSeen,
+      lastSeenPrivacy: lastSeenPrivacy ?? this.lastSeenPrivacy,
+      profilePhotoPrivacy: profilePhotoPrivacy ?? this.profilePhotoPrivacy,
+      aboutPrivacy: aboutPrivacy ?? this.aboutPrivacy,
+    )
+      ..createdAt = createdAt
+      ..updatedAt = DateTime.now();
+  }
 }
-
-enum PrivacyType { everyone, contacts, nobody }
