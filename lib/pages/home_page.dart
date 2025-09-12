@@ -16,12 +16,12 @@ import '../widgets/tag_selection_dialog.dart';
 import '../widgets/appbar_health_indicators.dart';
 import 'profile_settings_page.dart';
 import 'create_group_page_updated.dart';
-import 'dietitian_dashboard_page.dart';
+// Removed dietitian_dashboard_page (dietitian panel removed)
 import '../database/drift_service.dart';
 import '../services/user_service.dart';
 import '../models/message_model.dart';
 import '../models/chat_model.dart';
-import '../models/user_role_model.dart';
+// Removed user_role_model (dietitian panel removed)
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -34,7 +34,7 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
   late TabController _tabController;
   StreamSubscription<QuerySnapshot<Map<String, dynamic>>>? _incomingCallSub;
   final Set<String> _handledCallIds = <String>{};
-  UserRoleModel? _currentUserRole;
+  // User role system removed (dietitian panel removed)
 
   @override
   void initState() {
@@ -58,14 +58,7 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
       
       debugPrint('🔍 Firestore\'dan gelen rol: ${roleType?.name}');
       
-      // UserRoleModel oluştur
-      if (roleType != null && mounted) {
-        final userRole = UserRoleModel.create(
-          userId: user.uid,
-          role: roleType,
-        );
-        debugPrint('🔍 UserRoleModel.isDietitian: ${userRole.isDietitian}');
-        debugPrint('🔍 Rol tipi: ${userRole.role.name}');
+      // User role system removed (dietitian panel removed)
         
         setState(() {
           _currentUserRole = userRole;

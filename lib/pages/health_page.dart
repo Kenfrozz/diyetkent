@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import '../services/health_service.dart';
-import '../services/diet_file_service.dart';
+// Removed diet_file_service (dietitian panel removed)
 import '../services/step_counter_service.dart';
 import '../services/export_service.dart';
 import '../models/health_data_model.dart';
-import '../models/diet_file_model.dart';
+// Removed diet_file_model (dietitian panel removed)
 import '../models/user_model.dart';
 import '../database/drift_service.dart';
 import 'package:intl/intl.dart';
@@ -24,7 +24,7 @@ class _HealthPageState extends State<HealthPage> with TickerProviderStateMixin {
   
   UserModel? _currentUser;
   List<HealthDataModel> _healthHistory = [];
-  List<DietFileModel> _dietFiles = [];
+  // Removed diet files (dietitian panel removed)
   Map<String, dynamic> _healthStats = {};
   
   bool _isLoading = true;
@@ -65,7 +65,7 @@ class _HealthPageState extends State<HealthPage> with TickerProviderStateMixin {
       final results = await Future.wait([
         DriftService.getUser(user.uid),
         HealthService.getUserHealthData(limit: 60),
-        DietFileService.getUserDietFiles(),
+        // DietFileService removed (dietitian panel removed)
         HealthService.getHealthStats(days: 30),
       ]);
 
@@ -73,8 +73,8 @@ class _HealthPageState extends State<HealthPage> with TickerProviderStateMixin {
         setState(() {
           _currentUser = results[0] as UserModel?;
           _healthHistory = results[1] as List<HealthDataModel>;
-          _dietFiles = results[2] as List<DietFileModel>;
-          _healthStats = results[3] as Map<String, dynamic>;
+          // Diet files removed (dietitian panel removed)
+          _healthStats = results[2] as Map<String, dynamic>; // Index adjusted after diet files removal
           _isLoading = false;
         });
       }
@@ -1090,11 +1090,7 @@ class _HealthPageState extends State<HealthPage> with TickerProviderStateMixin {
     );
   }
 
-  void _openDietFile(DietFileModel dietFile) {
-    // Diyet dosyasını açma implementasyonu
-    // URL launcher veya file viewer ile açılabilir
-    debugPrint('Diyet dosyası açılıyor: ${dietFile.title}');
-  }
+  // Diet file functionality removed (dietitian panel removed)
 
   Color _getBMIColor(double? bmi) {
     if (bmi == null) return Colors.grey;

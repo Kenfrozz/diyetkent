@@ -13,7 +13,7 @@ import '../services/notification_service.dart';
 import '../providers/optimized_chat_provider.dart'; // Optimize edilmiş provider
 import '../widgets/appbar_health_indicators.dart';
 import 'profile_settings_page.dart';
-import 'dietitian_dashboard_page.dart';
+// Removed dietitian_dashboard_page (dietitian panel removed)
 import '../database/drift_service.dart';
 import '../database/drift/tables/users_table.dart';
 import '../models/call_log_model.dart';
@@ -323,7 +323,7 @@ class _OptimizedHomePageState extends State<OptimizedHomePage> with TickerProvid
       case 'admin':
         Navigator.of(context).push(
           MaterialPageRoute(
-            builder: (context) => const DietitianDashboardPage(),
+            builder: (context) => Container(), // Dietitian dashboard removed
           ),
         );
         break;
