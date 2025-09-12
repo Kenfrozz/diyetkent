@@ -24,9 +24,9 @@ class BulkMessageService {
       final currentUser = _auth.currentUser;
       if (currentUser == null) return false;
 
-      // Diyetisyen yetkisi kontrolü
+      // Diyetisyen yetkisi kontrolü (role system basitleştirildi)
       final userRole = await DriftService.getUserRole(currentUser.uid);
-      if (userRole == null || !userRole.isDietitian) {
+      if (userRole != 'dietitian') {
         debugPrint('❌ Sadece diyetisyenler toplu mesaj gönderebilir');
         return false;
       }
@@ -97,9 +97,9 @@ class BulkMessageService {
       final currentUser = _auth.currentUser;
       if (currentUser == null) return false;
 
-      // Diyetisyen yetkisi kontrolü
+      // Diyetisyen yetkisi kontrolü (role system basitleştirildi)
       final userRole = await DriftService.getUserRole(currentUser.uid);
-      if (userRole == null || !userRole.isDietitian) {
+      if (userRole != 'dietitian') {
         debugPrint('❌ Sadece diyetisyenler toplu mesaj gönderebilir');
         return false;
       }
@@ -178,9 +178,9 @@ class BulkMessageService {
       final currentUser = _auth.currentUser;
       if (currentUser == null) return false;
 
-      // Diyetisyen yetkisi kontrolü
+      // Diyetisyen yetkisi kontrolü (role system basitleştirildi)
       final userRole = await DriftService.getUserRole(currentUser.uid);
-      if (userRole == null || !userRole.isDietitian) {
+      if (userRole != 'dietitian') {
         debugPrint('❌ Sadece diyetisyenler toplu mesaj gönderebilir');
         return false;
       }
@@ -293,7 +293,7 @@ class BulkMessageService {
 
       // Diyetisyen yetkisi kontrolü
       final userRole = await DriftService.getUserRole(currentUser.uid);
-      if (userRole == null || !userRole.isDietitian) {
+      if (userRole != 'dietitian') {
         return {};
       }
 
@@ -351,7 +351,7 @@ class BulkMessageService {
 
       // Diyetisyen yetkisi kontrolü
       final userRole = await DriftService.getUserRole(currentUser.uid);
-      if (userRole == null || !userRole.isDietitian) {
+      if (userRole != 'dietitian') {
         debugPrint('❌ Sadece diyetisyenler kullanıcı sağlık verilerini görebilir');
         return [];
       }

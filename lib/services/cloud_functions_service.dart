@@ -1,7 +1,7 @@
 import 'dart:async';
 import 'dart:convert';
 import 'package:flutter/foundation.dart';
-import '../models/user_diet_assignment_model.dart';
+// import '../models/user_diet_assignment_model.dart'; // Removed - diet assignment feature removed
 import '../models/delivery_schedule_model.dart';
 
 // Cloud Functions için endpoint türleri
@@ -239,22 +239,16 @@ class CloudFunctionsService {
     );
   }
 
-  // Sync all schedules with cloud
+  // Sync all schedules with cloud (DISABLED - diet assignment feature removed)
   Future<CloudFunctionResponse<Map<String, dynamic>>> syncAllSchedules({
-    required List<UserDietAssignmentModel> assignments,
+    required List<Map<String, dynamic>> assignments, // Changed from UserDietAssignmentModel
     bool forceUpdate = false,
   }) async {
-    final assignmentMaps = assignments.map((a) => a.toMap()).toList();
-    
-    final data = {
-      'assignments': assignmentMaps,
-      'forceUpdate': forceUpdate,
-      'timestamp': DateTime.now().toIso8601String(),
-    };
-
-    return await _makeRequest<Map<String, dynamic>>(
-      CloudFunctionEndpoint.syncSchedules,
-      data,
+    // Diet assignment feature removed
+    return CloudFunctionResponse<Map<String, dynamic>>(
+      success: false,
+      data: null,
+      error: 'Diet assignment feature has been removed',
     );
   }
 

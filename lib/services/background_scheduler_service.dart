@@ -1,7 +1,7 @@
 import 'dart:isolate';
 import 'dart:async';
 import 'package:flutter/foundation.dart';
-import '../models/user_diet_assignment_model.dart';
+// import '../models/user_diet_assignment_model.dart'; // Removed - diet assignment feature removed
 
 enum SchedulerStatus {
   stopped,
@@ -175,7 +175,7 @@ class _SchedulerWorker {
   final SendPort _mainSendPort;
   Timer? _mainTimer;
   bool _isPaused = false;
-  final Map<String, UserDietAssignmentModel> _activeSchedules = {};
+  final Map<String, Map<String, dynamic>> _activeSchedules = {}; // Changed from UserDietAssignmentModel
   
   _SchedulerWorker(this._mainSendPort);
 
@@ -227,18 +227,31 @@ class _SchedulerWorker {
       final now = DateTime.now();
       
       for (final schedule in _activeSchedules.values) {
-        if (schedule.isDeliveryActive && 
-            schedule.nextDeliveryTime != null &&
-            schedule.nextDeliveryTime!.isBefore(now.add(const Duration(minutes: 1)))) {
+        final isDeliveryActive = schedule['isDeliveryActive'] as bool? ?? false;
+        final nextDeliveryTimeStr = schedule['nextDeliveryTime'] as String?;
+        DateTime? nextDeliveryTime;
+        
+        if (nextDeliveryTimeStr != null) {
+          try {
+            nextDeliveryTime = DateTime.parse(nextDeliveryTimeStr);
+          } catch (e) {
+            // Invalid date format, skip this schedule
+            continue;
+          }
+        }
+        
+        if (isDeliveryActive && 
+            nextDeliveryTime != null &&
+            nextDeliveryTime.isBefore(now.add(const Duration(minutes: 1)))) {
           
           // Teslimatı tetikle
           _mainSendPort.send({
             'type': 'delivery_triggered',
-            'assignmentId': schedule.assignmentId,
+            'assignmentId': schedule['assignmentId'],
           });
           
           // Bir sonraki teslimat zamanını hesapla
-          schedule.updateDeliverySchedule();
+          schedule['nextDeliveryTime'] = DateTime.now().add(const Duration(days: 1)).toIso8601String();
           
           // Veritabanını güncelle (isolate içinde Isar kullanımı dikkatli olmalı)
           await _updateScheduleInDatabase(schedule);
@@ -285,7 +298,7 @@ class _SchedulerWorker {
     _activeSchedules.remove(assignmentId);
   }
 
-  Future<void> _updateScheduleInDatabase(UserDietAssignmentModel schedule) async {
+  Future<void> _updateScheduleInDatabase(Map<String, dynamic> schedule) async {
     try {
       // Isolate içinde veritabanı güncellemesi
       // Bu karmaşık bir konu - ana isolate ile koordinasyon gerekli

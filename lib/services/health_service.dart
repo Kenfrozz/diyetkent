@@ -25,7 +25,7 @@ class HealthService {
       healthData.updatedAt = DateTime.now();
 
       // Önce Isar'a kaydet
-      await DriftService.saveHealthData(healthData);
+      await DriftService.saveHealthData(user.uid, healthData.toMap());
 
       // Auth token'ı yenile
       await user.reload();
@@ -84,10 +84,11 @@ class HealthService {
       if (user == null) return [];
 
       // Önce Drift'ten dene
-      final localData = await DriftService.getUserHealthData(user.uid);
+      final localData = await DriftService.getUserHealthData();
 
-      if (localData != null && localData.isNotEmpty) {
-        return localData;
+      if (localData.isNotEmpty) {
+        // Map'leri HealthDataModel'e dönüştür
+        return localData.map((data) => HealthDataModel.fromMap(data)).toList();
       }
 
       // Isar'da veri yoksa Firestore'dan çek
@@ -115,7 +116,7 @@ class HealthService {
 
       // Firestore'dan gelen verileri Isar'a kaydet
       for (final healthData in healthDataList) {
-        await DriftService.saveHealthData(healthData);
+        await DriftService.saveHealthData(user.uid, healthData.toMap());
       }
 
       return healthDataList;
@@ -136,10 +137,10 @@ class HealthService {
       final endOfDay = startOfDay.add(const Duration(days: 1));
 
       // Önce Drift'ten dene
-      final localData = await DriftService.getUserHealthData(user.uid);
+      final localData = await DriftService.getUserHealthData();
 
-      if (localData != null && localData.isNotEmpty) {
-        return localData.first;
+      if (localData.isNotEmpty) {
+        return HealthDataModel.fromMap(localData.first);
       }
 
       // Isar'da yoksa Firestore'dan çek
@@ -158,7 +159,7 @@ class HealthService {
         final healthData = HealthDataModel.fromMap(
           querySnapshot.docs.first.data(),
         );
-        await DriftService.saveHealthData(healthData);
+        await DriftService.saveHealthData(user.uid, healthData.toMap());
         return healthData;
       }
 

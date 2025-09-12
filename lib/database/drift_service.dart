@@ -435,13 +435,47 @@ class DriftService {
   }
 
   /// Create story
-  static Future<void> createStory(StoryModel story) async {
-    debugPrint('Create story: ${story.storyId}');
+  static Future<StoryModel> createStory({
+    required String type,
+    String? content,
+    String? mediaUrl,
+    String? backgroundColor,
+  }) async {
+    debugPrint('Create story: $type');
+    
+    // Create a mock StoryModel for now
+    final story = StoryModel();
+    story.storyId = 'story_${DateTime.now().millisecondsSinceEpoch}';
+    story.userId = 'current_user'; // Should get from auth
+    story.type = type == 'text' ? StoryType.text : 
+                 type == 'image' ? StoryType.image : 
+                 type == 'video' ? StoryType.video : StoryType.text;
+    story.content = content ?? '';
+    story.mediaUrl = mediaUrl;
+    story.backgroundColor = backgroundColor ?? '#FF4CAF50';
+    story.createdAt = DateTime.now();
+    story.expiresAt = DateTime.now().add(const Duration(hours: 24));
+    
+    return story;
   }
 
   /// Create tag
-  static Future<void> createTag(TagModel tag) async {
-    debugPrint('Create tag: ${tag.tagId}');
+  static Future<TagModel> createTag({
+    required String name,
+    required String color,
+    String? icon,
+  }) async {
+    debugPrint('Create tag: $name');
+    
+    // Create a mock TagModel for now
+    final tag = TagModel.create(
+      tagId: 'tag_${DateTime.now().millisecondsSinceEpoch}',
+      name: name,
+      color: color,
+      icon: icon,
+    );
+    
+    return tag;
   }
 
   /// Increment tag usage

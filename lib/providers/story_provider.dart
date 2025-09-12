@@ -66,7 +66,7 @@ class StoryProvider extends ChangeNotifier {
       }
 
       final storyId = await DriftService.createStory(
-        type: storyType,
+        type: storyType.toString().split('.').last, // Convert enum to string
         content: content,
         mediaUrl: mediaUrl,
         backgroundColor: backgroundColor,
@@ -86,7 +86,9 @@ class StoryProvider extends ChangeNotifier {
 
   Future<void> viewStory(String storyId) async {
     try {
-      await DriftService.markStoryAsViewed(storyId);
+      // Get current user ID (simplified)
+      const currentUserId = 'current_user'; // Should get from auth service
+      await DriftService.markStoryAsViewed(storyId, currentUserId);
       debugPrint('✅ Story görüntülendi: $storyId');
     } catch (e) {
       debugPrint('❌ Story görüntüleme hatası: $e');

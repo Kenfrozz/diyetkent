@@ -42,7 +42,7 @@ class TagProvider with ChangeNotifier {
     try {
       final tag = await DriftService.createTag(
         name: name,
-        color: color,
+        color: color ?? '#2196F3', // Default blue color
         icon: icon,
       );
       await loadTags(); // Refresh tags

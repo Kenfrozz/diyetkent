@@ -3,7 +3,7 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter/widgets.dart';
 import 'background_scheduler_service.dart';
-import 'delivery_executor_service.dart';
+// import 'delivery_executor_service.dart'; // Removed - delivery executor service removed
 
 
 class AppLifecycleService with WidgetsBindingObserver {
@@ -12,7 +12,7 @@ class AppLifecycleService with WidgetsBindingObserver {
   AppLifecycleService._internal();
 
   final BackgroundSchedulerService _schedulerService = BackgroundSchedulerService();
-  final DeliveryExecutorService _deliveryExecutorService = DeliveryExecutorService();
+  // final DeliveryExecutorService _deliveryExecutorService = DeliveryExecutorService(); // Removed - delivery executor service removed
   
   AppLifecycleState _currentState = AppLifecycleState.resumed;
   Timer? _backgroundTimer;
@@ -25,8 +25,7 @@ class AppLifecycleService with WidgetsBindingObserver {
     _stateController = StreamController<AppLifecycleState>.broadcast();
     WidgetsBinding.instance.addObserver(this);
     
-    // Delivery executor'ı başlat
-    await _deliveryExecutorService.initialize();
+    // Delivery executor service removed - no longer needed
     
     debugPrint('🔄 App Lifecycle Service başlatıldı');
   }
@@ -35,7 +34,7 @@ class AppLifecycleService with WidgetsBindingObserver {
     WidgetsBinding.instance.removeObserver(this);
     _backgroundTimer?.cancel();
     await _stateController?.close();
-    await _deliveryExecutorService.dispose();
+    // Delivery executor service removed - no disposal needed
     
     debugPrint('⏹️ App Lifecycle Service durduruldu');
   }
