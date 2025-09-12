@@ -9,6 +9,7 @@ import '../models/group_model.dart';
 import '../models/call_log_model.dart' as model;
 import '../models/tag_model.dart';
 import '../models/contact_index_model.dart';
+import '../models/meal_reminder_preferences_model.dart';
 
 /// Drift database service that provides a unified API for database operations
 class DriftService {
@@ -214,12 +215,14 @@ class DriftService {
     return saveChat(chat);
   }
 
-  static Future<void> getMealReminderPreferencesOrDefault(String userId) async {
+  static Future<MealReminderPreferencesModel> getMealReminderPreferencesOrDefault(String userId) async {
     debugPrint('Get meal reminder preferences for: $userId');
+    // Return default meal reminder preferences
+    return MealReminderPreferencesModel.create(userId: userId);
   }
 
-  static Future<void> saveMealReminderPreferences(String userId, Map<String, dynamic> preferences) async {
-    debugPrint('Save meal reminder preferences for: $userId');
+  static Future<void> saveMealReminderPreferences(MealReminderPreferencesModel preferences) async {
+    debugPrint('Save meal reminder preferences for: ${preferences.userId}');
   }
 
   static Future<List<model.MessageModel>> searchMessagesByText(String query) async {
@@ -252,7 +255,7 @@ class DriftService {
   }
 
   /// Get meal reminder preferences
-  static Future<Map<String, dynamic>?> getMealReminderPreferences(String userId) async {
+  static Future<MealReminderPreferencesModel?> getMealReminderPreferences(String userId) async {
     debugPrint('Get meal reminder preferences for: $userId');
     return null;
   }
