@@ -34,7 +34,7 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
   late TabController _tabController;
   StreamSubscription<QuerySnapshot<Map<String, dynamic>>>? _incomingCallSub;
   final Set<String> _handledCallIds = <String>{};
-  // User role system removed (dietitian panel removed)
+  String? _currentUserRole; // User role system simplified (dietitian panel removed)
 
   @override
   void initState() {
@@ -53,17 +53,14 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
   Future<void> _loadCurrentUserRole() async {
     final user = FirebaseAuth.instance.currentUser;
     if (user != null) {
-      // Firestore'dan direkt çek (güncel veri için)
+      // User role system simplified (dietitian panel removed)
       final roleType = await UserService.getUserRole(user.uid);
       
-      debugPrint('🔍 Firestore\'dan gelen rol: ${roleType?.name}');
+      debugPrint('🔍 User role (simplified): $roleType');
       
-      // User role system removed (dietitian panel removed)
-        
-        setState(() {
-          _currentUserRole = userRole;
-        });
-      }
+      setState(() {
+        _currentUserRole = roleType ?? 'user'; // Default to user role
+      });
     }
   }
 
@@ -227,18 +224,7 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
                 ],
               ),
             ),
-            // Diyetisyen paneli (sadece diyetisyenler için)
-            if (_currentUserRole != null && _currentUserRole!.isDietitian)
-              const PopupMenuItem<String>(
-                value: 'dietitian_panel',
-                child: Row(
-                  children: [
-                    Icon(Icons.medical_services, color: Colors.teal),
-                    SizedBox(width: 12),
-                    Text('Diyetisyen Paneli'),
-                  ],
-                ),
-              ),
+            // Diyetisyen paneli kaldırıldı (dietitian panel removed)
             const PopupMenuItem<String>(
               value: 'logout',
               child: Row(

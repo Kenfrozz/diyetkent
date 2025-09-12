@@ -76,42 +76,54 @@ class _GroupInfoPageState extends State<GroupInfoPage> {
                   );
                 }
 
-                // Convert GroupData to GroupModel
-                final group = DriftService.convertGroupModel(groupData);
-                final members = groupProvider.currentGroupMembers;
-                final canEdit =
-                    groupProvider.canUserEditGroupInfo(widget.groupId);
-                final isAdmin = groupProvider.isUserAdmin(widget.groupId);
+                // Convert GroupData to GroupModel - use FutureBuilder
+                return FutureBuilder<GroupModel?>(
+                  future: DriftService.convertGroupModel(groupData),
+                  builder: (context, snapshot) {
+                    if (snapshot.connectionState == ConnectionState.waiting) {
+                      return const Center(child: CircularProgressIndicator());
+                    }
+                    
+                    if (!snapshot.hasData || snapshot.data == null) {
+                      return const Center(child: Text('Grup verisi yüklenemedi'));
+                    }
+                    
+                    final group = snapshot.data!;
+                    final members = groupProvider.currentGroupMembers;
+                    final canEdit = groupProvider.canUserEditGroupInfo(widget.groupId);
+                    final isAdmin = groupProvider.isUserAdmin(widget.groupId);
 
-                return RefreshIndicator(
-                  onRefresh: _loadGroupInfo,
-                  child: ListView(
-                    padding: const EdgeInsets.symmetric(vertical: 8),
-                    children: [
-                      // Grup Header
-                      _buildGroupHeader(group, canEdit),
-                      const SizedBox(height: 16),
+                    return RefreshIndicator(
+                      onRefresh: _loadGroupInfo,
+                      child: ListView(
+                        padding: const EdgeInsets.symmetric(vertical: 8),
+                        children: [
+                          // Grup Header
+                          _buildGroupHeader(group, canEdit),
+                          const SizedBox(height: 16),
 
-                      // Grup Açıklaması
-                      _buildGroupDescription(group, canEdit),
-                      const SizedBox(height: 16),
+                          // Grup Açıklaması
+                          _buildGroupDescription(group, canEdit),
+                          const SizedBox(height: 16),
 
-                      // Grup İzinleri (Sadece adminler görebilir)
-                      if (isAdmin) ...[
-                        _buildGroupPermissions(group),
-                        const SizedBox(height: 16),
-                      ],
+                          // Grup İzinleri (Sadece adminler görebilir)
+                          if (isAdmin) ...[
+                            _buildGroupPermissions(group),
+                            const SizedBox(height: 16),
+                          ],
 
-                      // Üyeler Bölümü
-                      _buildMembersSection(group, members, isAdmin),
+                          // Üyeler Bölümü
+                          _buildMembersSection(group, members, isAdmin),
 
-                      // Tehlikeli İşlemler (Sadece adminler)
-                      if (isAdmin) ...[
-                        const SizedBox(height: 16),
-                        _buildDangerZone(group),
-                      ],
-                    ],
-                  ),
+                          // Tehlikeli İşlemler (Sadece adminler)
+                          if (isAdmin) ...[
+                            const SizedBox(height: 16),
+                            _buildDangerZone(group),
+                          ],
+                        ],
+                      ),
+                    );
+                  },
                 );
               },
             ),

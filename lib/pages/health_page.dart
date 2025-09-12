@@ -1019,74 +1019,22 @@ class _HealthPageState extends State<HealthPage> with TickerProviderStateMixin {
   }
 
   Widget _buildDietFilesTab() {
-    if (_dietFiles.isEmpty) {
-      return const Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Icon(Icons.folder_open, size: 64, color: Colors.grey),
-            SizedBox(height: 16),
-            Text('Henüz diyet dosyası bulunmuyor'),
-            SizedBox(height: 8),
-            Text(
-              'Diyetisyeniniz size özel diyet planları gönderdiğinde burada görünecek',
-              textAlign: TextAlign.center,
-              style: TextStyle(color: Colors.grey),
-            ),
-          ],
-        ),
-      );
-    }
-
-    return ListView.builder(
-      padding: const EdgeInsets.all(16),
-      itemCount: _dietFiles.length,
-      itemBuilder: (context, index) {
-        final dietFile = _dietFiles[index];
-        return Card(
-          margin: const EdgeInsets.only(bottom: 8),
-          child: ListTile(
-            leading: CircleAvatar(
-              backgroundColor: dietFile.isRead ? Colors.grey : Colors.orange,
-              child: Text(dietFile.fileIcon),
-            ),
-            title: Text(
-              dietFile.title,
-              style: TextStyle(
-                fontWeight: dietFile.isRead ? FontWeight.normal : FontWeight.bold,
-              ),
-            ),
-            subtitle: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                if (dietFile.description.isNotEmpty)
-                  Text(dietFile.description),
-                const SizedBox(height: 4),
-                Text(
-                  'Tarih: ${DateFormat('dd MMMM yyyy', 'tr_TR').format(dietFile.createdAt)}',
-                  style: const TextStyle(fontSize: 12, color: Colors.grey),
-                ),
-                if (dietFile.fileUrl != null)
-                  Text(
-                    'Boyut: ${dietFile.formattedFileSize}',
-                    style: const TextStyle(fontSize: 12, color: Colors.grey),
-                  ),
-              ],
-            ),
-            trailing: !dietFile.isRead
-                ? Container(
-                    width: 8,
-                    height: 8,
-                    decoration: const BoxDecoration(
-                      color: Colors.orange,
-                      shape: BoxShape.circle,
-                    ),
-                  )
-                : null,
-            onTap: () => _openDietFile(dietFile),
+    // Diet files feature removed (dietitian panel removed)
+    return const Center(
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          Icon(Icons.info_outline, size: 64, color: Colors.grey),
+          SizedBox(height: 16),
+          Text('Diyet dosyası özelliği kaldırıldı'),
+          SizedBox(height: 8),
+          Text(
+            'Bu özellik artık mevcut değil',
+            textAlign: TextAlign.center,
+            style: TextStyle(color: Colors.grey),
           ),
-        );
-      },
+        ],
+      ),
     );
   }
 

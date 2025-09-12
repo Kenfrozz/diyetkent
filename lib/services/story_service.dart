@@ -201,7 +201,7 @@ class StoryService {
       }, SetOptions(merge: true));
 
       // Yerel veritabanında güncelle
-      await DriftService.markStoryAsViewed(storyId);
+      await DriftService.markStoryAsViewed(storyId, user.uid);
 
       debugPrint('👁️ Story görüntülendi: $storyId');
     } catch (e) {
