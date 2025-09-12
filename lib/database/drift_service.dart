@@ -1,7 +1,4 @@
-import 'dart:convert';
 import 'package:flutter/foundation.dart';
-import 'package:firebase_auth/firebase_auth.dart';
-import 'package:drift/drift.dart';
 import 'drift/database.dart';
 // Import model classes
 import '../models/user_model.dart';
@@ -228,5 +225,214 @@ class DriftService {
   static Future<List<model.MessageModel>> searchMessagesByText(String query) async {
     debugPrint('Search messages by text: $query');
     return [];
+  }
+
+  // ========== ADDITIONAL MISSING METHODS ==========
+  
+  /// Watch all chats
+  static Stream<List<ChatModel>> watchAllChats() {
+    return Stream.value([]);
+  }
+
+  /// Get user groups
+  static Future<List<GroupModel>> getUserGroups(String userId) async {
+    debugPrint('Get user groups for: $userId');
+    return [];
+  }
+
+  /// Get user role
+  static Future<String?> getUserRole(String userId) async {
+    debugPrint('Get user role for: $userId');
+    return null;
+  }
+
+  /// Watch incoming calls
+  static Stream<List<model.CallLogModel>> watchIncomingCalls() {
+    return Stream.value([]);
+  }
+
+  /// Get meal reminder preferences
+  static Future<Map<String, dynamic>?> getMealReminderPreferences(String userId) async {
+    debugPrint('Get meal reminder preferences for: $userId');
+    return null;
+  }
+
+  /// Delete meal reminder preferences
+  static Future<void> deleteMealReminderPreferences(String userId) async {
+    debugPrint('Delete meal reminder preferences for: $userId');
+  }
+
+  /// Get message by ID
+  static Future<model.MessageModel?> getMessageById(String messageId) async {
+    debugPrint('Get message by ID: $messageId');
+    return null;
+  }
+
+  /// Get failed messages
+  static Future<List<model.MessageModel>> getFailedMessages() async {
+    debugPrint('Get failed messages');
+    return [];
+  }
+
+  /// Update message local media path
+  static Future<void> updateMessageLocalMediaPath(String messageId, String? localPath) async {
+    debugPrint('Update message local media path: $messageId');
+  }
+
+  /// Get unread messages by chat ID
+  static Future<List<model.MessageModel>> getUnreadMessagesByChatId(String chatId) async {
+    debugPrint('Get unread messages for chat: $chatId');
+    return [];
+  }
+
+  /// Get registered contact indexes
+  static Future<List<ContactIndexModel>> getRegisteredContactIndexes() async {
+    debugPrint('Get registered contact indexes');
+    return [];
+  }
+
+  /// Delete all stories
+  static Future<void> deleteAllStories() async {
+    debugPrint('Delete all stories');
+  }
+
+  /// Delete expired stories
+  static Future<void> deleteExpiredStories() async {
+    debugPrint('Delete expired stories');
+  }
+
+  /// Watch all active stories
+  static Stream<List<StoryModel>> watchAllActiveStories() {
+    return Stream.value([]);
+  }
+
+  /// Get story by ID
+  static Future<StoryModel?> getStoryById(String storyId) async {
+    debugPrint('Get story by ID: $storyId');
+    return null;
+  }
+
+  /// Mark story as viewed
+  static Future<void> markStoryAsViewed(String storyId, String userId) async {
+    debugPrint('Mark story as viewed: $storyId by $userId');
+  }
+
+  /// Delete story
+  static Future<void> deleteStory(String storyId) async {
+    debugPrint('Delete story: $storyId');
+  }
+
+  /// Get expired stories
+  static Future<List<StoryModel>> getExpiredStories() async {
+    debugPrint('Get expired stories');
+    return [];
+  }
+
+  /// Get tag by ID
+  static Future<TagModel?> getTagById(String tagId) async {
+    debugPrint('Get tag by ID: $tagId');
+    return null;
+  }
+
+  /// Update tag
+  static Future<void> updateTag(TagModel tag) async {
+    debugPrint('Update tag: ${tag.tagId}');
+  }
+
+  /// Delete tag
+  static Future<void> deleteTag(String tagId) async {
+    debugPrint('Delete tag: $tagId');
+  }
+
+  /// Get chats by tag
+  static Future<List<ChatModel>> getChatsByTag(String tagId) async {
+    debugPrint('Get chats by tag: $tagId');
+    return [];
+  }
+
+  /// Watch chats by tag
+  static Stream<List<ChatModel>> watchChatsByTag(String tagId) {
+    return Stream.value([]);
+  }
+
+  /// Update chat last message
+  static Future<void> updateChatLastMessage(String chatId, model.MessageModel message) async {
+    debugPrint('Update chat last message: $chatId');
+  }
+
+  /// Get last message for chat
+  static Future<model.MessageModel?> getLastMessageForChat(String chatId) async {
+    debugPrint('Get last message for chat: $chatId');
+    return null;
+  }
+
+  /// Get unread count for chat
+  static Future<int> getUnreadCountForChat(String chatId, String userId) async {
+    debugPrint('Get unread count for chat: $chatId');
+    return 0;
+  }
+
+  /// Mark messages as read
+  static Future<void> markMessagesAsRead(String chatId, String userId) async {
+    debugPrint('Mark messages as read for chat: $chatId');
+  }
+
+  // ========== GROUP MANAGEMENT METHODS ==========
+  
+  /// Create group
+  static Future<void> createGroup(GroupModel group) async {
+    debugPrint('Create group: ${group.groupId}');
+  }
+
+  /// Get group members
+  static Future<List<String>> getGroupMembers(String groupId) async {
+    debugPrint('Get group members for: $groupId');
+    return [];
+  }
+
+  /// Add member to group
+  static Future<void> addMemberToGroup(String groupId, String userId) async {
+    debugPrint('Add member to group: $groupId');
+  }
+
+  /// Remove member from group
+  static Future<void> removeMemberFromGroup(String groupId, String userId) async {
+    debugPrint('Remove member from group: $groupId');
+  }
+
+  /// Make user admin
+  static Future<void> makeUserAdmin(String groupId, String userId) async {
+    debugPrint('Make user admin in group: $groupId');
+  }
+
+  /// Remove admin role
+  static Future<void> removeAdminRole(String groupId, String userId) async {
+    debugPrint('Remove admin role in group: $groupId');
+  }
+
+  /// Update group info
+  static Future<void> updateGroupInfo(String groupId, Map<String, dynamic> updates) async {
+    debugPrint('Update group info: $groupId');
+  }
+
+  /// Delete group
+  static Future<void> deleteGroup(String groupId) async {
+    debugPrint('Delete group: $groupId');
+  }
+
+  /// Leave group
+  static Future<void> leaveGroup(String groupId, String userId) async {
+    debugPrint('Leave group: $groupId');
+  }
+
+  /// Get group admins
+  static Future<List<String>> getGroupAdmins(String groupId) async {
+    debugPrint('Get group admins for: $groupId');
+    return [];
+  }
+
+  /// Watch group members
+  static Stream<List<String>> watchGroupMembers(String groupId) {
+    return Stream.value([]);
   }
 }

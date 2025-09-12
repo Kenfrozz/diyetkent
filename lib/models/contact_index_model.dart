@@ -81,6 +81,9 @@ class ContactIndexModel {
     lastSyncAt = DateTime.now();
   }
   
+  // Compatibility getter for phoneNumber (used by DriftService)
+  String get phoneNumber => normalizedPhone;
+
   // UI için görünüm adı
   String get effectiveDisplayName {
     if (contactName?.isNotEmpty == true) return contactName!;

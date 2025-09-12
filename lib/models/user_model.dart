@@ -151,6 +151,9 @@ class UserModel {
     return currentWeight! - idealWeight!;
   }
 
+  // BMI getter (alias for bmi for compatibility)
+  double? get currentBMI => bmi;
+
   // Model kopyalama
   UserModel copyWith({
     String? userId,

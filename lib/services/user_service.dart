@@ -355,4 +355,16 @@ class UserService {
     // Admin paneli de kaldırıldığından dolayı her zaman false döndür
     return false;
   }
+
+  /// Ensure current user role (simplified)
+  static Future<void> ensureCurrentUserRole() async {
+    // Rol sistemi kaldırıldığından dolayı sadece log yazdır
+    debugPrint('User role system has been removed');
+  }
+
+  /// Get user role (simplified - removed)
+  static Future<String?> getUserRole(String userId) async {
+    debugPrint('getUserRole called but role system removed');
+    return null; // Always return null since role system is removed
+  }
 }
