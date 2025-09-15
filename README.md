@@ -4,7 +4,7 @@ Bu belge WhatsApp benzeri mesajlaşma uygulaması + diyetisyen paneli için her 
 
 ## 🔐 Giriş ve Doğrulama
 
-### 1. Telefon Numarası Giriş Sayfası
+### 1. Telefon Numarası Giriş Sayfası *(5-10 Ağustos 2025)*
 **Amaç:** Kullanıcıların telefon numarasıyla sisteme giriş yapmasını sağlamak ve hesap oluşturmak.
 
 **İşlemler:**
@@ -14,7 +14,7 @@ Bu belge WhatsApp benzeri mesajlaşma uygulaması + diyetisyen paneli için her 
 - Hatalı numara girişinde uyarı mesajı gösterir
 - Numara doğruysa SMS doğrulama sayfasına yönlendirir
 
-### 2. SMS Doğrulama Sayfası
+### 2. SMS Doğrulama Sayfası *(5-10 Ağustos 2025)*
 **Amaç:** Telefon numarasının gerçekten kullanıcıya ait olduğunu doğrulamak ve güvenliği sağlamak.
 
 **İşlemler:**
@@ -25,7 +25,7 @@ Bu belge WhatsApp benzeri mesajlaşma uygulaması + diyetisyen paneli için her 
 - Doğru kod girişinde hesap aktivasyonu tamamlanır
 - Numara değiştirme imkanı sunar
 
-### 3. Hizmet Koşulları Onay Ekranı (İlk Açılış)
+### 3. Hizmet Koşulları Onay Ekranı (İlk Açılış) *(2-5 Ağustos 2025)*
 **Amaç:** Uygulama ilk açıldığında kullanıcıdan Diyetkent Hizmet Koşulları onayı almak.
 
 **İşlemler:**
@@ -41,7 +41,7 @@ Bu belge WhatsApp benzeri mesajlaşma uygulaması + diyetisyen paneli için her 
 
 ## 👤 Profil Sayfası
 
-### 4. Profil Sayfası
+### 4. Profil Sayfası *(15-20 Ağustos 2025)*
 **Amaç:** Kullanıcının kişisel bilgilerini yönetmesi ve diğer kullanıcılara kendini tanıtması.
 
 **İşlemler:**
@@ -57,7 +57,7 @@ Bu belge WhatsApp benzeri mesajlaşma uygulaması + diyetisyen paneli için her 
 
 ## 💬 Sohbetler
 
-### 5. Ana Sohbet Listesi Sayfası
+### 5. Ana Sohbet Listesi Sayfası *(10-15 Ağustos 2025)*
 **Amaç:** Tüm sohbetleri merkezi bir yerde görmek ve hızlı erişim sağlamak.
 
 **İşlemler:**
@@ -72,7 +72,7 @@ Bu belge WhatsApp benzeri mesajlaşma uygulaması + diyetisyen paneli için her 
 - Yeni sohbet başlatma
 - Gerçek zamanlı güncelleme
 
-### 6. Sohbet Arama ve Filtreleme
+### 6. Sohbet Arama ve Filtreleme *(15-20 Ağustos 2025)*
 **Amaç:** Çok sayıda sohbet arasında hızlı arama yapabilmek ve kategorilere göre filtreleme.
 
 **İşlemler:**
@@ -83,7 +83,7 @@ Bu belge WhatsApp benzeri mesajlaşma uygulaması + diyetisyen paneli için her 
 - Arama sonuçlarını temizleme
 - Favori aramalar kaydetme
 
-### 7. Sohbet Arşivleme/Arşivden Çıkarma
+### 7. Sohbet Arşivleme/Arşivden Çıkarma *(20-22 Ağustos 2025)*
 **Amaç:** Eski veya az kullanılan sohbetleri ana listeden kaldırarak düzen sağlamak.
 
 **İşlemler:**
@@ -93,7 +93,7 @@ Bu belge WhatsApp benzeri mesajlaşma uygulaması + diyetisyen paneli için her 
 - Yeni mesaj geldiğinde otomatik arşivden çıkarma
 - Arşiv bildirimi ayarları yönetme
 
-### 8. Sohbet Silme
+### 8. Sohbet Silme *(20-22 Ağustos 2025)*
 **Amaç:** İstenmeyen sohbetleri kalıcı olarak sistemden kaldırmak.
 
 **İşlemler:**
@@ -103,7 +103,7 @@ Bu belge WhatsApp benzeri mesajlaşma uygulaması + diyetisyen paneli için her 
 - Grup sohbeti için ek seçenekler (gruptan ayrılma)
 - Silme işlemi sonrası ana listeyi güncelleme
 
-### 9. Sohbet Sabitleme
+### 9. Sohbet Sabitleme *(20-22 Ağustos 2025)*
 **Amaç:** Önemli sohbetleri her zaman üstte tutarak kolay erişim sağlamak.
 
 **İşlemler:**
@@ -117,7 +117,7 @@ Bu belge WhatsApp benzeri mesajlaşma uygulaması + diyetisyen paneli için her 
 
 ## 🏷️ Etiketler Sayfası
 
-### 10. Etiketler Sayfası
+### 10. Etiketler Sayfası *(26-30 Eylül 2025)*
 **Amaç:** Diyetisyenlerin danışanlarını kategorilere ayırarak organize etmesini sağlamak.
 
 **İşlemler:**
@@ -128,7 +128,7 @@ Bu belge WhatsApp benzeri mesajlaşma uygulaması + diyetisyen paneli için her 
 - Etiketleri renk ve isme göre sıralama
 - Etiket bazlı istatistikler gösterme
 
-### 11. Etiket Ekleme
+### 11. Etiket Ekleme *(26-30 Eylül 2025)*
 **Amaç:** Yeni müşteri kategorileri oluşturarak sınıflandırma sistemi geliştirmek.
 
 **İşlemler:**
@@ -140,7 +140,7 @@ Bu belge WhatsApp benzeri mesajlaşma uygulaması + diyetisyen paneli için her 
 - Etiket önizlemesi gösterme
 - Oluşturma işlemini onaylama
 
-### 12. Etiket Düzenleme/Silme
+### 12. Etiket Düzenleme/Silme *(26-30 Eylül 2025)*
 **Amaç:** Mevcut etiket sistemini güncel tutmak ve gereksiz etiketleri temizlemek.
 
 **İşlemler:**
@@ -154,7 +154,7 @@ Bu belge WhatsApp benzeri mesajlaşma uygulaması + diyetisyen paneli için her 
 
 ## 💬 Sohbet Sayfası
 
-### 13. Sohbet Sayfası
+### 13. Sohbet Sayfası *(10-15 Ağustos 2025)*
 **Amaç:** İki kullanıcı arasında gerçek zamanlı mesajlaşma deneyimi sunmak.
 
 **İşlemler:**
@@ -168,7 +168,7 @@ Bu belge WhatsApp benzeri mesajlaşma uygulaması + diyetisyen paneli için her 
 - Günlük tarih ayraçları gösterme
 - Mesaj zamanlarını gösterme
 
-### 14. Sesli Mesaj Gönderme
+### 14. Sesli Mesaj Gönderme *(7-10 Eylül 2025)*
 **Amaç:** Metinden daha hızlı ve kişisel ses mesajları gönderebilmek.
 
 **İşlemler:**
@@ -181,7 +181,7 @@ Bu belge WhatsApp benzeri mesajlaşma uygulaması + diyetisyen paneli için her 
 - Oynatma hızı değiştirme (1x, 1.5x, 2x)
 - Sesli mesaj süresini gösterme
 
-### 15. Medya Gönderme (fotoğraf, video, doküman)
+### 15. Medya Gönderme (fotoğraf, video, doküman) *(25-30 Ağustos 2025)*
 **Amaç:** Multimedya içeriklerini paylaşarak zengin iletişim kurabilmek.
 
 **İşlemler:**
@@ -194,7 +194,7 @@ Bu belge WhatsApp benzeri mesajlaşma uygulaması + diyetisyen paneli için her 
 - Medya gönderim ilerlemesi gösterme
 - Gönderilen medyayı sohbette gösterme
 
-### 16. Konum Gönderme
+### 16. Konum Gönderme *(25-30 Ağustos 2025)*
 **Amaç:** Bulunulan yeri veya belirli bir adresi karşı tarafa iletebilmek.
 
 **İşlemler:**
@@ -207,7 +207,7 @@ Bu belge WhatsApp benzeri mesajlaşma uygulaması + diyetisyen paneli için her 
 - Konum doğruluğunu gösterme
 - Konum izinleri yönetme
 
-### 17. Kişi Kartı Gönderme
+### 17. Kişi Kartı Gönderme *(25-30 Ağustos 2025)*
 **Amaç:** Rehberdeki kişilerin bilgilerini paylaşabilmek.
 
 **İşlemler:**
@@ -218,7 +218,7 @@ Bu belge WhatsApp benzeri mesajlaşma uygulaması + diyetisyen paneli için her 
 - Alıcının kişiyi rehberine ekleme seçeneği
 - Kişi kartı formatını standartlaştırma
 
-### 18. Okundu/Yazıyor/Çevrimiçi Bilgisi
+### 18. Okundu/Yazıyor/Çevrimiçi Bilgisi *(15-20 Ağustos 2025)*
 **Amaç:** Karşı tarafın durumunu bilmek ve mesajlaşma deneyimini iyileştirmek.
 
 **İşlemler:**
@@ -229,7 +229,7 @@ Bu belge WhatsApp benzeri mesajlaşma uygulaması + diyetisyen paneli için her 
 - Gizlilik ayarlarına göre bilgi paylaşımını kontrol etme
 - Grup sohbetlerinde kim okudu bilgisini gösterme
 
-### 19. Mesaj Yanıtlama
+### 19. Mesaj Yanıtlama *(15-20 Ağustos 2025)*
 **Amaç:** Belirli bir mesaja referans vererek yanıt verebilmek ve bağlamı korumak.
 
 **İşlemler:**
@@ -240,7 +240,7 @@ Bu belge WhatsApp benzeri mesajlaşma uygulaması + diyetisyen paneli için her 
 - Referans mesaja tıklayarak orijinal mesaja gitme
 - Yanıt zinciri oluşturma
 
-### 20. Mesaj İletme
+### 20. Mesaj İletme *(20-25 Ağustos 2025)*
 **Amaç:** Bir mesajı başka kişi veya gruplara hızlıca iletebilmek.
 
 **İşlemler:**
@@ -251,7 +251,7 @@ Bu belge WhatsApp benzeri mesajlaşma uygulaması + diyetisyen paneli için her 
 - İletilen mesajda "İletildi" etiketini gösterme
 - İletim başarısını bildirme
 
-### 21. Mesaj Silme/Kopyalama
+### 21. Mesaj Silme/Kopyalama *(15-20 Ağustos 2025)*
 **Amaç:** Mesaj yönetimi ve istenmeyen içerikleri kaldırabilmek.
 
 **İşlemler:**
@@ -263,7 +263,7 @@ Bu belge WhatsApp benzeri mesajlaşma uygulaması + diyetisyen paneli için her 
 - Silinen mesaj yerine bilgi mesajı gösterme
 - Silme işlemini onaylama
 
-### 22. Link/Telefon/Email Algılama
+### 22. Link/Telefon/Email Algılama *(20-25 Ağustos 2025)*
 **Amaç:** Mesajlardaki özel içerikleri otomatik algılayıp tıklanabilir hale getirmek.
 
 **İşlemler:**
@@ -274,7 +274,7 @@ Bu belge WhatsApp benzeri mesajlaşma uygulaması + diyetisyen paneli için her 
 - Link güvenlik kontrolü yapma
 - Kötü amaçlı linkler için uyarı
 
-### 23. Rich Text Mesajları
+### 23. Rich Text Mesajları *(20-25 Ağustos 2025)*
 **Amaç:** Mesajlarda format kullanarak daha etkili iletişim kurabilmek.
 
 **İşlemler:**
@@ -285,7 +285,7 @@ Bu belge WhatsApp benzeri mesajlaşma uygulaması + diyetisyen paneli için her 
 - Format önizlemesi gösterme
 - Format kısayolları öğretme
 
-### 24. Günler Arası Tarih Ayracı
+### 24. Günler Arası Tarih Ayracı *(15-20 Ağustos 2025)*
 **Amaç:** Mesajları tarih bazında organize etmek ve geçmiş mesajlarda gezinmeyi kolaylaştırmak.
 
 **İşlemler:**
@@ -295,7 +295,7 @@ Bu belge WhatsApp benzeri mesajlaşma uygulaması + diyetisyen paneli için her 
 - Tarih ayracına tıklayarak o güne atlama
 - Uzun sohbetlerde tarih bazlı navigasyon
 
-### 25. Emoji/Sticker Gönderme
+### 25. Emoji/Sticker Gönderme *(25-30 Ağustos 2025)*
 **Amaç:** Duygusal ifade araçlarıyla mesajlaşmayı daha eğlenceli hale getirmek.
 
 **İşlemler:**
@@ -311,7 +311,7 @@ Bu belge WhatsApp benzeri mesajlaşma uygulaması + diyetisyen paneli için her 
 
 ## ↗️ Forward Message (Mesaj İletme) Sayfası
 
-### 26. Mesaj İletme Sayfası
+### 26. Mesaj İletme Sayfası *(20-25 Ağustos 2025)*
 **Amaç:** Seçili mesajları birden fazla kişi ve gruba aynı anda iletebilmek.
 
 **İşlemler:**
@@ -328,7 +328,7 @@ Bu belge WhatsApp benzeri mesajlaşma uygulaması + diyetisyen paneli için her 
 
 ## 👥 Sohbet/Grup Detay Sayfası
 
-### 27. Grup Detay Sayfası
+### 27. Grup Detay Sayfası *(5-10 Eylül 2025)*
 **Amaç:** Grup bilgilerini yönetmek ve üye işlemlerini gerçekleştirmek.
 
 **İşlemler:**
@@ -346,7 +346,7 @@ Bu belge WhatsApp benzeri mesajlaşma uygulaması + diyetisyen paneli için her 
 
 ## 📞 Kişiler/Rehber Sayfası
 
-### 28. Kişiler Sayfası
+### 28. Kişiler Sayfası *(25-30 Ağustos 2025)*
 **Amaç:** Merkezi bir rehber sistemi ile tüm kişileri yönetmek.
 
 **İşlemler:**
@@ -365,7 +365,7 @@ Bu belge WhatsApp benzeri mesajlaşma uygulaması + diyetisyen paneli için her 
 
 ## 👥 Grup Oluşturma Sayfası
 
-### 29. Grup Oluşturma Sayfası
+### 29. Grup Oluşturma Sayfası *(1-5 Eylül 2025)*
 **Amaç:** Yeni grup oluşturarak toplu mesajlaşma imkanı sağlamak.
 
 **İşlemler:**
@@ -382,7 +382,7 @@ Bu belge WhatsApp benzeri mesajlaşma uygulaması + diyetisyen paneli için her 
 
 ## 📷 Kamera Sayfası
 
-### 30. Kamera Sayfası
+### 30. Kamera Sayfası *(25-30 Ağustos 2025)*
 **Amaç:** Uygulama içinden fotoğraf/video çekerek hızlı paylaşım yapmak.
 
 **İşlemler:**
@@ -401,7 +401,7 @@ Bu belge WhatsApp benzeri mesajlaşma uygulaması + diyetisyen paneli için her 
 
 ## 📱 Media Gallery (Medya Galerisi) Sayfası
 
-### 31. Medya Galerisi Sayfası
+### 31. Medya Galerisi Sayfası *(25-30 Ağustos 2025)*
 **Amaç:** Cihazda bulunan medya dosyalarını görüntülemek ve seçim yapmak.
 
 **İşlemler:**
@@ -419,7 +419,7 @@ Bu belge WhatsApp benzeri mesajlaşma uygulaması + diyetisyen paneli için her 
 
 ## 📱 Durumlar
 
-### 32. Durumlar Sayfası
+### 32. Durumlar Sayfası *(14-18 Eylül 2025)*
 **Amaç:** 24 saat içinde kaybolacak hikayeler paylaşmak ve görmek.
 
 **İşlemler:**
@@ -432,7 +432,7 @@ Bu belge WhatsApp benzeri mesajlaşma uygulaması + diyetisyen paneli için her 
 - Eski durumları silme
 - Durum tepkileri gönderme
 
-### 33. Durum Gizlilik Ayarları
+### 33. Durum Gizlilik Ayarları *(14-18 Eylül 2025)*
 **Amaç:** Durumların kimler tarafından görülebileceğini kontrol etmek.
 
 **İşlemler:**
@@ -447,7 +447,7 @@ Bu belge WhatsApp benzeri mesajlaşma uygulaması + diyetisyen paneli için her 
 
 ## 📱 Durum Görüntüleme Sayfası
 
-### 34. Durum Görüntüleme Sayfası
+### 34. Durum Görüntüleme Sayfası *(14-18 Eylül 2025)*
 **Amaç:** Durumları tam ekran görüntülemek ve etkileşim kurmak.
 
 **İşlemler:**
@@ -465,7 +465,7 @@ Bu belge WhatsApp benzeri mesajlaşma uygulaması + diyetisyen paneli için her 
 
 ## 📞 Aramalar Sayfası
 
-### 35. Aramalar Sayfası
+### 35. Aramalar Sayfası *(18-22 Eylül 2025)*
 **Amaç:** Arama geçmişini yönetmek ve yeni aramalar başlatmak.
 
 **İşlemler:**
@@ -483,7 +483,7 @@ Bu belge WhatsApp benzeri mesajlaşma uygulaması + diyetisyen paneli için her 
 
 ## 📞 Gelen/Giden Çağrı Sayfası
 
-### 36. Gelen/Giden Çağrı Sayfası
+### 36. Gelen/Giden Çağrı Sayfası *(18-22 Eylül 2025)*
 **Amaç:** Aktif arama sırasında gerekli kontrolleri sağlamak.
 
 **İşlemler:**
@@ -501,7 +501,7 @@ Bu belge WhatsApp benzeri mesajlaşma uygulaması + diyetisyen paneli için her 
 
 ## ⚙️ Ayarlar Sayfası
 
-### 37. Ana Ayarlar Sayfası
+### 37. Ana Ayarlar Sayfası *(22-26 Eylül 2025)*
 **Amaç:** Tüm uygulama ayarlarına merkezi erişim sağlamak.
 
 **İşlemler:**
@@ -512,7 +512,7 @@ Bu belge WhatsApp benzeri mesajlaşma uygulaması + diyetisyen paneli için her 
 - Ayar önizlemeleri gösterme
 - Alt sayfalara yönlendirme
 
-### 38. Hakkında/Yardım Sayfası
+### 38. Hakkında/Yardım Sayfası *(22-26 Eylül 2025)*
 **Amaç:** Uygulama hakkında bilgi vermek ve kullanıcı desteği sağlamak.
 
 **İşlemler:**
@@ -525,7 +525,7 @@ Bu belge WhatsApp benzeri mesajlaşma uygulaması + diyetisyen paneli için her 
 - Hata raporu oluşturma
 - Kullanım kılavuzu gösterme
 
-### 39. Dil Ayarları Sayfası
+### 39. Dil Ayarları Sayfası *(22-26 Eylül 2025)*
 **Amaç:** Uygulama dilini değiştirmek ve yerelleştirme yapmak.
 
 **İşlemler:**
@@ -540,7 +540,7 @@ Bu belge WhatsApp benzeri mesajlaşma uygulaması + diyetisyen paneli için her 
 
 ## 🔐 Gizlilik Ayarları Sayfası
 
-### 40. Gizlilik Ayarları Sayfası
+### 40. Gizlilik Ayarları Sayfası *(22-26 Eylül 2025)*
 **Amaç:** Kişisel verilerin gizliliğini korumak ve paylaşım kontrolü sağlamak.
 
 **İşlemler:**
@@ -557,7 +557,7 @@ Bu belge WhatsApp benzeri mesajlaşma uygulaması + diyetisyen paneli için her 
 
 ## 👤 Hesap Ayarları Sayfası
 
-### 41. Hesap Ayarları Sayfası
+### 41. Hesap Ayarları Sayfası *(22-26 Eylül 2025)*
 **Amaç:** Temel hesap işlemlerini yönetmek ve güvenlik sağlamak.
 
 **İşlemler:**
@@ -574,7 +574,7 @@ Bu belge WhatsApp benzeri mesajlaşma uygulaması + diyetisyen paneli için her 
 
 ## 🔔 Bildirim Ayarları Sayfası
 
-### 42. Bildirim Ayarları Sayfası
+### 42. Bildirim Ayarları Sayfası *(22-26 Eylül 2025)*
 **Amaç:** Bildirim tercihleri yönetmek ve rahatsız edici bildirimleri engellemek.
 
 **İşlemler:**
@@ -591,7 +591,7 @@ Bu belge WhatsApp benzeri mesajlaşma uygulaması + diyetisyen paneli için her 
 
 ## 💾 Depolama Yönetimi Sayfası
 
-### 43. Depolama Yönetimi Sayfası
+### 43. Depolama Yönetimi Sayfası *(1-5 Kasım 2025)*
 **Amaç:** Uygulama ve medya verilerinin disk kullanımını optimize etmek.
 
 **İşlemler:**
@@ -608,7 +608,7 @@ Bu belge WhatsApp benzeri mesajlaşma uygulaması + diyetisyen paneli için her 
 
 ## ☁️ Yedekleme Sayfası
 
-### 44. Yedekleme Sayfası
+### 44. Yedekleme Sayfası *(1-5 Kasım 2025)*
 **Amaç:** Sohbet verilerini güvenli bir şekilde yedeklemek ve geri yüklemek.
 
 **İşlemler:**
@@ -625,7 +625,7 @@ Bu belge WhatsApp benzeri mesajlaşma uygulaması + diyetisyen paneli için her 
 
 ## 🩺 SAĞLIK VE İLERLEME TAKİBİ
 
-### 45. Sağlık Bilgilerim Sayfası
+### 45. Sağlık Bilgilerim Sayfası *(1-5 Ekim 2025)*
 **Amaç:** Kullanıcının sağlık profilini oluşturmak ve diyetisyen için temel verileri sağlamak.
 
 **İşlemler:**
@@ -640,7 +640,7 @@ Bu belge WhatsApp benzeri mesajlaşma uygulaması + diyetisyen paneli için her 
 - İlaç kullanım bilgileri
 - İlerleme grafikleri görüntüleme (FL Chart entegrasyonu)
 
-### 59. Adım Sayar ve Aktivite Takibi Sayfası
+### 59. Adım Sayar ve Aktivite Takibi Sayfası *(10-15 Ekim 2025)*
 **Amaç:** Günlük fiziksel aktiviteyi izlemek ve sağlık hedeflerini desteklemek.
 
 **İşlemler:**
@@ -654,7 +654,7 @@ Bu belge WhatsApp benzeri mesajlaşma uygulaması + diyetisyen paneli için her 
 - İstatistik grafikleri gösterme
 - Export ve paylaşım seçenekleri
 
-### 60. Beslenme Hatırlatıcısı Ayarları Sayfası
+### 60. Beslenme Hatırlatıcısı Ayarları Sayfası *(15-20 Ekim 2025)*
 **Amaç:** Kişiselleştirilmiş öğün hatırlatıcısı sistemi kurarak beslenme düzenini desteklemek.
 
 **İşlemler:**
@@ -668,7 +668,7 @@ Bu belge WhatsApp benzeri mesajlaşma uygulaması + diyetisyen paneli için her 
 - Sessiz saatler belirleme
 - Hatırlatıcı başarı oranı istatistikleri
 
-### 61. Sağlık Verileri Export Sayfası
+### 61. Sağlık Verileri Export Sayfası *(20-25 Ekim 2025)*
 **Amaç:** Sağlık verilerini farklı formatlarda dışa aktararak paylaşım ve analiz imkanı sağlamak.
 
 **İşlemler:**
@@ -686,7 +686,7 @@ Bu belge WhatsApp benzeri mesajlaşma uygulaması + diyetisyen paneli için her 
 
 ## 📱 Kamera Sayfası (Detaylı)
 
-### 46. Kamera Sayfası (Extended Features)
+### 46. Kamera Sayfası (Extended Features) *(25-30 Ağustos 2025)*
 **Amaç:** Profesyonel fotoğrafçılık özelliklerini sunarak kaliteli içerik üretimi sağlamak.
 
 **İşlemler:**
@@ -705,7 +705,7 @@ Bu belge WhatsApp benzeri mesajlaşma uygulaması + diyetisyen paneli için her 
 
 ## 👥 Kişiler/Rehber Sayfası (Detaylı)
 
-### 47. Merkezi Rehber Yönetimi
+### 47. Merkezi Rehber Yönetimi *(25-30 Ağustos 2025)*
 **Amaç:** Profesyonel düzeyde kişi yönetimi ve Firebase ile senkronizasyon sağlamak.
 
 **İşlemler:**
@@ -724,7 +724,7 @@ Bu belge WhatsApp benzeri mesajlaşma uygulaması + diyetisyen paneli için her 
 
 ## 📝 Form Doldurma Sayfası
 
-### 48. Form Doldurma Sayfası
+### 48. Form Doldurma Sayfası *(1-5 Ekim 2025)*
 **Amaç:** Diyetisyen tarafından oluşturulan formları doldurmak ve değerlendirme sağlamak.
 
 **İşlemler:**
@@ -742,7 +742,7 @@ Bu belge WhatsApp benzeri mesajlaşma uygulaması + diyetisyen paneli için her 
 
 ## 📄 PDF Görüntüleme Sayfası
 
-### 49. PDF Görüntüleme Sayfası
+### 49. PDF Görüntüleme Sayfası *(20-25 Ekim 2025)*
 **Amaç:** Diyet planları, raporlar ve belgeler için kapsamlı PDF görüntüleyici sunmak.
 
 **İşlemler:**
@@ -759,7 +759,7 @@ Bu belge WhatsApp benzeri mesajlaşma uygulaması + diyetisyen paneli için her 
 
 ## 👩‍⚕️ DİYETİSYEN YÖNETİM PANELİ
 
-### 50. Danışan Yönetim Sayfası
+### 50. Danışan Yönetim Sayfası *(Basitleştirildi)*
 **Amaç:** Diyetisyenlerin tüm müşteri ilişkilerini merkezi olarak yönetmesini sağlamak.
 
 **İşlemler:**
@@ -774,7 +774,7 @@ Bu belge WhatsApp benzeri mesajlaşma uygulaması + diyetisyen paneli için her 
 - Danışan arama ve filtreleme
 - Randevu planlama
 
-### 51. Diyet Paketleri Yönetim Sayfası
+### 51. Diyet Paketleri Yönetim Sayfası *(Kaldırıldı)*
 **Amaç:** Diyet içeriklerini düzenlemek ve otomatik dağıtım sistemi kurmak.
 
 **İşlemler:**
@@ -882,7 +882,7 @@ Her diyet dosyası için:
 - **Kombinasyon Tanımlanmamışsa**: Pakete atanmış diyetlerden rastgele seçim yapılır
 ---
 
-### 52. Spor Seansları Yönetim Sayfası
+### 52. Spor Seansları Yönetim Sayfası *(Kaldırıldı)*
 **Amaç:** Egzersiz programları oluşturmak ve danışanlara atamak.
 
 **İşlemler:**
@@ -897,7 +897,7 @@ Her diyet dosyası için:
 - Tamamlanma bildirimleri
 - Performans analizleri
 
-### 53. Randevu Yönetim Sayfası
+### 53. Randevu Yönetim Sayfası *(Kaldırıldı)*
 **Amaç:** Profesyonel randevu sistemini otomatize etmek ve müşteri deneyimini iyileştirmek.
 
 **İşlemler:**
@@ -912,7 +912,7 @@ Her diyet dosyası için:
 - İptal işlemleri
 - Randevu geçmişi
 
-### 54. Form Oluşturma Sayfası
+### 54. Form Oluşturma Sayfası *(Kaldırıldı)*
 **Amaç:** Danışan değerlendirmesi için özelleştirilmiş formlar tasarlamak.
 
 **İşlemler:**
@@ -927,7 +927,7 @@ Her diyet dosyası için:
 - Cevap analizi araçları
 - Form performans metrikleri
 
-### 55. Danışan Analiz Sayfası
+### 55. Danışan Analiz Sayfası *(Basitleştirildi)*
 **Amaç:** Veri odaklı yaklaşımla danışan ilerlemesini analiz etmek ve raporlamak.
 
 **İşlemler:**
@@ -943,7 +943,7 @@ Her diyet dosyası için:
 - Özelleştirilebilir rapor şablonları
 - Excel/PDF export işlemleri
 
-### 56. Oto-Mesajlar Botu Sayfası
+### 56. Oto-Mesajlar Botu Sayfası *(Basitleştirildi)*
 **Amaç:** Toplu mesajlaşma sistemini otomatize etmek ve hedefli iletişim sağlamak.
 
 **İşlemler:**
@@ -959,7 +959,7 @@ Her diyet dosyası için:
 - Zaman dilimi farkında teslimat
 - Teslimat analitikleri
 
-### 57. Oto-Yanıtlar Botu Sayfası
+### 57. Oto-Yanıtlar Botu Sayfası *(Kaldırıldı)*
 **Amaç:** Akıllı otomatik yanıt sistemi ile müşteri hizmetlerini iyileştirmek.
 
 **İşlemler:**
@@ -979,7 +979,7 @@ Her diyet dosyası için:
 ### 58. Oto-Diyetler Botu Sayfası (Kaldırıldı)
 **Durum:** Bu özellik projeden kaldırılmıştır. Diyetisyen panel özellikleri basitleştirilmiştir.
 
-### 62. Toplu Mesaj Gönderme Sayfası
+### 62. Toplu Mesaj Gönderme Sayfası *(Aktif - Bulk Message Service)*
 **Amaç:** Diyetisyenlerin tüm danışanlarına veya belirli gruplara toplu mesaj göndermesini sağlamak.
 
 **İşlemler:**
@@ -993,7 +993,7 @@ Her diyet dosyası için:
 - Batch işlemi optimizasyonu
 - Kullanıcı yetkilendirme kontrolü
 
-### 63. Arşivlenmiş Sohbetler Sayfası
+### 63. Arşivlenmiş Sohbetler Sayfası *(20-22 Ağustos 2025)*
 **Amaç:** Kullanıcının arşivlediği sohbetleri yönetmek ve gerektiğinde geri getirmek.
 
 **İşlemler:**
@@ -1007,7 +1007,7 @@ Her diyet dosyası için:
 - Arşiv temizleme seçenekleri
 - Arşiv backup oluşturma
 
-### 64. Gelen/Giden Çağrı Yönetim Sayfası
+### 64. Gelen/Giden Çağrı Yönetim Sayfası *(18-22 Eylül 2025)*
 **Amaç:** WebRTC tabanlı sesli ve görüntülü arama sistemi yönetmek.
 
 **İşlemler:**
@@ -1068,7 +1068,7 @@ Paket içindeki her liste süresine göre kontrol tarihleri belirlenir.
 
 ## 🔧 TEKNİK ÖZELLİKLER VE SERVİSLER
 
-### 65. Performans Optimizasyon Sayfası
+### 65. Performans Optimizasyon Sayfası *(26 Ekim - 5 Kasım 2025)*
 **Amaç:** Uygulama performansını izlemek ve optimize etmek için geliştirici araçları sunmak.
 
 **İşlemler:**
@@ -1082,7 +1082,7 @@ Paket içindeki her liste süresine göre kontrol tarihleri belirlenir.
 - Connection-aware sync
 - Firebase kullanım takibi
 
-### 66. Test Data Yönetim Sayfası
+### 66. Test Data Yönetim Sayfası *(10-15 Kasım 2025)*
 **Amaç:** Geliştirme ve test süreçleri için sample veri oluşturma ve yönetme.
 
 **İşlemler:**
@@ -1096,7 +1096,7 @@ Paket içindeki her liste süresine göre kontrol tarihleri belirlenir.
 - A/B test veri yönetimi
 - Mock servis entegrasyonu
 
-### 67. Directory Parser ve Otomatik Sistem Sayfası
+### 67. Directory Parser ve Otomatik Sistem Sayfası *(5-10 Kasım 2025)*
 **Amaç:** Sistem dosyalarını otomatik olarak işlemek ve organize etmek.
 
 **İşlemler:**
