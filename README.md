@@ -714,11 +714,25 @@ Bu belge WhatsApp benzeri mesajlaşma uygulaması + diyetisyen paneli için kron
 - Connection-aware sync
 - Firebase kullanım takibi
 
+### 58. Toplu Mesaj Gönderme Sayfası *(15 Kasım 2025)*
+**Amaç:** Diyetisyenlerin tüm danışanlarına veya belirli gruplara toplu mesaj göndermesini sağlamak.
+
+**İşlemler:**
+- Alıcı grubu seçimi (tüm kullanıcılar, etiket bazlı gruplar)
+- Mesaj türü belirleme (metin, medya, doküman)
+- Mesaj şablonları kullanma
+- Kişiselleştirilebilir değişkenler
+- Zamanlanmış gönderim
+- Teslimat durumu takibi
+- Gönderim başarı raporları
+- Batch işlemi optimizasyonu
+- Kullanıcı yetkilendirme kontrolü
+
 ---
 
-## 🏥 FAZ 5: DİYETİSYEN YÖNETİM PANELİ (Gelecek Sürümler - 2026+)
+## 🏥 FAZ 5: DİYETİSYEN YÖNETİM PANELİ (21 Kasım - 15 Aralık 2025)
 
-### 58. Danışan Yönetim Sayfası *(v2.0 - Q1 2026)*
+### 59. Danışan Yönetim Sayfası *(21-25 Kasım 2025)*
 **Amaç:** Diyetisyenlerin tüm müşteri ilişkilerini merkezi olarak yönetmesini sağlamak.
 
 **İşlemler:**
@@ -733,7 +747,7 @@ Bu belge WhatsApp benzeri mesajlaşma uygulaması + diyetisyen paneli için kron
 - Danışan arama ve filtreleme
 - Randevu planlama
 
-### 59. Diyet Paketleri Yönetim Sayfası *(v2.0 - Q1 2026)*
+### 60. Diyet Paketleri Yönetim Sayfası *(25 Kasım - 1 Aralık 2025)*
 **Amaç:** Diyet içeriklerini düzenlemek ve otomatik dağıtım sistemi kurmak.
 
 **İşlemler:**
@@ -775,7 +789,7 @@ Ana klasör adı → Paketin adı (örnek: Detoks Paketi)
 │       └── akdeniz_obez.docx
 ```
 
-### 60. Oto-Diyetler Botu Sayfası *(v2.0 - Q1 2026)*
+### 61. Oto-Diyetler Botu Sayfası *(1-5 Aralık 2025)*
 **Amaç:** Danışan rolündeki kullanıcıların paket bazlı diyet programlarını otomatik olarak almasını sağlamak.
 
 **İşlemler:**
@@ -794,7 +808,7 @@ Ana klasör adı → Paketin adı (örnek: Detoks Paketi)
   - 35-45 yaş: Boy² × 22
   - 45 yaş üstü: Boy² × 23
 
-### 61. Spor Seansları Yönetim Sayfası *(v2.5 - Q2 2026)*
+### 62. Spor Seansları Yönetim Sayfası *(5-8 Aralık 2025)*
 **Amaç:** Egzersiz programları oluşturmak ve danışanlara atamak.
 
 **İşlemler:**
@@ -809,7 +823,7 @@ Ana klasör adı → Paketin adı (örnek: Detoks Paketi)
 - Tamamlanma bildirimleri
 - Performans analizleri
 
-### 62. Randevu Yönetim Sayfası *(v3.0 - Q3 2026)*
+### 63. Randevu Yönetim Sayfası *(8-10 Aralık 2025)*
 **Amaç:** Profesyonel randevu sistemini otomatize etmek ve müşteri deneyimini iyileştirmek.
 
 **İşlemler:**
@@ -824,7 +838,7 @@ Ana klasör adı → Paketin adı (örnek: Detoks Paketi)
 - İptal işlemleri
 - Randevu geçmişi
 
-### 63. Form Oluşturma Sayfası *(v2.0 - Q1 2026)*
+### 64. Form Oluşturma Sayfası *(10-12 Aralık 2025)*
 **Amaç:** Danışan değerlendirmesi için özelleştirilmiş formlar tasarlamak.
 
 **İşlemler:**
@@ -839,7 +853,7 @@ Ana klasör adı → Paketin adı (örnek: Detoks Paketi)
 - Cevap analizi araçları
 - Form performans metrikleri
 
-### 64. Danışan Analiz Sayfası *(v2.5 - Q2 2026)*
+### 65. Danışan Analiz Sayfası *(12-14 Aralık 2025)*
 **Amaç:** Veri odaklı yaklaşımla danışan ilerlemesini analiz etmek ve raporlamak.
 
 **İşlemler:**
@@ -855,7 +869,7 @@ Ana klasör adı → Paketin adı (örnek: Detoks Paketi)
 - Özelleştirilebilir rapor şablonları
 - Excel/PDF export işlemleri
 
-### 65. Oto-Mesajlar Botu Sayfası (Geliştirilmiş) *(v2.0 - Q1 2026)*
+### 66. Oto-Mesajlar Botu Sayfası (Geliştirilmiş) *(14-15 Aralık 2025)*
 **Amaç:** Toplu mesajlaşma sistemini otomatize etmek ve hedefli iletişim sağlamak.
 
 **İşlemler:**
@@ -871,7 +885,7 @@ Ana klasör adı → Paketin adı (örnek: Detoks Paketi)
 - Zaman dilimi farkında teslimat
 - Teslimat analitikleri
 
-### 66. Oto-Yanıtlar Botu Sayfası *(v3.0 - Q3 2026)*
+### 67. Oto-Yanıtlar Botu Sayfası *(15 Aralık 2025)*
 **Amaç:** Akıllı otomatik yanıt sistemi ile müşteri hizmetlerini iyileştirmek.
 
 **İşlemler:**
@@ -888,7 +902,7 @@ Ana klasör adı → Paketin adı (örnek: Detoks Paketi)
 - Diyetisyen düzeltmelerinden öğrenme
 - Belirsizlik durumunda insana yönlendirme
 
-### 67. Toplu Mesaj Gönderme Sayfası *(Mevcut - Aktif)*
+**Not:** Bu sayfa yukarıda Sayfa 58 olarak eklendi.
 **Amaç:** Diyetisyenlerin tüm danışanlarına veya belirli gruplara toplu mesaj göndermesini sağlamak.
 
 **İşlemler:**
@@ -906,35 +920,36 @@ Ana klasör adı → Paketin adı (örnek: Detoks Paketi)
 
 ## 📊 SÜRÜM PLANLARI VE ÖNCELIKLER
 
-### 🎯 **v1.0 (Aralık 2025)** - Temel Platform
-- ✅ Core messaging sistemi (57 sayfa)
+### 🎯 **v1.0 (15 Aralık 2025)** - Tam Platform
+- ✅ Core messaging sistemi (Sayfa 1-57)
 - ✅ Sağlık takibi özellikleri
-- ✅ Temel diyetisyen araçları (Toplu mesaj)
+- ✅ Diyetisyen yönetim paneli (Sayfa 58-67)
+- ✅ Toplu mesaj gönderme
 - ✅ Performance optimizasyonu
 
-### 🏥 **v2.0 (Q1 2026)** - Diyetisyen Panel
-- 📋 Danışan Yönetim Sistemi (Sayfa 58)
-- 📦 Diyet Paketleri Yönetimi (Sayfa 59)
-- 🤖 Oto-Diyetler Botu (Sayfa 60)
-- 📝 Form Oluşturma Sistemi (Sayfa 63)
-- 💬 Geliştirilmiş Oto-Mesajlar (Sayfa 65)
+### 🚀 **v1.1 (Q1 2026)** - Optimizasyon
+- 🔧 Performance iyileştirmeleri
+- 🐛 Bug fixes ve stabilizasyon
+- 📱 UI/UX geliştirmeleri
+- 🔒 Güvenlik güncellemeleri
 
-### 💪 **v2.5 (Q2 2026)** - Fitness & Analytics
-- 🏃‍♂️ Spor Seansları Yönetimi (Sayfa 61)
-- 📊 Danışan Analiz Sistemi (Sayfa 64)
+### 💪 **v2.0 (Q2 2026)** - AI & Analytics
 - ⌚ Wearable cihaz entegrasyonları
 - 🔗 Fitness tracker bağlantıları
+- 🤖 Gelişmiş AI öneriler
+- 📊 İleri analytics
 
-### 🏥 **v3.0 (Q3 2026)** - Telemedicine
-- 📅 Randevu Yönetim Sistemi (Sayfa 62)
-- 🤖 Oto-Yanıtlar AI Bot (Sayfa 66)
+### 🏥 **v2.5 (Q3 2026)** - Telemedicine
 - 🎥 Video konsültasyon sistemi
 - 💊 Telemedicine özellikleri
+- 🩺 Uzaktan sağlık monitörü
+- 📋 Elektronik reçete sistemi
 
-### 🌍 **v3.5 (Q4 2026)** - Global Expansion
+### 🌍 **v3.0 (Q4 2026)** - Global Expansion
 - 🌐 Multi-language support
 - 🌎 International nutritionist standards
 - 📱 Platform expansion (Web, Desktop)
+- 🌐 Global compliance
 
 ---
 
@@ -942,14 +957,14 @@ Ana klasör adı → Paketin adı (örnek: Detoks Paketi)
 
 ### 🎯 2025 Yılı Hedefleri:
 - **Q3 2025**: Core messaging ve sağlık özelliklerinin tamamlanması (Sayfa 1-57)
-- **Q4 2025**: Public release ve ilk 1000 kullanıcı hedefi
-- **Aralık 2025**: App Store ve Google Play'de yayın
+- **Q4 2025**: Diyetisyen panel eklenmesi (Sayfa 58-67)
+- **15 Aralık 2025**: Tam platform ile App Store ve Google Play'de yayın
 
 ### 🚀 Gelecek Sürümler (2026+):
-- **v2.0 (Q1 2026)**: Tam diyetisyen panel (Sayfa 58-60, 63, 65)
-- **v2.5 (Q2 2026)**: Fitness & analytics (Sayfa 61, 64)
-- **v3.0 (Q3 2026)**: Telemedicine & AI (Sayfa 62, 66)
-- **v3.5 (Q4 2026)**: Multi-language & global expansion
+- **v1.1 (Q1 2026)**: Optimizasyon ve stabilizasyon
+- **v2.0 (Q2 2026)**: AI & wearable entegrasyonları
+- **v2.5 (Q3 2026)**: Telemedicine özellikleri
+- **v3.0 (Q4 2026)**: Global expansion
 
 ### 📊 Başarı Metrikleri:
 - **Kullanıcı Hedefi**: 10,000+ aktif kullanıcı (2025 sonu)
