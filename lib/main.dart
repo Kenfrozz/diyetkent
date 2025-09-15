@@ -10,6 +10,7 @@ import 'firebase_options.dart';
 import 'pages/auth_wrapper.dart';
 import 'pages/tags_page_new.dart';
 import 'pages/settings_page.dart';
+import 'pages/backup_page.dart';
 import 'pages/chat_page.dart';
 import 'pages/archived_chats_page.dart';
 import 'pages/story_viewer_page.dart';
@@ -279,6 +280,10 @@ class _MyAppState extends State<MyApp> with WidgetsBindingObserver {
             case '/settings':
               return MaterialPageRoute(
                 builder: (context) => const SettingsPage(),
+              );
+            case '/backup':
+              return MaterialPageRoute(
+                builder: (context) => const BackupPage(),
               );
             case '/story-viewer':
               final args = settings.arguments as Map<String, dynamic>;

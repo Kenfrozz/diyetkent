@@ -14,6 +14,7 @@ import '../services/notification_service.dart';
 import '../providers/optimized_chat_provider.dart';
 import '../widgets/tag_selection_dialog.dart';
 import '../widgets/appbar_health_indicators.dart';
+import '../widgets/google_backup_widget.dart';
 import 'profile_settings_page.dart';
 import 'create_group_page_updated.dart';
 // Removed dietitian_dashboard_page (dietitian panel removed)
@@ -239,11 +240,13 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
         ),
       ],
       bottom: PreferredSize(
-        preferredSize: const Size.fromHeight(kToolbarHeight + 80),
+        preferredSize: const Size.fromHeight(kToolbarHeight + 120),
         child: Column(
           children: [
             // Sağlık göstergeleri
             const AppBarHealthIndicators(),
+            // Backup durumu göstergesi
+            const BackupStatusWidget(),
             // Tab bar
             TabBar(
               controller: _tabController,
