@@ -716,52 +716,240 @@ Bu belge WhatsApp benzeri mesajlaşma uygulaması + diyetisyen paneli için kron
 
 ---
 
-## 📊 BASLEŞTIRILMIŞ VEYA KALDIRILMIŞ ÖZELLİKLER
+## 🏥 FAZ 5: DİYETİSYEN YÖNETİM PANELİ (Gelecek Sürümler - 2026+)
 
-### Danışan Yönetim Sayfası *(Basitleştirildi)*
-**Durum:** Diyetisyen panel özellikleri basitleştirilmiştir.
+### 58. Danışan Yönetim Sayfası *(v2.0 - Q1 2026)*
+**Amaç:** Diyetisyenlerin tüm müşteri ilişkilerini merkezi olarak yönetmesini sağlamak.
 
-### Diyet Paketleri Yönetim Sayfası *(Kaldırıldı)*
-**Durum:** Otomatik diyet dağıtım sistemi kaldırılmıştır.
+**İşlemler:**
+- Danışan profilleri oluşturma ve güncelleme
+- Rol atama (Aktif Danışan, Eski Müşteri, VIP, vs.)
+- Danışan durumu takibi (aktif, pasif, bloklu)
+- Paket atama işlemleri
+- İlerleme takibi yapma
+- İletişim geçmişi görüntüleme
+- Faturalama entegrasyonu
+- Toplu mesaj gönderme
+- Danışan arama ve filtreleme
+- Randevu planlama
 
-### Spor Seansları Yönetim Sayfası *(Kaldırıldı)*
-**Durum:** Egzersiz programları yönetimi kaldırılmıştır.
+### 59. Diyet Paketleri Yönetim Sayfası *(v2.0 - Q1 2026)*
+**Amaç:** Diyet içeriklerini düzenlemek ve otomatik dağıtım sistemi kurmak.
 
-### Randevu Yönetim Sayfası *(Kaldırıldı)*
-**Durum:** Profesyonel randevu sistemi kaldırılmıştır.
+**İşlemler:**
+- Diyet dosyalarını yükleme (.docx, .pdf formatları)
+- Paket kategorileme (BMI aralıkları, hedefler, kısıtlamalar)
+- Template kütüphanesi yönetimi
+- Paket versiyon kontrolü
+- Paket etkinlik analizleri
+- Otomatik paket seçim kuralları oluşturma
+- Kişiselleştirilmiş paket düzenlemeleri
+- Teslimat programlama
+- Paket güncellemeleri yapma
 
-### Form Oluşturma Sayfası *(Kaldırıldı)*
-**Durum:** Dinamik form builder kaldırılmıştır.
+#### 📦 Paket Yönetimi Detayları
 
-### Danışan Analiz Sayfası *(Basitleştirildi)*
-**Durum:** Veri analizi özellikleri basitleştirilmiştir.
+##### 🎯 Paket Tanımlama Sistemi
+Her paket için:
+- **Paket Adı**: Her paket için benzersiz isim ("1 Aylık Zayıflama", "21 Günlük Detoks" vb.)
+- **Toplam Süre**: Kaç gün süreceği
+- **Liste Sayısı**: Pakette kaç adet diyet listesi olduğu
+- **Kilo Değişim Hedefi**: Her diyet dosyasının ortalama ne kadar kilo değişimi sağlayacağı
 
-### Oto-Mesajlar Botu Sayfası *(Basitleştirildi)*
-**Durum:** Toplu mesajlaşma sistemi basitleştirilmiştir.
+##### 🌿 Mevsimsel Paket Yönetimi
+- **Bahar Paketleri**: Mart-Mayıs dönemi için özel diyetler
+- **Yaz Paketleri**: Haziran-Ağustos detoks ve zayıflama programları
+- **Sonbahar Paketleri**: Eylül-Kasım bağışıklık güçlendirme
+- **Kış Paketleri**: Aralık-Şubat enerji destekli beslenme
+- **Tüm Yıl**: Mevsim bağımsız kullanılabilir paketler
 
-### Oto-Yanıtlar Botu Sayfası *(Kaldırıldı)*
-**Durum:** AI destekli otomatik yanıt sistemi kaldırılmıştır.
+##### 📁 Toplu Paket Yükleme Sistemi
+```
+Ana klasör adı → Paketin adı (örnek: Detoks Paketi)
+├── AkdenizDiyeti/
+│   ├── 21_25bmi/
+│   │   └── akdeniz_normal.docx
+│   ├── 26_29bmi/
+│   │   └── akdeniz_fazla_kilo.docx
+│   └── 30_33bmi/
+│       └── akdeniz_obez.docx
+```
 
-### Oto-Diyetler Botu Sayfası *(Kaldırıldı)*
-**Durum:** Bu özellik projeden kaldırılmıştır.
+### 60. Oto-Diyetler Botu Sayfası *(v2.0 - Q1 2026)*
+**Amaç:** Danışan rolündeki kullanıcıların paket bazlı diyet programlarını otomatik olarak almasını sağlamak.
 
-### Toplu Mesaj Gönderme Sayfası *(Aktif - Bulk Message Service)*
-**Durum:** Diyetisyenlerin toplu mesaj gönderme özelliği aktif durumda.
+**İşlemler:**
+- Paket ve kombinasyon atama
+- Sağlık bilgileri hesaplama (BMI, hedef kilo, kontrol tarihi)
+- Uygun diyet seçimi (BMI bazlı)
+- Kişiselleştirilmiş PDF oluşturma
+- Otomatik mesaj gönderimi
+- Dosya isimlendirme: [Ad Soyad] - [Başlangıç Tarihi] - [Bitiş Tarihi].pdf
+
+#### 📊 Hesaplama Formülleri
+- **Yaş**: Güncel Yıl - Doğum Yılı
+- **BMI**: Kilo / (Boy²)
+- **İdeal Kilo**:
+  - 35 yaş altı: Boy² × 21
+  - 35-45 yaş: Boy² × 22
+  - 45 yaş üstü: Boy² × 23
+
+### 61. Spor Seansları Yönetim Sayfası *(v2.5 - Q2 2026)*
+**Amaç:** Egzersiz programları oluşturmak ve danışanlara atamak.
+
+**İşlemler:**
+- Egzersiz kütüphanesi oluşturma
+- Antrenman planları hazırlama
+- Video talimat yükleme/bağlama
+- Süre ve yoğunluk belirleme
+- Dinlenme günleri planlama
+- Danışanlara toplu atama
+- Kişiselleştirilmiş değişiklikler
+- İlerleme takip entegrasyonu
+- Tamamlanma bildirimleri
+- Performans analizleri
+
+### 62. Randevu Yönetim Sayfası *(v3.0 - Q3 2026)*
+**Amaç:** Profesyonel randevu sistemini otomatize etmek ve müşteri deneyimini iyileştirmek.
+
+**İşlemler:**
+- Takvim bazlı randevu oluşturma
+- Danışan seçimi ve ataması
+- Randevu türü belirleme (konsültasyon, takip, vs.)
+- Süre ve konum belirleme
+- Platform seçimi (yüz yüze, görüntülü arama)
+- Otomatik onay bildirimi
+- Hatırlatma sistemi (1 gün, 1 saat öncesi)
+- Randevu değişiklik bildirimleri
+- İptal işlemleri
+- Randevu geçmişi
+
+### 63. Form Oluşturma Sayfası *(v2.0 - Q1 2026)*
+**Amaç:** Danışan değerlendirmesi için özelleştirilmiş formlar tasarlamak.
+
+**İşlemler:**
+- Sürükle-bırak form editörü kullanma
+- Farklı soru türleri ekleme (açık uçlu, çoktan seçmeli, değerlendirme, vs.)
+- Koşullu soru mantığı kurma
+- Form doğrulama kuralları belirleme
+- Dallanma mantığı oluşturma
+- Form template'leri kaydetme
+- Form önizleme ve test etme
+- Form dağıtım seçenekleri
+- Cevap analizi araçları
+- Form performans metrikleri
+
+### 64. Danışan Analiz Sayfası *(v2.5 - Q2 2026)*
+**Amaç:** Veri odaklı yaklaşımla danışan ilerlemesini analiz etmek ve raporlamak.
+
+**İşlemler:**
+- İlerleme görselleştirme grafikleri
+- Hedef başarım oranları
+- Karşılaştırmalı analizler
+- Sağlık metrik trendleri
+- Rapor oluşturma ve otomasyonu
+- Kilo kaybı/artış takibi
+- BMI trend analizi
+- İletişim sıklığı analizi
+- Paket etkinlik metrikleri
+- Özelleştirilebilir rapor şablonları
+- Excel/PDF export işlemleri
+
+### 65. Oto-Mesajlar Botu Sayfası (Geliştirilmiş) *(v2.0 - Q1 2026)*
+**Amaç:** Toplu mesajlaşma sistemini otomatize etmek ve hedefli iletişim sağlamak.
+
+**İşlemler:**
+- Mesaj editörü ile içerik hazırlama
+- Alıcı seçimi (etiketler, roller, tüm kullanıcılar)
+- Zengin medya içeriği ekleme
+- Mesaj şablonları kullanma
+- Kişiselleştirilebilir değişkenler
+- Anında gönderim
+- Zamanlanmış gönderim
+- Tekrarlayan mesajlar
+- Etkinlik bazlı tetikleme
+- Zaman dilimi farkında teslimat
+- Teslimat analitikleri
+
+### 66. Oto-Yanıtlar Botu Sayfası *(v3.0 - Q3 2026)*
+**Amaç:** Akıllı otomatik yanıt sistemi ile müşteri hizmetlerini iyileştirmek.
+
+**İşlemler:**
+- Yanıt kuralları oluşturma
+- Anahtar kelime eşleştirmesi
+- AI destekli yanıt üretimi
+- Bağlam farkında yanıtlama
+- Öncelik bazlı kural sıralaması
+- Template kütüphanesi yönetimi
+- Dinamik değişken kullanma
+- Çok dilli yanıt desteği
+- Yanıt etkinlik takibi
+- OpenAI/ChatGPT entegrasyonu
+- Diyetisyen düzeltmelerinden öğrenme
+- Belirsizlik durumunda insana yönlendirme
+
+### 67. Toplu Mesaj Gönderme Sayfası *(Mevcut - Aktif)*
+**Amaç:** Diyetisyenlerin tüm danışanlarına veya belirli gruplara toplu mesaj göndermesini sağlamak.
+
+**İşlemler:**
+- Alıcı grubu seçimi (tüm kullanıcılar, etiket bazlı gruplar)
+- Mesaj türü belirleme (metin, medya, doküman)
+- Mesaj şablonları kullanma
+- Kişiselleştirilebilir değişkenler
+- Zamanlanmış gönderim
+- Teslimat durumu takibi
+- Gönderim başarı raporları
+- Batch işlemi optimizasyonu
+- Kullanıcı yetkilendirme kontrolü
+
+---
+
+## 📊 SÜRÜM PLANLARI VE ÖNCELIKLER
+
+### 🎯 **v1.0 (Aralık 2025)** - Temel Platform
+- ✅ Core messaging sistemi (57 sayfa)
+- ✅ Sağlık takibi özellikleri
+- ✅ Temel diyetisyen araçları (Toplu mesaj)
+- ✅ Performance optimizasyonu
+
+### 🏥 **v2.0 (Q1 2026)** - Diyetisyen Panel
+- 📋 Danışan Yönetim Sistemi (Sayfa 58)
+- 📦 Diyet Paketleri Yönetimi (Sayfa 59)
+- 🤖 Oto-Diyetler Botu (Sayfa 60)
+- 📝 Form Oluşturma Sistemi (Sayfa 63)
+- 💬 Geliştirilmiş Oto-Mesajlar (Sayfa 65)
+
+### 💪 **v2.5 (Q2 2026)** - Fitness & Analytics
+- 🏃‍♂️ Spor Seansları Yönetimi (Sayfa 61)
+- 📊 Danışan Analiz Sistemi (Sayfa 64)
+- ⌚ Wearable cihaz entegrasyonları
+- 🔗 Fitness tracker bağlantıları
+
+### 🏥 **v3.0 (Q3 2026)** - Telemedicine
+- 📅 Randevu Yönetim Sistemi (Sayfa 62)
+- 🤖 Oto-Yanıtlar AI Bot (Sayfa 66)
+- 🎥 Video konsültasyon sistemi
+- 💊 Telemedicine özellikleri
+
+### 🌍 **v3.5 (Q4 2026)** - Global Expansion
+- 🌐 Multi-language support
+- 🌎 International nutritionist standards
+- 📱 Platform expansion (Web, Desktop)
 
 ---
 
 ## 📅 PROJE ROADMAP VE GELECEK PLANLAR
 
 ### 🎯 2025 Yılı Hedefleri:
-- **Q3 2025**: Core messaging ve sağlık özelliklerinin tamamlanması
+- **Q3 2025**: Core messaging ve sağlık özelliklerinin tamamlanması (Sayfa 1-57)
 - **Q4 2025**: Public release ve ilk 1000 kullanıcı hedefi
 - **Aralık 2025**: App Store ve Google Play'de yayın
 
 ### 🚀 Gelecek Sürümler (2026+):
-- **v2.0 (Q1 2026)**: AI-powered beslenme tavsiyeleri
-- **v2.5 (Q2 2026)**: Wearable cihaz entegrasyonları
-- **v3.0 (Q3 2026)**: Telemedicine özellikleri
-- **v3.5 (Q4 2026)**: Multi-language support
+- **v2.0 (Q1 2026)**: Tam diyetisyen panel (Sayfa 58-60, 63, 65)
+- **v2.5 (Q2 2026)**: Fitness & analytics (Sayfa 61, 64)
+- **v3.0 (Q3 2026)**: Telemedicine & AI (Sayfa 62, 66)
+- **v3.5 (Q4 2026)**: Multi-language & global expansion
 
 ### 📊 Başarı Metrikleri:
 - **Kullanıcı Hedefi**: 10,000+ aktif kullanıcı (2025 sonu)
@@ -783,11 +971,12 @@ Bu belge WhatsApp benzeri mesajlaşma uygulaması + diyetisyen paneli için kron
 **Son Güncelleme:** 2025-01-15
 
 **Geliştirme Başlangıcı:** 2 Ağustos 2025 \
-**Hedeflenen Release:** 15 Aralık 2025 \
-**Toplam Sayfa Sayısı:** 67 \
-**Geliştirme Süresi:** ~4.5 ay (135 gün) \
+**v1.0 Release:** 15 Aralık 2025 \
+**Toplam Sayfa Sayısı:** 67 (v1.0: 57 sayfa, v2.0+: 10 sayfa) \
+**v1.0 Geliştirme Süresi:** ~4.5 ay (135 gün) \
 **Platform:** Flutter (Android/iOS) \
-**Özel Özellikler:** Sağlık Takibi + WhatsApp-benzeri Mesajlaşma + Performance Optimizations
+**v1.0 Özellikler:** Sağlık Takibi + WhatsApp-benzeri Mesajlaşma + Performance Optimizations \
+**Gelecek Sürümler:** Diyetisyen Panel + AI + Telemedicine (2026+)
 
 ### 👨‍💻 Geliştirici Bilgileri:
 - **Lead Developer**: Kenan Kanat (kenankanat93@gmail.com)
