@@ -320,23 +320,12 @@ Bu belge WhatsApp benzeri mesajlaşma uygulaması + diyetisyen paneli için kron
 - Sosyal medya profili bağlama
 - Kişi doğrulama sistemi
 
-### 28. Emoji/Sticker Gönderme *(25-30 Ağustos 2025)*
-**Amaç:** Duygusal ifade araçlarıyla mesajlaşmayı daha eğlenceli hale getirmek.
-
-**İşlemler:**
-- Emoji panelini açma ve seçim yapma
-- Son kullanılan emojileri gösterme
-- Emoji kategorilerine ayırma
-- Ten rengi seçenekleri sunma
-- Sticker paketleri gösterme
-- Özel sticker yükleme
-- Emoji/sticker arama yapma
 
 ---
 
 ## 🚀 FAZ 2: ANA ÖZELLİKLER (1 Eylül - 30 Eylül 2025)
 
-### 29. Grup Oluşturma Sayfası *(1-5 Eylül 2025)*
+### 28. Grup Oluşturma Sayfası *(1-5 Eylül 2025)*
 **Amaç:** Yeni grup oluşturarak toplu mesajlaşma imkanı sağlamak.
 
 **İşlemler:**
@@ -349,7 +338,7 @@ Bu belge WhatsApp benzeri mesajlaşma uygulaması + diyetisyen paneli için kron
 - İlk grup mesajını atma
 - Üyeleri bilgilendirme
 
-### 30. Grup Detay Sayfası *(5-10 Eylül 2025)*
+### 29. Grup Detay Sayfası *(5-10 Eylül 2025)*
 **Amaç:** Grup bilgilerini yönetmek ve üye işlemlerini gerçekleştirmek.
 
 **İşlemler:**
@@ -362,7 +351,7 @@ Bu belge WhatsApp benzeri mesajlaşma uygulaması + diyetisyen paneli için kron
 - Grup ayarlarını yönetme
 - Gruptan ayrılma
 
-### 31. Sesli Mesaj Gönderme *(7-10 Eylül 2025)*
+### 30. Sesli Mesaj Gönderme *(7-10 Eylül 2025)*
 **Amaç:** Metinden daha hızlı ve kişisel ses mesajları gönderebilmek.
 
 **İşlemler:**
@@ -375,7 +364,7 @@ Bu belge WhatsApp benzeri mesajlaşma uygulaması + diyetisyen paneli için kron
 - Oynatma hızı değiştirme (1x, 1.5x, 2x)
 - Sesli mesaj süresini gösterme
 
-### 32. Durumlar Sayfası *(14-18 Eylül 2025)*
+### 31. Durumlar Sayfası *(14-18 Eylül 2025)*
 **Amaç:** 24 saat içinde kaybolacak hikayeler paylaşmak ve görmek.
 
 **İşlemler:**
@@ -388,7 +377,7 @@ Bu belge WhatsApp benzeri mesajlaşma uygulaması + diyetisyen paneli için kron
 - Eski durumları silme
 - Durum tepkileri gönderme
 
-### 33. Durum Gizlilik Ayarları *(14-18 Eylül 2025)*
+### 32. Durum Gizlilik Ayarları *(14-18 Eylül 2025)*
 **Amaç:** Durumların kimler tarafından görülebileceğini kontrol etmek.
 
 **İşlemler:**
@@ -399,7 +388,7 @@ Bu belge WhatsApp benzeri mesajlaşma uygulaması + diyetisyen paneli için kron
 - Gizlilik ayarlarını kaydetme
 - Mevcut durumlar için geçmişe dönük uygulama
 
-### 34. Durum Görüntüleme Sayfası *(14-18 Eylül 2025)*
+### 33. Durum Görüntüleme Sayfası *(14-18 Eylül 2025)*
 **Amaç:** Durumları tam ekran görüntülemek ve etkileşim kurmak.
 
 **İşlemler:**
@@ -412,7 +401,7 @@ Bu belge WhatsApp benzeri mesajlaşma uygulaması + diyetisyen paneli için kron
 - Duruma yanıt yazma
 - Paylaşım yapma
 
-### 35. Aramalar Sayfası *(18-22 Eylül 2025)*
+### 34. Aramalar Sayfası *(18-22 Eylül 2025)*
 **Amaç:** Arama geçmişini yönetmek ve yeni aramalar başlatmak.
 
 **İşlemler:**
@@ -425,7 +414,7 @@ Bu belge WhatsApp benzeri mesajlaşma uygulaması + diyetisyen paneli için kron
 - Arama kayıtlarını filtreleme
 - İstatistik görüntüleme
 
-### 36. Gelen/Giden Çağrı Sayfası *(18-22 Eylül 2025)*
+### 35. Gelen/Giden Çağrı Sayfası *(18-22 Eylül 2025)*
 **Amaç:** Aktif arama sırasında gerekli kontrolleri sağlamak.
 
 **İşlemler:**
@@ -438,7 +427,7 @@ Bu belge WhatsApp benzeri mesajlaşma uygulaması + diyetisyen paneli için kron
 - Çağrı beklemeye alma
 - Çağrı transferi yapma
 
-### 37. Gelen/Giden Çağrı Yönetim Sayfası *(18-22 Eylül 2025)*
+### 36. Gelen/Giden Çağrı Yönetim Sayfası *(18-22 Eylül 2025)*
 **Amaç:** WebRTC tabanlı sesli ve görüntülü arama sistemi yönetmek.
 
 **İşlemler:**
@@ -451,7 +440,7 @@ Bu belge WhatsApp benzeri mesajlaşma uygulaması + diyetisyen paneli için kron
 - ICE server konfigürasyonu
 - Bandwidth optimizasyonu
 
-### 38. Ana Ayarlar Sayfası *(22-26 Eylül 2025)*
+### 37. Ana Ayarlar Sayfası *(22-26 Eylül 2025)*
 **Amaç:** Tüm uygulama ayarlarına merkezi erişim sağlamak.
 
 **İşlemler:**
@@ -462,7 +451,7 @@ Bu belge WhatsApp benzeri mesajlaşma uygulaması + diyetisyen paneli için kron
 - Ayar önizlemeleri gösterme
 - Alt sayfalara yönlendirme
 
-### 39. Hakkında/Yardım Sayfası *(22-26 Eylül 2025)*
+### 38. Hakkında/Yardım Sayfası *(22-26 Eylül 2025)*
 **Amaç:** Uygulama hakkında bilgi vermek ve kullanıcı desteği sağlamak.
 
 **İşlemler:**
@@ -475,18 +464,8 @@ Bu belge WhatsApp benzeri mesajlaşma uygulaması + diyetisyen paneli için kron
 - Hata raporu oluşturma
 - Kullanım kılavuzu gösterme
 
-### 40. Dil Ayarları Sayfası *(22-26 Eylül 2025)*
-**Amaç:** Uygulama dilini değiştirmek ve yerelleştirme yapmak.
 
-**İşlemler:**
-- Mevcut dili gösterme
-- Desteklenen dilleri listeleme
-- Dil değişimi yapma
-- Değişiklik onayı alma
-- Uygulamayı yeniden başlatma
-- Dil paketlerini güncelleme
-
-### 41. Gizlilik Ayarları Sayfası *(22-26 Eylül 2025)*
+### 39. Gizlilik Ayarları Sayfası *(22-26 Eylül 2025)*
 **Amaç:** Kişisel verilerin gizliliğini korumak ve paylaşım kontrolü sağlamak.
 
 **İşlemler:**
@@ -499,7 +478,7 @@ Bu belge WhatsApp benzeri mesajlaşma uygulaması + diyetisyen paneli için kron
 - Okundu bilgisi kontrolü
 - Grup ekleme izinleri
 
-### 42. Hesap Ayarları Sayfası *(22-26 Eylül 2025)*
+### 40. Hesap Ayarları Sayfası *(22-26 Eylül 2025)*
 **Amaç:** Temel hesap işlemlerini yönetmek ve güvenlik sağlamak.
 
 **İşlemler:**
@@ -512,7 +491,7 @@ Bu belge WhatsApp benzeri mesajlaşma uygulaması + diyetisyen paneli için kron
 - Veri indirme talebi
 - Hesap dondurma
 
-### 43. Bildirim Ayarları Sayfası *(22-26 Eylül 2025)*
+### 41. Bildirim Ayarları Sayfası *(22-26 Eylül 2025)*
 **Amaç:** Bildirim tercihleri yönetmek ve rahatsız edici bildirimleri engellemek.
 
 **İşlemler:**
@@ -525,7 +504,7 @@ Bu belge WhatsApp benzeri mesajlaşma uygulaması + diyetisyen paneli için kron
 - Bildirim önizleme ayarları
 - Özel kişiler için özel sesler
 
-### 44. Etiketler Sayfası *(26-30 Eylül 2025)*
+### 42. Etiketler Sayfası *(26-30 Eylül 2025)*
 **Amaç:** Diyetisyenlerin danışanlarını kategorilere ayırarak organize etmesini sağlamak.
 
 **İşlemler:**
@@ -536,7 +515,7 @@ Bu belge WhatsApp benzeri mesajlaşma uygulaması + diyetisyen paneli için kron
 - Etiketleri renk ve isme göre sıralama
 - Etiket bazlı istatistikler gösterme
 
-### 45. Etiket Ekleme *(26-30 Eylül 2025)*
+### 43. Etiket Ekleme *(26-30 Eylül 2025)*
 **Amaç:** Yeni müşteri kategorileri oluşturarak sınıflandırma sistemi geliştirmek.
 
 **İşlemler:**
@@ -548,7 +527,7 @@ Bu belge WhatsApp benzeri mesajlaşma uygulaması + diyetisyen paneli için kron
 - Etiket önizlemesi gösterme
 - Oluşturma işlemini onaylama
 
-### 46. Etiket Düzenleme/Silme *(26-30 Eylül 2025)*
+### 44. Etiket Düzenleme/Silme *(26-30 Eylül 2025)*
 **Amaç:** Mevcut etiket sistemini güncel tutmak ve gereksiz etiketleri temizlemek.
 
 **İşlemler:**
@@ -604,33 +583,7 @@ Bu belge WhatsApp benzeri mesajlaşma uygulaması + diyetisyen paneli için kron
 - İstatistik grafikleri gösterme
 - Export ve paylaşım seçenekleri
 
-### 50. Beslenme Hatırlatıcısı Ayarları Sayfası *(15-20 Ekim 2025)*
-**Amaç:** Kişiselleştirilmiş öğün hatırlatıcısı sistemi kurarak beslenme düzenini desteklemek.
-
-**İşlemler:**
-- Öğün saatleri belirleme (kahvaltı, öğle, akşam, ara öğünler)
-- Hatırlatıcı sıklığı ayarlama
-- Özel bildirim mesajları oluşturma
-- Hafta sonu/tatil günleri için ayrı ayarlar
-- Hatırlatıcı davranış analizi
-- Kullanıcı tepki süresi takibi
-- Adaptif hatırlatıcı zamanlaması
-- Sessiz saatler belirleme
-
-### 51. Sağlık Verileri Export Sayfası *(20-25 Ekim 2025)*
-**Amaç:** Sağlık verilerini farklı formatlarda dışa aktararak paylaşım ve analiz imkanı sağlamak.
-
-**İşlemler:**
-- CSV formatında veri export
-- Grafik tabanlı rapor oluşturma
-- Belirli tarih aralığı seçme
-- Özelleştirilebilir veri setleri
-- E-posta ile paylaşım
-- Cloud storage entegrasyonu
-- Otomatik backup oluşturma
-- Veri gizlilik kontrolü
-
-### 52. PDF Görüntüleme Sayfası *(20-25 Ekim 2025)*
+### 48. PDF Görüntüleme Sayfası *(20-25 Ekim 2025)*
 **Amaç:** Diyet planları, raporlar ve belgeler için kapsamlı PDF görüntüleyici sunmak.
 
 **İşlemler:**
@@ -648,7 +601,7 @@ Bu belge WhatsApp benzeri mesajlaşma uygulaması + diyetisyen paneli için kron
 
 ## 🔧 FAZ 4: OPTİMİZASYON VE TEST (26 Ekim - 20 Kasım 2025)
 
-### 53. Depolama Yönetimi Sayfası *(1-5 Kasım 2025)*
+### 49. Depolama Yönetimi Sayfası *(1-5 Kasım 2025)*
 **Amaç:** Uygulama ve medya verilerinin disk kullanımını optimize etmek.
 
 **İşlemler:**
@@ -661,7 +614,7 @@ Bu belge WhatsApp benzeri mesajlaşma uygulaması + diyetisyen paneli için kron
 - Depolama uyarıları ayarlama
 - Toplu temizlik önerileri
 
-### 54. Yedekleme Sayfası *(1-5 Kasım 2025)*
+### 50. Yedekleme Sayfası *(1-5 Kasım 2025)*
 **Amaç:** Sohbet verilerini güvenli bir şekilde yedeklemek ve geri yüklemek.
 
 **İşlemler:**
@@ -674,7 +627,7 @@ Bu belge WhatsApp benzeri mesajlaşma uygulaması + diyetisyen paneli için kron
 - Yedekleme şifreleme
 - Yedek geçmişi görüntüleme
 
-### 55. Directory Parser ve Otomatik Sistem Sayfası *(5-10 Kasım 2025)*
+### 51. Directory Parser ve Otomatik Sistem Sayfası *(5-10 Kasım 2025)*
 **Amaç:** Sistem dosyalarını otomatik olarak işlemek ve organize etmek.
 
 **İşlemler:**
@@ -687,7 +640,7 @@ Bu belge WhatsApp benzeri mesajlaşma uygulaması + diyetisyen paneli için kron
 - Otomatik backup oluşturma
 - Sistem temizlik işlemleri
 
-### 56. Test Data Yönetim Sayfası *(10-15 Kasım 2025)*
+### 52. Test Data Yönetim Sayfası *(10-15 Kasım 2025)*
 **Amaç:** Geliştirme ve test süreçleri için sample veri oluşturma ve yönetme.
 
 **İşlemler:**
@@ -700,7 +653,7 @@ Bu belge WhatsApp benzeri mesajlaşma uygulaması + diyetisyen paneli için kron
 - Performance test veri setleri
 - A/B test veri yönetimi
 
-### 57. Performans Optimizasyon Sayfası *(26 Ekim - 5 Kasım 2025)*
+### 53. Performans Optimizasyon Sayfası *(26 Ekim - 5 Kasım 2025)*
 **Amaç:** Uygulama performansını izlemek ve optimize etmek için geliştirici araçları sunmak.
 
 **İşlemler:**
@@ -714,7 +667,7 @@ Bu belge WhatsApp benzeri mesajlaşma uygulaması + diyetisyen paneli için kron
 - Connection-aware sync
 - Firebase kullanım takibi
 
-### 58. Toplu Mesaj Gönderme Sayfası *(15 Kasım 2025)*
+### 54. Toplu Mesaj Gönderme Sayfası *(15 Kasım 2025)*
 **Amaç:** Diyetisyenlerin tüm danışanlarına veya belirli gruplara toplu mesaj göndermesini sağlamak.
 
 **İşlemler:**
@@ -732,7 +685,7 @@ Bu belge WhatsApp benzeri mesajlaşma uygulaması + diyetisyen paneli için kron
 
 ## 🏥 FAZ 5: DİYETİSYEN YÖNETİM PANELİ (21 Kasım - 15 Aralık 2025)
 
-### 59. Danışan Yönetim Sayfası *(21-25 Kasım 2025)*
+### 55. Danışan Yönetim Sayfası *(21-25 Kasım 2025)*
 **Amaç:** Diyetisyenlerin tüm müşteri ilişkilerini merkezi olarak yönetmesini sağlamak.
 
 **İşlemler:**
@@ -747,7 +700,7 @@ Bu belge WhatsApp benzeri mesajlaşma uygulaması + diyetisyen paneli için kron
 - Danışan arama ve filtreleme
 - Randevu planlama
 
-### 60. Diyet Paketleri Yönetim Sayfası *(25 Kasım - 1 Aralık 2025)*
+### 56. Diyet Paketleri Yönetim Sayfası *(25 Kasım - 1 Aralık 2025)*
 **Amaç:** Diyet içeriklerini düzenlemek ve otomatik dağıtım sistemi kurmak.
 
 **İşlemler:**
@@ -789,7 +742,7 @@ Ana klasör adı → Paketin adı (örnek: Detoks Paketi)
 │       └── akdeniz_obez.docx
 ```
 
-### 61. Oto-Diyetler Botu Sayfası *(1-5 Aralık 2025)*
+### 57. Oto-Diyetler Botu Sayfası *(1-5 Aralık 2025)*
 **Amaç:** Danışan rolündeki kullanıcıların paket bazlı diyet programlarını otomatik olarak almasını sağlamak.
 
 **İşlemler:**
@@ -808,7 +761,7 @@ Ana klasör adı → Paketin adı (örnek: Detoks Paketi)
   - 35-45 yaş: Boy² × 22
   - 45 yaş üstü: Boy² × 23
 
-### 62. Spor Seansları Yönetim Sayfası *(5-8 Aralık 2025)*
+### 58. Spor Seansları Yönetim Sayfası *(5-8 Aralık 2025)*
 **Amaç:** Egzersiz programları oluşturmak ve danışanlara atamak.
 
 **İşlemler:**
@@ -823,7 +776,7 @@ Ana klasör adı → Paketin adı (örnek: Detoks Paketi)
 - Tamamlanma bildirimleri
 - Performans analizleri
 
-### 63. Randevu Yönetim Sayfası *(8-10 Aralık 2025)*
+### 59. Randevu Yönetim Sayfası *(8-10 Aralık 2025)*
 **Amaç:** Profesyonel randevu sistemini otomatize etmek ve müşteri deneyimini iyileştirmek.
 
 **İşlemler:**
@@ -838,7 +791,7 @@ Ana klasör adı → Paketin adı (örnek: Detoks Paketi)
 - İptal işlemleri
 - Randevu geçmişi
 
-### 64. Form Oluşturma Sayfası *(10-12 Aralık 2025)*
+### 60. Form Oluşturma Sayfası *(10-12 Aralık 2025)*
 **Amaç:** Danışan değerlendirmesi için özelleştirilmiş formlar tasarlamak.
 
 **İşlemler:**
@@ -853,7 +806,7 @@ Ana klasör adı → Paketin adı (örnek: Detoks Paketi)
 - Cevap analizi araçları
 - Form performans metrikleri
 
-### 65. Danışan Analiz Sayfası *(12-14 Aralık 2025)*
+### 61. Danışan Analiz Sayfası *(12-14 Aralık 2025)*
 **Amaç:** Veri odaklı yaklaşımla danışan ilerlemesini analiz etmek ve raporlamak.
 
 **İşlemler:**
@@ -869,7 +822,7 @@ Ana klasör adı → Paketin adı (örnek: Detoks Paketi)
 - Özelleştirilebilir rapor şablonları
 - Excel/PDF export işlemleri
 
-### 66. Oto-Mesajlar Botu Sayfası (Geliştirilmiş) *(14-15 Aralık 2025)*
+### 62. Oto-Mesajlar Botu Sayfası (Geliştirilmiş) *(14-15 Aralık 2025)*
 **Amaç:** Toplu mesajlaşma sistemini otomatize etmek ve hedefli iletişim sağlamak.
 
 **İşlemler:**
@@ -885,7 +838,7 @@ Ana klasör adı → Paketin adı (örnek: Detoks Paketi)
 - Zaman dilimi farkında teslimat
 - Teslimat analitikleri
 
-### 67. Oto-Yanıtlar Botu Sayfası *(15 Aralık 2025)*
+### 63. Oto-Yanıtlar Botu Sayfası *(15 Aralık 2025)*
 **Amaç:** Akıllı otomatik yanıt sistemi ile müşteri hizmetlerini iyileştirmek.
 
 **İşlemler:**
@@ -921,9 +874,9 @@ Ana klasör adı → Paketin adı (örnek: Detoks Paketi)
 ## 📊 SÜRÜM PLANLARI VE ÖNCELIKLER
 
 ### 🎯 **v1.0 (15 Aralık 2025)** - Tam Platform
-- ✅ Core messaging sistemi (Sayfa 1-57)
+- ✅ Core messaging sistemi (Sayfa 1-53)
 - ✅ Sağlık takibi özellikleri
-- ✅ Diyetisyen yönetim paneli (Sayfa 58-67)
+- ✅ Diyetisyen yönetim paneli (Sayfa 54-63)
 - ✅ Toplu mesaj gönderme
 - ✅ Performance optimizasyonu
 
@@ -956,8 +909,8 @@ Ana klasör adı → Paketin adı (örnek: Detoks Paketi)
 ## 📅 PROJE ROADMAP VE GELECEK PLANLAR
 
 ### 🎯 2025 Yılı Hedefleri:
-- **Q3 2025**: Core messaging ve sağlık özelliklerinin tamamlanması (Sayfa 1-57)
-- **Q4 2025**: Diyetisyen panel eklenmesi (Sayfa 58-67)
+- **Q3 2025**: Core messaging ve sağlık özelliklerinin tamamlanması (Sayfa 1-53)
+- **Q4 2025**: Diyetisyen panel eklenmesi (Sayfa 54-63)
 - **15 Aralık 2025**: Tam platform ile App Store ve Google Play'de yayın
 
 ### 🚀 Gelecek Sürümler (2026+):
@@ -987,7 +940,7 @@ Ana klasör adı → Paketin adı (örnek: Detoks Paketi)
 
 **Geliştirme Başlangıcı:** 2 Ağustos 2025 \
 **v1.0 Release:** 15 Aralık 2025 \
-**Toplam Sayfa Sayısı:** 67 (v1.0: 57 sayfa, v2.0+: 10 sayfa) \
+**Toplam Sayfa Sayısı:** 63 (v1.0: 53 sayfa, v2.0+: 10 sayfa) \
 **v1.0 Geliştirme Süresi:** ~4.5 ay (135 gün) \
 **Platform:** Flutter (Android/iOS) \
 **v1.0 Özellikler:** Sağlık Takibi + WhatsApp-benzeri Mesajlaşma + Performance Optimizations \
