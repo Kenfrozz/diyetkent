@@ -599,9 +599,9 @@ Bu belge WhatsApp benzeri mesajlaşma uygulaması + diyetisyen paneli için kron
 
 ---
 
-## 🔧 FAZ 4: OPTİMİZASYON VE TEST (26 Ekim - 20 Kasım 2025)
+## 🏥 FAZ 4: DİYETİSYEN YÖNETİM PANELİ (26 Ekim - 20 Kasım 2025)
 
-### 49. Depolama Yönetimi Sayfası *(1-5 Kasım 2025)*
+### 49. Danışan Yönetim Sayfası *(26 Ekim - 1 Kasım 2025)*
 **Amaç:** Uygulama ve medya verilerinin disk kullanımını optimize etmek.
 
 **İşlemler:**
@@ -614,7 +614,7 @@ Bu belge WhatsApp benzeri mesajlaşma uygulaması + diyetisyen paneli için kron
 - Depolama uyarıları ayarlama
 - Toplu temizlik önerileri
 
-### 50. Yedekleme Sayfası *(1-5 Kasım 2025)*
+### 50. Diyet Paketleri Yönetim Sayfası *(1-5 Kasım 2025)*
 **Amaç:** Sohbet verilerini güvenli bir şekilde yedeklemek ve geri yüklemek.
 
 **İşlemler:**
@@ -627,7 +627,7 @@ Bu belge WhatsApp benzeri mesajlaşma uygulaması + diyetisyen paneli için kron
 - Yedekleme şifreleme
 - Yedek geçmişi görüntüleme
 
-### 51. Directory Parser ve Otomatik Sistem Sayfası *(5-10 Kasım 2025)*
+### 51. Oto-Diyetler Botu Sayfası *(5-8 Kasım 2025)*
 **Amaç:** Sistem dosyalarını otomatik olarak işlemek ve organize etmek.
 
 **İşlemler:**
@@ -640,7 +640,7 @@ Bu belge WhatsApp benzeri mesajlaşma uygulaması + diyetisyen paneli için kron
 - Otomatik backup oluşturma
 - Sistem temizlik işlemleri
 
-### 52. Test Data Yönetim Sayfası *(10-15 Kasım 2025)*
+### 52. Spor Seansları Yönetim Sayfası *(8-10 Kasım 2025)*
 **Amaç:** Geliştirme ve test süreçleri için sample veri oluşturma ve yönetme.
 
 **İşlemler:**
@@ -653,7 +653,7 @@ Bu belge WhatsApp benzeri mesajlaşma uygulaması + diyetisyen paneli için kron
 - Performance test veri setleri
 - A/B test veri yönetimi
 
-### 53. Performans Optimizasyon Sayfası *(26 Ekim - 5 Kasım 2025)*
+### 53. Randevu Yönetim Sayfası *(10-12 Kasım 2025)*
 **Amaç:** Uygulama performansını izlemek ve optimize etmek için geliştirici araçları sunmak.
 
 **İşlemler:**
@@ -667,7 +667,7 @@ Bu belge WhatsApp benzeri mesajlaşma uygulaması + diyetisyen paneli için kron
 - Connection-aware sync
 - Firebase kullanım takibi
 
-### 54. Toplu Mesaj Gönderme Sayfası *(15 Kasım 2025)*
+### 54. Form Oluşturma Sayfası *(12-15 Kasım 2025)*
 **Amaç:** Diyetisyenlerin tüm danışanlarına veya belirli gruplara toplu mesaj göndermesini sağlamak.
 
 **İşlemler:**
@@ -683,9 +683,9 @@ Bu belge WhatsApp benzeri mesajlaşma uygulaması + diyetisyen paneli için kron
 
 ---
 
-## 🏥 FAZ 5: DİYETİSYEN YÖNETİM PANELİ (21 Kasım - 15 Aralık 2025)
+## 🔧 FAZ 5: OPTİMİZASYON VE TEST (21 Kasım - 15 Aralık 2025)
 
-### 55. Danışan Yönetim Sayfası *(21-25 Kasım 2025)*
+### 55. Danışan Analiz Sayfası *(15-18 Kasım 2025)*
 **Amaç:** Diyetisyenlerin tüm müşteri ilişkilerini merkezi olarak yönetmesini sağlamak.
 
 **İşlemler:**
@@ -700,7 +700,7 @@ Bu belge WhatsApp benzeri mesajlaşma uygulaması + diyetisyen paneli için kron
 - Danışan arama ve filtreleme
 - Randevu planlama
 
-### 56. Diyet Paketleri Yönetim Sayfası *(25 Kasım - 1 Aralık 2025)*
+### 56. Oto-Mesajlar Botu Sayfası (Geliştirilmiş) *(18-20 Kasım 2025)*
 **Amaç:** Diyet içeriklerini düzenlemek ve otomatik dağıtım sistemi kurmak.
 
 **İşlemler:**
@@ -742,7 +742,7 @@ Ana klasör adı → Paketin adı (örnek: Detoks Paketi)
 │       └── akdeniz_obez.docx
 ```
 
-### 57. Oto-Diyetler Botu Sayfası *(1-5 Aralık 2025)*
+### 57. Oto-Yanıtlar Botu Sayfası *(20 Kasım 2025)*
 **Amaç:** Danışan rolündeki kullanıcıların paket bazlı diyet programlarını otomatik olarak almasını sağlamak.
 
 **İşlemler:**
@@ -761,7 +761,7 @@ Ana klasör adı → Paketin adı (örnek: Detoks Paketi)
   - 35-45 yaş: Boy² × 22
   - 45 yaş üstü: Boy² × 23
 
-### 58. Spor Seansları Yönetim Sayfası *(5-8 Aralık 2025)*
+### 58. Depolama Yönetimi Sayfası *(21-25 Kasım 2025)*
 **Amaç:** Egzersiz programları oluşturmak ve danışanlara atamak.
 
 **İşlemler:**
@@ -776,7 +776,7 @@ Ana klasör adı → Paketin adı (örnek: Detoks Paketi)
 - Tamamlanma bildirimleri
 - Performans analizleri
 
-### 59. Randevu Yönetim Sayfası *(8-10 Aralık 2025)*
+### 59. Yedekleme Sayfası *(25-28 Kasım 2025)*
 **Amaç:** Profesyonel randevu sistemini otomatize etmek ve müşteri deneyimini iyileştirmek.
 
 **İşlemler:**
@@ -791,7 +791,7 @@ Ana klasör adı → Paketin adı (örnek: Detoks Paketi)
 - İptal işlemleri
 - Randevu geçmişi
 
-### 60. Form Oluşturma Sayfası *(10-12 Aralık 2025)*
+### 60. Directory Parser ve Otomatik Sistem Sayfası *(28 Kasım - 5 Aralık 2025)*
 **Amaç:** Danışan değerlendirmesi için özelleştirilmiş formlar tasarlamak.
 
 **İşlemler:**
@@ -806,7 +806,7 @@ Ana klasör adı → Paketin adı (örnek: Detoks Paketi)
 - Cevap analizi araçları
 - Form performans metrikleri
 
-### 61. Danışan Analiz Sayfası *(12-14 Aralık 2025)*
+### 61. Test Data Yönetim Sayfası *(5-10 Aralık 2025)*
 **Amaç:** Veri odaklı yaklaşımla danışan ilerlemesini analiz etmek ve raporlamak.
 
 **İşlemler:**
@@ -822,7 +822,7 @@ Ana klasör adı → Paketin adı (örnek: Detoks Paketi)
 - Özelleştirilebilir rapor şablonları
 - Excel/PDF export işlemleri
 
-### 62. Oto-Mesajlar Botu Sayfası (Geliştirilmiş) *(14-15 Aralık 2025)*
+### 62. Performans Optimizasyon Sayfası *(10-12 Aralık 2025)*
 **Amaç:** Toplu mesajlaşma sistemini otomatize etmek ve hedefli iletişim sağlamak.
 
 **İşlemler:**
@@ -838,7 +838,7 @@ Ana klasör adı → Paketin adı (örnek: Detoks Paketi)
 - Zaman dilimi farkında teslimat
 - Teslimat analitikleri
 
-### 63. Oto-Yanıtlar Botu Sayfası *(15 Aralık 2025)*
+### 63. Toplu Mesaj Gönderme Sayfası *(12-15 Aralık 2025)*
 **Amaç:** Akıllı otomatik yanıt sistemi ile müşteri hizmetlerini iyileştirmek.
 
 **İşlemler:**
