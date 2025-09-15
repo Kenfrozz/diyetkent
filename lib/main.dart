@@ -27,6 +27,7 @@ import 'services/contacts_manager.dart';
 import 'services/step_counter_service.dart';
 import 'services/firebase_background_sync_service.dart';
 import 'services/connection_aware_sync_service.dart';
+import 'services/auto_backup_service.dart';
 import 'models/chat_model.dart';
 import 'package:intl/intl.dart';
 import 'package:intl/date_symbol_data_local.dart';
@@ -138,6 +139,10 @@ void main() async {
     // 🌐 CONNECTION-AWARE SYNC: Akıllı bağlantı yönetimi
     // Veri kullanımını optimize eder, battery tasarrufu sağlar
     unawaited(ConnectionAwareSyncService.initialize());
+
+    // ☁️ AUTO BACKUP SERVICE: Otomatik Google Drive yedekleme
+    // Her gece saat 03:00'da WiFi varsa otomatik yedek alır
+    unawaited(AutoBackupService.initialize());
 
     runApp(const MyApp());
   } catch (e, st) {

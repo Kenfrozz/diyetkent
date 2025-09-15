@@ -46,7 +46,6 @@ Bu belge WhatsApp benzeri mesajlaşma uygulaması + diyetisyen paneli için kron
 - Her sohbet için son mesaj önizlemesi gösterme
 - Okunmamış mesaj sayısını badge ile gösterme
 - Mesaj durumunu gösterme (gönderildi, okundu, vs.)
-- Çevrimiçi durumu gösterme
 - Sohbetleri kaydırarak arşivleme/silme/sabitleme
 - Uzun basarak çoklu seçim yapma
 - Yeni sohbet başlatma
@@ -74,18 +73,14 @@ Bu belge WhatsApp benzeri mesajlaşma uygulaması + diyetisyen paneli için kron
 - Hakkımda bölümünü düzenleme (durum mesajı)
 - Telefon numarasını görüntüleme (değiştirilemez)
 - Tüm değişiklikleri kaydetme
-- Profil tamamlanma durumunu gösterme
 
 ### 7. Sohbet Arama ve Filtreleme *(15-20 Ağustos 2025)*
 **Amaç:** Çok sayıda sohbet arasında hızlı arama yapabilmek ve kategorilere göre filtreleme.
 
 **İşlemler:**
-- Gerçek zamanlı arama (isim ve mesaj içeriği)
+- Gerçek zamanlı arama (isim, telefon no, medya, ve mesaj içeriği)
 - Arama sonuçlarında eşleşen kısımları vurgulama
-- Filtre uygulama (tüm sohbetler, okunmamış, gruplar, arşivlenen)
-- Arama geçmişi tutma
-- Arama sonuçlarını temizleme
-- Favori aramalar kaydetme
+- Filtre uygulama (tüm sohbetler, okunmamış, gruplar, arşivlenen, etiketler)
 
 ### 8. Okundu/Yazıyor/Çevrimiçi Bilgisi *(15-20 Ağustos 2025)*
 **Amaç:** Karşı tarafın durumunu bilmek ve mesajlaşma deneyimini iyileştirmek.
@@ -115,7 +110,7 @@ Bu belge WhatsApp benzeri mesajlaşma uygulaması + diyetisyen paneli için kron
 **İşlemler:**
 - Mesajı kopyalama (panoya)
 - "Benden sil" seçeneği
-- "Herkesten sil" seçeneği (7 dakika içinde)
+- "Herkesten sil" seçeneği (24 saat içinde)
 - Çoklu mesaj seçimi
 - Toplu silme işlemi
 - Silinen mesaj yerine bilgi mesajı gösterme
@@ -212,11 +207,10 @@ Bu belge WhatsApp benzeri mesajlaşma uygulaması + diyetisyen paneli için kron
 
 **İşlemler:**
 - Kalın yazı formatı (**metin**)
-- İtalik yazı formatı (*metin*)
+- İtalik yazı formatı (_metin_)
 - Üstü çizili yazı formatı (~metin~)
 - Sabit genişlikli yazı formatı (```metin```)
 - Format önizlemesi gösterme
-- Format kısayolları öğretme
 
 ### 20. Medya Gönderme (fotoğraf, video, doküman) *(25-30 Ağustos 2025)*
 **Amaç:** Multimedya içeriklerini paylaşarak zengin iletişim kurabilmek.
