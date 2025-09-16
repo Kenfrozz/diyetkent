@@ -1,10 +1,9 @@
 import 'dart:convert';
-import 'dart:typed_data';
+import 'dart:async';
 import 'package:flutter/foundation.dart';
 import 'package:http/http.dart' as http;
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:googleapis/drive/v3.dart' as drive;
-import 'package:googleapis_auth/googleapis_auth.dart';
 import 'package:encrypt/encrypt.dart' as encrypt;
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:connectivity_plus/connectivity_plus.dart';
@@ -27,8 +26,8 @@ class GoogleBackupService {
   static const String _autoBackupEnabledKey = 'auto_backup_enabled';
   static const String _userEmailKey = 'google_user_email';
 
-  // Google Sign-In configuration
-  static final GoogleSignIn _googleSignIn = GoogleSignIn();
+  // Google Sign-In configuration - Using v7.1.1 API
+  static final GoogleSignIn _googleSignIn = GoogleSignIn.instance;
 
   static GoogleSignInAccount? _currentUser;
   static drive.DriveApi? _driveApi;
@@ -39,16 +38,22 @@ class GoogleBackupService {
       debugPrint('🔐 Google Sign-In başlatılıyor...');
 
       // Mevcut kullanıcıyı kontrol et
+      // Initialize Google Sign-In
+      await _googleSignIn.initialize();
+
+      // Try lightweight authentication
       try {
-        _currentUser = await _googleSignIn.signInSilently();
+        _currentUser = await _googleSignIn.attemptLightweightAuthentication();
       } catch (e) {
-        debugPrint('Sessiz giriş başarısız: $e');
+        debugPrint('Lightweight authentication failed: $e');
       }
 
       if (_currentUser == null) {
         // İlk kez giriş yap
         try {
-          _currentUser = await _googleSignIn.signIn();
+          // Manual sign-in with new API needs UI interaction
+          // This will be handled by UI components later
+          debugPrint('Manual sign-in requires UI interaction');
         } catch (e) {
           debugPrint('Manuel giriş başarısız: $e');
         }
@@ -203,7 +208,16 @@ class GoogleBackupService {
         'data': {
           'chats': chats.map((chat) => chat.toMap()).toList(),
           'messages': messages.map((msg) => msg.toMap()).toList(),
-          'tags': tags.map((tag) => tag.toMap()).toList(),
+          'tags': tags.map((tag) => {
+            'tagId': tag.tagId,
+            'name': tag.name,
+            'color': tag.color,
+            'icon': tag.icon,
+            'description': tag.description,
+            'usageCount': tag.usageCount,
+            'createdAt': tag.createdAt.millisecondsSinceEpoch,
+            'updatedAt': tag.updatedAt.millisecondsSinceEpoch,
+          }).toList(),
           'health_data': healthData.map((health) => <String, dynamic>{}).toList(),
           'settings': {
             'auto_backup_enabled': prefs.getBool(_autoBackupEnabledKey) ?? false,
@@ -435,7 +449,18 @@ class GoogleBackupService {
       // Tags'ları geri yükle
       if (data['tags'] != null) {
         try {
-          final tags = (data['tags'] as List).map((json) => TagModel.fromMap(json)).toList();
+          final tags = (data['tags'] as List).map((json) {
+            final tag = TagModel();
+            tag.tagId = json['tagId'];
+            tag.name = json['name'];
+            tag.color = json['color'];
+            tag.icon = json['icon'];
+            tag.description = json['description'];
+            tag.usageCount = json['usageCount'] ?? 0;
+            tag.createdAt = DateTime.fromMillisecondsSinceEpoch(json['createdAt']);
+            tag.updatedAt = DateTime.fromMillisecondsSinceEpoch(json['updatedAt']);
+            return tag;
+          }).toList();
           for (final tag in tags) {
             await DriftService.saveTag(tag);
           }
@@ -499,7 +524,11 @@ class GoogleBackupService {
   /// 🔗 Mevcut kullanıcıyı al
   static Future<GoogleSignInAccount?> getCurrentUser() async {
     try {
-      _currentUser ??= await _googleSignIn.signInSilently();
+      try {
+        _currentUser ??= await _googleSignIn.attemptLightweightAuthentication();
+      } catch (e) {
+        print('Lightweight authentication failed: $e');
+      }
     } catch (e) {
       debugPrint('Mevcut kullanıcı alma hatası: $e');
     }
@@ -531,7 +560,11 @@ class GoogleBackupService {
     if (isConnected) {
       // Bağlantıyı doğrula
       try {
-        _currentUser ??= await _googleSignIn.signInSilently();
+        try {
+        _currentUser ??= await _googleSignIn.attemptLightweightAuthentication();
+      } catch (e) {
+        print('Lightweight authentication failed: $e');
+      }
       } catch (e) {
         debugPrint('Bağlantı doğrulama hatası: $e');
       }

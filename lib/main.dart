@@ -143,7 +143,7 @@ void main() async {
 
     // ☁️ AUTO BACKUP SERVICE: Otomatik Google Drive yedekleme
     // Her gece saat 03:00'da WiFi varsa otomatik yedek alır
-    unawaited(AutoBackupService.initialize());
+    // unawaited(AutoBackupService.initialize()); // Temporarily disabled
 
     runApp(const MyApp());
   } catch (e, st) {

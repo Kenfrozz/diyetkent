@@ -95,14 +95,15 @@ class SettingsPage extends StatelessWidget {
             );
           },
         ),
-        ListTile(
-          leading: const Icon(Icons.cloud_upload),
-          title: const Text('Yedekleme ve Geri Yükleme'),
-          subtitle: const Text('Google Drive yedekleme, otomatik sync'),
-          onTap: () {
-            Navigator.pushNamed(context, '/backup');
-          },
-        ),
+        // Temporarily disabled
+        // ListTile(
+        //   leading: const Icon(Icons.cloud_upload),
+        //   title: const Text('Yedekleme ve Geri Yükleme'),
+        //   subtitle: const Text('Google Drive yedekleme, otomatik sync'),
+        //   onTap: () {
+        //     Navigator.pushNamed(context, '/backup');
+        //   },
+        // ),
         ListTile(
           leading: const Icon(Icons.data_usage),
           title: const Text('Depolama ve veri'),
