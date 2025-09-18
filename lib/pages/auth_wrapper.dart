@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 // Firestore doğrudan kullanılmıyor; UI Isar'dan besleniyor
 import 'login_page.dart';
 import 'home_page.dart';
 import 'profile_setup_page.dart';
+import 'terms_welcome_page.dart';
 import '../services/user_service.dart';
 import '../database/drift_service.dart';
 
@@ -12,11 +14,11 @@ class AuthWrapper extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return StreamBuilder<User?>(
-      stream: FirebaseAuth.instance.authStateChanges(),
-      builder: (context, snapshot) {
-        // Loading durumu
-        if (snapshot.connectionState == ConnectionState.waiting) {
+    // Önce hizmet koşullarının kabul edilip edilmediğini kontrol et
+    return FutureBuilder<bool>(
+      future: _checkTermsAccepted(),
+      builder: (context, termsSnapshot) {
+        if (termsSnapshot.connectionState == ConnectionState.waiting) {
           return const Scaffold(
             body: Center(
               child: CircularProgressIndicator(color: Color(0xFF00796B)),
@@ -24,10 +26,28 @@ class AuthWrapper extends StatelessWidget {
           );
         }
 
-        // Kullanıcı giriş yapmamış
-        if (!snapshot.hasData || snapshot.data == null) {
-          return const LoginPage();
+        // Hizmet koşulları kabul edilmemişse
+        if (termsSnapshot.data != true) {
+          return const TermsWelcomePage();
         }
+
+        // Hizmet koşulları kabul edilmiş, normal auth akışına devam
+        return StreamBuilder<User?>(
+          stream: FirebaseAuth.instance.authStateChanges(),
+          builder: (context, snapshot) {
+            // Loading durumu
+            if (snapshot.connectionState == ConnectionState.waiting) {
+              return const Scaffold(
+                body: Center(
+                  child: CircularProgressIndicator(color: Color(0xFF00796B)),
+                ),
+              );
+            }
+
+            // Kullanıcı giriş yapmamış
+            if (!snapshot.hasData || snapshot.data == null) {
+              return const LoginPage();
+            }
 
         // Kullanıcı giriş yapmış, önce yerel (Isar) kontrol et, yoksa senkronize et
         final user = snapshot.data!;
@@ -67,6 +87,8 @@ class AuthWrapper extends StatelessWidget {
                   );
                 }
                 return const HomePage();
+                  },
+                );
               },
             );
           },
@@ -87,15 +109,21 @@ class AuthWrapper extends StatelessWidget {
         about.trim().isNotEmpty;
   }
 
+  // Hizmet koşullarının kabul edilip edilmediğini kontrol et
+  Future<bool> _checkTermsAccepted() async {
+    final prefs = await SharedPreferences.getInstance();
+    return prefs.getBool('terms_accepted') ?? false;
+  }
+
   // Kullanıcı verilerini ve rollerini senkronize et
   Future<bool> _ensureUserDataAndRole(String userId) async {
     try {
       // Önce kullanıcı verilerini kontrol et
       await UserService.ensureLocalUser(userId);
-      
+
       // Sonra rolünü kontrol et ve gerekirse oluştur
       await UserService.ensureCurrentUserRole();
-      
+
       return true;
     } catch (e) {
       debugPrint('❌ Kullanıcı veri/rol senkronizasyonu başarısız: $e');
