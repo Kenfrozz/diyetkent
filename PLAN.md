@@ -3,9 +3,9 @@ Bu belge WhatsApp benzeri mesajlaşma uygulaması + diyetisyen paneli için kron
 
 ---
 
-## 📅 FAZ 1: TEMEL ALTYAPI (2 Ağustos - 30 Ağustos 2025)
+## 📅 FAZ 1: TEMEL ALTYAPI 
 
-### 1. Hizmet Koşulları Onay Ekranı *(2-5 Ağustos 2025)*
+### 1. Hizmet Koşulları Onay Ekranı
 **Amaç:** Uygulama ilk açıldığında kullanıcıdan Diyetkent Hizmet Koşulları onayı almak.
 
 **Ayrıntılar:**
@@ -19,7 +19,7 @@ Bu sayfa uygulamaya ilk kez giriş yapan kullanıcılar için zorunlu bir adımd
 - "Kabul Et ve Devam Et" butonuna tıklandığında telefon giriş ekranına geçiş
 - Onay durumunu kalıcı olarak kaydetme (bir daha gösterilmez)
 
-### 2. Telefon Numarası Giriş Sayfası *(5-10 Ağustos 2025)*
+### 2. Telefon Numarası Giriş Sayfası 
 **Amaç:** Kullanıcıların telefon numarasıyla sisteme giriş yapmasını sağlamak ve hesap oluşturmak.
 
 **Ayrıntılar:**
@@ -32,7 +32,7 @@ WhatsApp benzeri telefon numarası tabanlı kimlik doğrulama sistemi. 248 farkl
 - Hatalı numara girişinde uyarı mesajı gösterir
 - Numara doğruysa SMS doğrulama sayfasına yönlendirir
 
-### 3. SMS Doğrulama Sayfası *(5-10 Ağustos 2025)*
+### 3. SMS Doğrulama Sayfası
 **Amaç:** Telefon numarasının gerçekten kullanıcıya ait olduğunu doğrulamak ve güvenliği sağlamak.
 
 **Ayrıntılar:**
@@ -46,7 +46,7 @@ Güvenlik odaklı 6 haneli doğrulama kodu giriş sayfası. Android cihazlarda S
 - Doğru kod girişinde hesap aktivasyonu tamamlanır
 - Numara değiştirme imkanı sunar
 
-### 3.1. Yedek Kontrol ve Geri Yükleme Sayfası *(5-10 Ağustos 2025)*
+### 3.1. Yedek Kontrol ve Geri Yükleme Sayfası
 **Amaç:** SMS doğrulaması sonrası kullanıcının daha önce yedekleme yapıp yapmadığını kontrol etmek.
 
 **Ayrıntılar:**
@@ -59,7 +59,7 @@ SMS doğrulaması tamamlandıktan sonra kullanıcı bu sayfaya yönlendirilir. S
 - Yedek geri yükleme işlemi başlatma
 - Yedek yoksa profil sayfasına yönlendirme
 
-### 4. Profil Sayfası *(15-20 Ağustos 2025)*
+### 4. Profil Sayfası
 **Amaç:** Kullanıcının kişisel bilgilerini yönetmesi ve diğer kullanıcılara kendini tanıtması.
 
 **Ayrıntılar:**
@@ -74,7 +74,7 @@ Yedek kontrol sayfasından sonra kullanıcının yönlendirildiği profil kurulu
 - Telefon numarasını görüntüleme (değiştirilemez)
 - Profil tamamlandıktan sonra ana ekrana yönlendirme
 
-### 5. Ana Sayfa (TabBar İskeleti) *(10-15 Ağustos 2025)*
+### 5. Ana Sayfa (TabBar İskeleti)
 **Amaç:** Uygulamanın merkezi navigasyon hub'ı olarak üç ana sekme arasında geçiş sağlamak.
 
 **Ayrıntılar:**
@@ -101,7 +101,7 @@ Profil kurulumundan sonra kullanıcının yönlendirildiği ana uygulama iskelet
 - RefreshIndicator ile manuel senkronizasyon tetikleme
 - Seçim modu etkinleştirme ve toplu işlemler
 
-### 6. Ana Sohbet Listesi Sayfası *(10-15 Ağustos 2025)*
+### 6. Ana Sohbet Listesi Sayfası
 **Amaç:** Tüm sohbetleri merkezi bir yerde görmek ve hızlı erişim sağlamak.
 
 **Ayrıntılar:**
@@ -117,7 +117,7 @@ Uygulamanın kalbi olan ana sohbet listesi. Gerçek zamanlı güncellemelerle ca
 - Uzun basarak çoklu seçim yapma
 - Yeni sohbet başlatma
 
-### 7. Sohbet Sayfası *(10-15 Ağustos 2025)*
+### 7. Sohbet Sayfası
 **Amaç:** İki kullanıcı arasında kapsamlı ve gerçek zamanlı mesajlaşma deneyimi sunmak.
 
 **Ayrıntılar:**
@@ -160,7 +160,7 @@ WhatsApp kalitesinde gelişmiş mesajlaşma deneyimi sunan ana sohbet ekranı. T
 - Oynatma hızı değiştirme (1x, 1.5x, 2x)
 - Sesli mesaj süresini gösterme
 
-### 8. Sohbet Arama ve Filtreleme *(15-20 Ağustos 2025)*
+### 8. Sohbet Arama ve Filtreleme
 **Amaç:** Çok sayıda sohbet arasında hızlı arama yapabilmek ve kategorilere göre filtreleme.
 
 **Ayrıntılar:**
@@ -171,7 +171,7 @@ Akıllı arama motoru ile çok boyutlu arama imkanı sunar. İsim, telefon numar
 - Arama sonuçlarında eşleşen kısımları vurgulama
 - Filtre uygulama (tüm sohbetler, okunmamış, gruplar, arşivlenen, etiketler)
 
-### 9. Sohbet Arşivleme/Arşivden Çıkarma *(20-22 Ağustos 2025)*
+### 9. Sohbet Arşivleme/Arşivden Çıkarma
 **Amaç:** Eski veya az kullanılan sohbetleri ana listeden kaldırarak düzen sağlamak.
 
 **İşlemler:**
@@ -181,7 +181,7 @@ Akıllı arama motoru ile çok boyutlu arama imkanı sunar. İsim, telefon numar
 - Yeni mesaj geldiğinde otomatik arşivden çıkarma
 - Arşiv bildirimi ayarları yönetme
 
-### 10. Sohbet Silme *(20-22 Ağustos 2025)*
+### 10. Sohbet Silme 
 **Amaç:** İstenmeyen sohbetleri kalıcı olarak sistemden kaldırmak.
 
 **İşlemler:**
@@ -191,7 +191,7 @@ Akıllı arama motoru ile çok boyutlu arama imkanı sunar. İsim, telefon numar
 - Grup sohbeti için ek seçenekler (gruptan ayrılma)
 - Silme işlemi sonrası ana listeyi güncelleme
 
-### 11. Sohbet Sabitleme *(20-22 Ağustos 2025)*
+### 11. Sohbet Sabitleme
 **Amaç:** Önemli sohbetleri her zaman üstte tutarak kolay erişim sağlamak.
 
 **İşlemler:**
@@ -201,7 +201,7 @@ Akıllı arama motoru ile çok boyutlu arama imkanı sunar. İsim, telefon numar
 - Sabitleme limitine ulaşıldığında uyarı
 - Sabitlemeyi kaldırma seçeneği
 
-### 12. Arşivlenmiş Sohbetler Sayfası *(20-22 Ağustos 2025)*
+### 12. Arşivlenmiş Sohbetler Sayfası
 **Amaç:** Kullanıcının arşivlediği sohbetleri yönetmek ve gerektiğinde geri getirmek.
 
 **İşlemler:**
@@ -213,7 +213,7 @@ Akıllı arama motoru ile çok boyutlu arama imkanı sunar. İsim, telefon numar
 - Arşiv boyutu bilgisi
 - Otomatik arşivleme kuralları
 
-### 13. Kamera Sayfası *(25-30 Ağustos 2025)*
+### 13. Kamera Sayfası 
 **Amaç:** Uygulama içinden fotoğraf/video çekerek hızlı paylaşım yapmak.
 
 **İşlemler:**
@@ -227,7 +227,7 @@ Akıllı arama motoru ile çok boyutlu arama imkanı sunar. İsim, telefon numar
 - Çekilen medyayı önizleme
 - Doğrudan gönderme veya kaydetme
 
-### 14. Kamera Sayfası (Extended Features) *(25-30 Ağustos 2025)*
+### 14. Kamera Sayfası (Extended Features) 
 **Amaç:** Profesyonel fotoğrafçılık özelliklerini sunarak kaliteli içerik üretimi sağlamak.
 
 **İşlemler:**
@@ -241,7 +241,7 @@ Akıllı arama motoru ile çok boyutlu arama imkanı sunar. İsim, telefon numar
 - Pozlama ayarlama
 - ISO değeri ayarlama
 
-### 15. Medya Galerisi Sayfası *(25-30 Ağustos 2025)*
+### 15. Medya Galerisi Sayfası
 **Amaç:** Cihazda bulunan medya dosyalarını görüntülemek ve seçim yapmak.
 
 **İşlemler:**
@@ -254,7 +254,7 @@ Akıllı arama motoru ile çok boyutlu arama imkanı sunar. İsim, telefon numar
 - Paylaşılacak medyaları seçme
 - Medya boyutlarını gösterme
 
-### 16. Kişiler Sayfası ve Merkezi Rehber Yönetimi *(25-30 Ağustos 2025)*
+### 16. Kişiler Sayfası ve Merkezi Rehber Yönetimi 
 **Amaç:** Merkezi bir rehber sistemi ile tüm kişileri yönetmek ve uygulama genelinde kişi seçimlerinde kullanmak.
 
 **Ayrıntılar:**
@@ -271,9 +271,9 @@ Kullanıcı profili tamamlandıktan sonra ana ekrana geldiğinde rehber servisi 
 - **Çapraz Platform:** Firebase ile çoklu cihaz senkronizasyonu
 ---
 
-## 🚀 FAZ 2: ANA ÖZELLİKLER (1 Eylül - 30 Eylül 2025)
+## 🚀 FAZ 2: ANA ÖZELLİKLER 
 
-### 28. Grup Oluşturma Sayfası *(1-5 Eylül 2025)*
+### 28. Grup Oluşturma Sayfası 
 **Amaç:** Yeni grup oluşturarak toplu mesajlaşma imkanı sağlamak.
 
 **İşlemler:**

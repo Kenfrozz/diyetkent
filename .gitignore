@@ -68,10 +68,6 @@ node_modules/
 *.sw?
 # OS specific
 
-# Task files
-tasks.json
-tasks/
-
 # Private keys and sensitive files
 *.pem
 *.p12
@@ -157,3 +153,7 @@ linux/
 macos/
 web/
 windows/
+
+# Task files
+tasks.json
+tasks/ 
