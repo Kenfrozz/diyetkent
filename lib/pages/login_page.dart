@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:intl_phone_field/intl_phone_field.dart';
+import 'package:phone_numbers_parser/phone_numbers_parser.dart';
 import 'dart:async';
 import 'package:pin_code_fields/pin_code_fields.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'profile_setup_page.dart';
 import '../services/user_service.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({super.key});
@@ -26,12 +28,177 @@ class _LoginPageState extends State<LoginPage> {
   Timer? _resendTimer;
   int _resendSeconds = 0; // 0 -> hemen tekrar gönderebilir
 
+  // E.164 format doğrulama için yeni değişkenler
+  String _completePhoneNumber = '';
+  PhoneNumber? _validatedPhoneNumber;
+  bool _isPhoneNumberValid = false;
+
+  // SMS durumu takibi için yeni değişkenler
+  bool _isSendingSms = false;
+  String? _smsStatus;
+
+  // Gelişmiş hata yönetimi için yeni değişkenler
+  int _retryAttempts = 0;
+  static const int maxRetryAttempts = 3;
+
+  @override
+  void initState() {
+    super.initState();
+    _loadSavedPhoneNumber();
+  }
+
   @override
   void dispose() {
     _phoneController.dispose();
     _codeController.dispose();
     _resendTimer?.cancel();
     super.dispose();
+  }
+
+  /// Kayıtlı telefon numarasını SharedPreferences'tan yükle
+  Future<void> _loadSavedPhoneNumber() async {
+    try {
+      final prefs = await SharedPreferences.getInstance();
+      final savedPhone = prefs.getString('last_phone_number');
+      if (savedPhone != null && savedPhone.isNotEmpty) {
+        setState(() {
+          _completePhoneNumber = savedPhone;
+          _phoneController.text = savedPhone;
+          _validatePhoneNumber(savedPhone);
+        });
+      }
+    } catch (e) {
+      debugPrint('❌ Telefon numarası yükleme hatası: $e');
+    }
+  }
+
+  /// Telefon numarasını SharedPreferences'a kaydet
+  Future<void> _savePhoneNumber(String phoneNumber) async {
+    try {
+      final prefs = await SharedPreferences.getInstance();
+      await prefs.setString('last_phone_number', phoneNumber);
+      debugPrint('✅ Telefon numarası kaydedildi: $phoneNumber');
+    } catch (e) {
+      debugPrint('❌ Telefon numarası kaydetme hatası: $e');
+    }
+  }
+
+  /// E.164 format doğrulama fonksiyonu
+  void _validatePhoneNumber(String phoneNumber) {
+    try {
+      if (phoneNumber.isEmpty) {
+        setState(() {
+          _isPhoneNumberValid = false;
+          _validatedPhoneNumber = null;
+        });
+        return;
+      }
+
+      // E.164 formatını kontrol et
+      final phone = PhoneNumber.parse(phoneNumber);
+      setState(() {
+        _validatedPhoneNumber = phone;
+        _isPhoneNumberValid = phone.isValid();
+      });
+
+      if (_isPhoneNumberValid) {
+        // Geçerli numara ise kaydet
+        _savePhoneNumber(phone.international);
+      }
+    } catch (e) {
+      setState(() {
+        _isPhoneNumberValid = false;
+        _validatedPhoneNumber = null;
+      });
+    }
+  }
+
+  /// SnackBar ile hata mesajı göster
+  void _showSnackBarError(String message, {bool withRetry = false}) {
+    if (!mounted) return;
+
+    ScaffoldMessenger.of(context).clearSnackBars();
+    ScaffoldMessenger.of(context).showSnackBar(
+      SnackBar(
+        content: Text(message),
+        backgroundColor: Colors.red[600],
+        duration: const Duration(seconds: 4),
+        action: withRetry && _retryAttempts < maxRetryAttempts
+            ? SnackBarAction(
+                label: 'Tekrar Dene',
+                textColor: Colors.white,
+                onPressed: _retryLastAction,
+              )
+            : null,
+      ),
+    );
+  }
+
+  /// AlertDialog ile kritik hata mesajı göster
+  void _showCriticalErrorDialog(String title, String message) {
+    if (!mounted) return;
+
+    showDialog(
+      context: context,
+      barrierDismissible: false,
+      builder: (BuildContext context) {
+        return AlertDialog(
+          title: Text(title),
+          content: Text(message),
+          actions: [
+            TextButton(
+              onPressed: () => Navigator.of(context).pop(),
+              child: const Text('Tamam'),
+            ),
+            if (_retryAttempts < maxRetryAttempts)
+              TextButton(
+                onPressed: () {
+                  Navigator.of(context).pop();
+                  _retryLastAction();
+                },
+                child: const Text('Tekrar Dene'),
+              ),
+          ],
+        );
+      },
+    );
+  }
+
+  /// Son işlemi tekrar dene (retry mekanizması)
+  void _retryLastAction() {
+    if (_retryAttempts >= maxRetryAttempts) {
+      _showCriticalErrorDialog(
+        'Çok Fazla Deneme',
+        'Maksimum deneme sayısına ulaştınız. Lütfen daha sonra tekrar deneyin.',
+      );
+      return;
+    }
+
+    _retryAttempts++;
+    setState(() {
+      _error = null;
+      _smsStatus = null;
+    });
+
+    if (!_codeSent) {
+      _handleSubmit(); // Tekrar SMS gönder
+    } else {
+      _resendCode(); // Kodu tekrar gönder
+    }
+  }
+
+  /// SnackBar ile başarı mesajı göster
+  void _showSnackBarSuccess(String message) {
+    if (!mounted) return;
+
+    ScaffoldMessenger.of(context).clearSnackBars();
+    ScaffoldMessenger.of(context).showSnackBar(
+      SnackBar(
+        content: Text(message),
+        backgroundColor: Colors.green[600],
+        duration: const Duration(seconds: 3),
+      ),
+    );
   }
 
   @override
@@ -54,14 +221,20 @@ class _LoginPageState extends State<LoginPage> {
                     BorderRadius.vertical(bottom: Radius.circular(24)),
               ),
             ),
-            // İçerik kartı
+            // İçerik kartı - Responsive tasarım
             Align(
               alignment: Alignment.topCenter,
               child: SingleChildScrollView(
-                padding:
-                    const EdgeInsets.symmetric(horizontal: 20, vertical: 24),
-                child: Column(
-                  children: [
+                padding: EdgeInsets.symmetric(
+                  horizontal: MediaQuery.of(context).size.width > 600 ? 40 : 20,
+                  vertical: 24,
+                ),
+                child: ConstrainedBox(
+                  constraints: BoxConstraints(
+                    maxWidth: MediaQuery.of(context).size.width > 600 ? 400 : double.infinity,
+                  ),
+                  child: Column(
+                    children: [
                     const SizedBox(height: 12),
                     const Text(
                       'DiyetKent',
@@ -99,36 +272,49 @@ class _LoginPageState extends State<LoginPage> {
                                       const SizedBox(height: 20),
                                       SizedBox(
                                         height: 52,
-                                        child: FilledButton.icon(
-                                          onPressed:
-                                              _isLoading ? null : _handleSubmit,
-                                          style: FilledButton.styleFrom(
-                                            backgroundColor:
-                                                const Color(0xFF00796B),
-                                            shape: RoundedRectangleBorder(
-                                              borderRadius:
-                                                  BorderRadius.circular(14),
+                                        child: AnimatedContainer(
+                                          duration: const Duration(milliseconds: 200),
+                                          child: FilledButton.icon(
+                                            onPressed: (_isLoading || _isSendingSms || !_isPhoneNumberValid)
+                                                ? null
+                                                : _handleSubmit,
+                                            style: FilledButton.styleFrom(
+                                              backgroundColor: _isPhoneNumberValid
+                                                  ? const Color(0xFF00796B)
+                                                  : Colors.grey[400],
+                                              disabledBackgroundColor: Colors.grey[300],
+                                              shape: RoundedRectangleBorder(
+                                                borderRadius: BorderRadius.circular(14),
+                                              ),
+                                              elevation: _isPhoneNumberValid ? 2 : 0,
                                             ),
-                                          ),
-                                          icon: _isLoading
-                                              ? const SizedBox(
-                                                  width: 20,
-                                                  height: 20,
-                                                  child:
-                                                      CircularProgressIndicator(
-                                                    strokeWidth: 2,
-                                                    color: Colors.white,
+                                            icon: (_isLoading || _isSendingSms)
+                                                ? const SizedBox(
+                                                    width: 20,
+                                                    height: 20,
+                                                    child: CircularProgressIndicator(
+                                                      strokeWidth: 2,
+                                                      color: Colors.white,
+                                                    ),
+                                                  )
+                                                : Icon(
+                                                    Icons.sms,
+                                                    color: (_isLoading || _isSendingSms || !_isPhoneNumberValid)
+                                                        ? Colors.grey[600]
+                                                        : Colors.white,
                                                   ),
-                                                )
-                                              : const Icon(Icons.sms,
-                                                  color: Colors.white),
-                                          label: Text(
-                                            _isLoading
-                                                ? 'Gönderiliyor…'
-                                                : 'SMS Gönder',
-                                            style: const TextStyle(
-                                                color: Colors.white,
-                                                fontSize: 16),
+                                            label: Text(
+                                              (_isLoading || _isSendingSms)
+                                                  ? 'Gönderiliyor…'
+                                                  : 'SMS Gönder',
+                                              style: TextStyle(
+                                                color: (_isLoading || _isSendingSms || !_isPhoneNumberValid)
+                                                    ? Colors.grey[600]
+                                                    : Colors.white,
+                                                fontSize: 16,
+                                                fontWeight: FontWeight.w600,
+                                              ),
+                                            ),
                                           ),
                                         ),
                                       ),
@@ -144,60 +330,74 @@ class _LoginPageState extends State<LoginPage> {
                                       Row(
                                         children: [
                                           Expanded(
-                                            child: OutlinedButton.icon(
+                                            child: FilledButton.icon(
                                               onPressed: _isLoading
                                                   ? null
                                                   : _handleSubmit,
-                                              style: OutlinedButton.styleFrom(
-                                                padding:
-                                                    const EdgeInsets.symmetric(
-                                                        vertical: 14),
-                                                side: const BorderSide(
-                                                    color: Color(0xFF00796B)),
+                                              style: FilledButton.styleFrom(
+                                                backgroundColor: const Color(0xFF00796B),
+                                                padding: const EdgeInsets.symmetric(vertical: 14),
                                                 shape: RoundedRectangleBorder(
-                                                  borderRadius:
-                                                      BorderRadius.circular(14),
+                                                  borderRadius: BorderRadius.circular(14),
                                                 ),
+                                                elevation: 2,
                                               ),
                                               icon: _isLoading
                                                   ? const SizedBox(
                                                       width: 16,
                                                       height: 16,
-                                                      child:
-                                                          CircularProgressIndicator(
+                                                      child: CircularProgressIndicator(
                                                         strokeWidth: 2,
-                                                        color:
-                                                            Color(0xFF00796B),
+                                                        color: Colors.white,
                                                       ),
                                                     )
-                                                  : const Icon(Icons.verified,
-                                                      color: Color(0xFF00796B)),
+                                                  : const Icon(
+                                                      Icons.verified,
+                                                      color: Colors.white,
+                                                    ),
                                               label: Text(
                                                 _isLoading
                                                     ? 'Doğrulanıyor…'
                                                     : 'Doğrula',
                                                 style: const TextStyle(
-                                                    color: Color(0xFF00796B),
-                                                    fontSize: 16),
+                                                  color: Colors.white,
+                                                  fontSize: 16,
+                                                  fontWeight: FontWeight.w600,
+                                                ),
                                               ),
                                             ),
                                           ),
                                           const SizedBox(width: 12),
-                                          TextButton(
-                                            onPressed: (_resendSeconds == 0 &&
-                                                    !_isLoading)
+                                          TextButton.icon(
+                                            onPressed: (_resendSeconds == 0 && !_isLoading)
                                                 ? _resendCode
                                                 : null,
-                                            child: Text(
+                                            style: TextButton.styleFrom(
+                                              padding: const EdgeInsets.symmetric(
+                                                horizontal: 12,
+                                                vertical: 14,
+                                              ),
+                                              shape: RoundedRectangleBorder(
+                                                borderRadius: BorderRadius.circular(14),
+                                              ),
+                                            ),
+                                            icon: Icon(
+                                              Icons.refresh,
+                                              size: 16,
+                                              color: (_resendSeconds == 0 && !_isLoading)
+                                                  ? const Color(0xFF00796B)
+                                                  : Colors.grey,
+                                            ),
+                                            label: Text(
                                               _resendSeconds == 0
                                                   ? 'Tekrar Gönder'
-                                                  : 'Tekrar Gönder (00:${_resendSeconds.toString().padLeft(2, '0')})',
+                                                  : 'Tekrar (${_resendSeconds.toString().padLeft(2, '0')}s)',
                                               style: TextStyle(
-                                                color: (_resendSeconds == 0 &&
-                                                        !_isLoading)
+                                                color: (_resendSeconds == 0 && !_isLoading)
                                                     ? const Color(0xFF00796B)
                                                     : Colors.grey,
                                                 fontWeight: FontWeight.w600,
+                                                fontSize: 14,
                                               ),
                                             ),
                                           ),
@@ -209,6 +409,49 @@ class _LoginPageState extends State<LoginPage> {
                         ),
                       ),
                     ),
+                    // SMS durum mesajı gösterimi
+                    if (_smsStatus != null) ...[
+                      const SizedBox(height: 16),
+                      Container(
+                        padding: const EdgeInsets.all(12),
+                        decoration: BoxDecoration(
+                          color: Colors.green[50],
+                          borderRadius: BorderRadius.circular(8),
+                          border: Border.all(color: Colors.green[200]!),
+                        ),
+                        child: Row(
+                          children: [
+                            if (_isSendingSms) ...[
+                              const SizedBox(
+                                width: 16,
+                                height: 16,
+                                child: CircularProgressIndicator(
+                                  strokeWidth: 2,
+                                  color: Color(0xFF4CAF50),
+                                ),
+                              ),
+                              const SizedBox(width: 8),
+                            ] else
+                              const Icon(
+                                Icons.check_circle,
+                                color: Color(0xFF4CAF50),
+                                size: 16,
+                              ),
+                            const SizedBox(width: 8),
+                            Expanded(
+                              child: Text(
+                                _smsStatus!,
+                                style: TextStyle(
+                                  color: Colors.green[800],
+                                  fontSize: 14,
+                                  fontWeight: FontWeight.w500,
+                                ),
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                    ],
                     if (_error != null) ...[
                       const SizedBox(height: 16),
                       Container(
@@ -226,12 +469,13 @@ class _LoginPageState extends State<LoginPage> {
                       ),
                     ],
                     const SizedBox(height: 24),
-                    const Text(
-                      'Devam ederek Kullanım Şartları\'nı ve Gizlilik Politikası\'nı kabul etmiş olursunuz.',
-                      textAlign: TextAlign.center,
-                      style: TextStyle(fontSize: 12, color: Colors.grey),
-                    ),
-                  ],
+                      const Text(
+                        'Devam ederek Kullanım Şartları\'nı ve Gizlilik Politikası\'nı kabul etmiş olursunuz.',
+                        textAlign: TextAlign.center,
+                        style: TextStyle(fontSize: 12, color: Colors.grey),
+                      ),
+                    ],
+                  ),
                 ),
               ),
             ),
@@ -258,34 +502,87 @@ class _LoginPageState extends State<LoginPage> {
       ),
       const SizedBox(height: 24),
       IntlPhoneField(
-        decoration: const InputDecoration(
+        decoration: InputDecoration(
           labelText: 'Telefon Numarası',
-          border: OutlineInputBorder(
+          border: const OutlineInputBorder(
             borderRadius: BorderRadius.all(Radius.circular(12)),
           ),
           focusedBorder: OutlineInputBorder(
-            borderRadius: BorderRadius.all(Radius.circular(12)),
-            borderSide: BorderSide(color: Color(0xFF00796B), width: 2),
+            borderRadius: const BorderRadius.all(Radius.circular(12)),
+            borderSide: BorderSide(
+              color: _isPhoneNumberValid
+                  ? const Color(0xFF4CAF50)
+                  : const Color(0xFF00796B),
+              width: 2
+            ),
           ),
+          errorBorder: const OutlineInputBorder(
+            borderRadius: BorderRadius.all(Radius.circular(12)),
+            borderSide: BorderSide(color: Colors.red, width: 2),
+          ),
+          suffixIcon: _completePhoneNumber.isNotEmpty
+              ? Icon(
+                  _isPhoneNumberValid ? Icons.check_circle : Icons.error,
+                  color: _isPhoneNumberValid
+                      ? const Color(0xFF4CAF50)
+                      : Colors.red,
+                )
+              : null,
+          helperText: _isPhoneNumberValid && _validatedPhoneNumber != null
+              ? 'Geçerli numara: ${_validatedPhoneNumber!.international}'
+              : null,
+          helperStyle: const TextStyle(color: Color(0xFF4CAF50), fontSize: 12),
         ),
         initialCountryCode: 'TR',
-        searchText: 'Ülke ara',
+        pickerDialogStyle: PickerDialogStyle(
+          searchFieldInputDecoration: const InputDecoration(
+            labelText: 'Ülke ara',
+            border: OutlineInputBorder(),
+          ),
+        ),
         autovalidateMode: AutovalidateMode.onUserInteraction,
-        disableLengthCheck: true,
+        disableLengthCheck: false, // Uzunluk kontrolünü aktif et
+        showDropdownIcon: true,
+        dropdownDecoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(12),
+        ),
+        flagsButtonMargin: const EdgeInsets.symmetric(horizontal: 8),
+        showCountryFlag: true,
+        showCursor: true,
+        cursorColor: const Color(0xFF00796B),
+        keyboardType: TextInputType.phone,
+        textInputAction: TextInputAction.done,
         onChanged: (phone) {
-          // Tüm ülke kodlarını destekler, E.164 formatını saklarız
-          _phoneController.text = phone.completeNumber; // +905xx... gibi
+          final completeNumber = phone.completeNumber;
+          setState(() {
+            _completePhoneNumber = completeNumber;
+            _phoneController.text = completeNumber;
+          });
+
+          // Gerçek zamanlı E.164 doğrulama
+          _validatePhoneNumber(completeNumber);
         },
-        onCountryChanged: (c) {},
+        onCountryChanged: (country) {
+          // Ülke değiştiğinde mevcut numara varsa tekrar doğrula
+          if (_completePhoneNumber.isNotEmpty) {
+            _validatePhoneNumber(_completePhoneNumber);
+          }
+        },
         validator: (value) {
           if (value == null || value.completeNumber.isEmpty) {
             return 'Telefon numarası gerekli';
           }
-          final digits = value.completeNumber.replaceAll(RegExp(r'\D'), '');
-          if (digits.length < 8) {
+
+          // phone_numbers_parser ile detaylı doğrulama
+          try {
+            final phone = PhoneNumber.parse(value.completeNumber);
+            if (!phone.isValid()) {
+              return 'Geçersiz telefon numarası formatı';
+            }
+            return null;
+          } catch (e) {
             return 'Lütfen geçerli bir telefon numarası girin';
           }
-          return null;
         },
       ),
     ];
@@ -373,36 +670,124 @@ class _LoginPageState extends State<LoginPage> {
   }
 
   Future<void> _sendVerificationCode() async {
-    final phoneNumber = _phoneController.text.startsWith('+')
-        ? _phoneController.text
-        : '+${_phoneController.text}';
+    setState(() {
+      _isSendingSms = true;
+      _smsStatus = 'SMS gönderiliyor...';
+      _error = null;
+    });
 
-    await FirebaseAuth.instance.verifyPhoneNumber(
-      phoneNumber: phoneNumber,
-      verificationCompleted: (PhoneAuthCredential credential) async {
-        // Otomatik doğrulama (Android'de)
-        await _signInWithCredential(credential);
-      },
-      verificationFailed: (FirebaseAuthException e) {
-        if (mounted) {
+    try {
+      // E.164 formatında doğrulanmış telefon numarasını kullan
+      String phoneNumber;
+      if (_validatedPhoneNumber != null && _isPhoneNumberValid) {
+        phoneNumber = _validatedPhoneNumber!.international;
+      } else {
+        // Fallback - mevcut implementasyon
+        phoneNumber = _phoneController.text.startsWith('+')
+            ? _phoneController.text
+            : '+${_phoneController.text}';
+      }
+
+      debugPrint('🔥 SMS gönderiliyor: $phoneNumber');
+
+      await FirebaseAuth.instance.verifyPhoneNumber(
+        phoneNumber: phoneNumber,
+        verificationCompleted: (PhoneAuthCredential credential) async {
+          debugPrint('✅ Otomatik doğrulama tamamlandı');
           setState(() {
-            _error = 'Doğrulama başarısız: ${e.message}';
+            _smsStatus = 'Otomatik doğrulama başarılı';
+            _isSendingSms = false;
           });
-        }
-      },
-      codeSent: (String verificationId, int? resendToken) {
-        if (mounted) {
-          setState(() {
-            _verificationId = verificationId;
-            _codeSent = true;
-            _startResendCountdown();
-          });
-        }
-      },
-      codeAutoRetrievalTimeout: (String verificationId) {
-        _verificationId = verificationId;
-      },
-    );
+          await _signInWithCredential(credential);
+        },
+        verificationFailed: (FirebaseAuthException e) {
+          debugPrint('❌ SMS doğrulama başarısız: ${e.code} - ${e.message}');
+          if (mounted) {
+            setState(() {
+              _isSendingSms = false;
+              _smsStatus = null;
+            });
+
+            final errorMessage = _getLocalizedErrorMessage(e.code, e.message);
+
+            // Kritik hatalar için AlertDialog kullan
+            if (e.code == 'quota-exceeded' ||
+                e.code == 'app-not-authorized' ||
+                e.code == 'captcha-check-failed') {
+              _showCriticalErrorDialog('SMS Doğrulama Hatası', errorMessage);
+            } else {
+              // Diğer hatalar için SnackBar kullan (retry seçeneği ile)
+              _showSnackBarError(errorMessage, withRetry: true);
+            }
+          }
+        },
+        codeSent: (String verificationId, int? resendToken) {
+          debugPrint('✅ SMS başarıyla gönderildi. Verification ID: $verificationId');
+          if (mounted) {
+            setState(() {
+              _verificationId = verificationId;
+              _codeSent = true;
+              _isSendingSms = false;
+              _smsStatus = 'SMS başarıyla gönderildi';
+              _retryAttempts = 0; // Başarılı olduğu için retry sayısını sıfırla
+              _startResendCountdown();
+            });
+
+            // Başarı mesajı göster
+            _showSnackBarSuccess('SMS doğrulama kodu gönderildi!');
+          }
+        },
+        codeAutoRetrievalTimeout: (String verificationId) {
+          debugPrint('⏱️ SMS otomatik alma süresi doldu');
+          _verificationId = verificationId;
+          if (mounted) {
+            setState(() {
+              _isSendingSms = false;
+              _smsStatus = null;
+            });
+          }
+        },
+        timeout: const Duration(seconds: 60), // 60 saniye timeout
+      );
+    } catch (e) {
+      debugPrint('❌ SMS gönderim hatası: $e');
+      if (mounted) {
+        setState(() {
+          _isSendingSms = false;
+          _smsStatus = null;
+        });
+
+        // Ağ bağlantısı hataları için farklı mesaj
+        final errorMessage = e.toString().toLowerCase().contains('network') ||
+                e.toString().toLowerCase().contains('internet')
+            ? 'İnternet bağlantısı sorunu. Lütfen bağlantınızı kontrol edin.'
+            : 'SMS gönderilemedi. Lütfen daha sonra tekrar deneyin.';
+
+        _showSnackBarError(errorMessage, withRetry: true);
+      }
+    }
+  }
+
+  /// Firebase Auth hata kodlarını Türkçe mesajlara çevir
+  String _getLocalizedErrorMessage(String? errorCode, String? originalMessage) {
+    switch (errorCode) {
+      case 'invalid-phone-number':
+        return 'Geçersiz telefon numarası formatı';
+      case 'too-many-requests':
+        return 'Çok fazla istek gönderdiniz. Lütfen daha sonra tekrar deneyin.';
+      case 'quota-exceeded':
+        return 'SMS kotası aşıldı. Lütfen daha sonra tekrar deneyin.';
+      case 'captcha-check-failed':
+        return 'Güvenlik doğrulaması başarısız. Uygulamayı yeniden başlatın.';
+      case 'missing-phone-number':
+        return 'Telefon numarası eksik';
+      case 'app-not-authorized':
+        return 'Uygulama yetkilendirilmemiş';
+      case 'network-request-failed':
+        return 'Ağ bağlantısı sorunu. İnternet bağlantınızı kontrol edin.';
+      default:
+        return originalMessage ?? 'Bilinmeyen bir hata oluştu';
+    }
   }
 
   Future<void> _verifyCode() async {
@@ -417,30 +802,49 @@ class _LoginPageState extends State<LoginPage> {
   }
 
   Future<void> _signInWithCredential(PhoneAuthCredential credential) async {
-    final userCredential = await FirebaseAuth.instance.signInWithCredential(
-      credential,
-    );
-    final user = userCredential.user;
+    try {
+      final userCredential = await FirebaseAuth.instance.signInWithCredential(
+        credential,
+      );
+      final user = userCredential.user;
 
-    if (user != null) {
-      // FCM token kaydı NotificationService.initialize ile yapılır
+      if (user != null) {
+        // Başarı mesajı göster
+        _showSnackBarSuccess('Telefon numarası başarıyla doğrulandı!');
 
-      // Kullanıcı bilgilerini kontrol et
-      await UserService.ensureLocalUser(user.uid);
-      final local = await UserService.getLocalUser(user.uid);
+        // FCM token kaydı NotificationService.initialize ile yapılır
 
-      if (mounted) {
-        // Profil setup sayfasına yönlendir (her durumda)
-        Navigator.pushReplacement(
-          context,
-          MaterialPageRoute(
-            builder: (context) => ProfileSetupPage(
-              userId: user.uid,
-              phoneNumber: user.phoneNumber ?? '',
-              existingData: local?.toMap(),
+        // Kullanıcı bilgilerini kontrol et
+        await UserService.ensureLocalUser(user.uid);
+        final local = await UserService.getLocalUser(user.uid);
+
+        if (mounted) {
+          // Profil setup sayfasına yönlendir (her durumda)
+          Navigator.pushReplacement(
+            context,
+            MaterialPageRoute(
+              builder: (context) => ProfileSetupPage(
+                userId: user.uid,
+                phoneNumber: user.phoneNumber ?? '',
+                existingData: local?.toMap(),
+              ),
             ),
-          ),
-        );
+          );
+        }
+      }
+    } catch (e) {
+      debugPrint('❌ Giriş hatası: $e');
+      if (mounted) {
+        setState(() {
+          _isLoading = false;
+        });
+
+        if (e is FirebaseAuthException) {
+          final errorMessage = _getLocalizedErrorMessage(e.code, e.message);
+          _showSnackBarError(errorMessage, withRetry: false);
+        } else {
+          _showSnackBarError('Giriş yapılırken bir hata oluştu.', withRetry: false);
+        }
       }
     }
   }
