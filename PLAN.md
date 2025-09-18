@@ -8,6 +8,9 @@ Bu belge WhatsApp benzeri mesajlaşma uygulaması + diyetisyen paneli için kron
 ### 1. Hizmet Koşulları Onay Ekranı *(2-5 Ağustos 2025)*
 **Amaç:** Uygulama ilk açıldığında kullanıcıdan Diyetkent Hizmet Koşulları onayı almak.
 
+**Ayrıntılar:**
+Bu sayfa uygulamaya ilk kez giriş yapan kullanıcılar için zorunlu bir adımdır. KVKK ve kullanıcı gizliliği açısından kritik öneme sahiptir. Sayfa, modern ve görsel olarak çekici bir tasarımla hizmet koşullarını özetler ve kullanıcıdan açık rıza ister. Onay verildikten sonra bu ekran bir daha görüntülenmez ve kullanıcı doğrudan giriş sayfasına yönlendirilir.
+
 **İşlemler:**
 - İlk açılışta hoşgeldin ekranı gösterme
 - "Diyetkent Hizmet Koşullarını kabul etmek için Kabul Et ve Devam Et seçeneğine dokun" metni
@@ -19,6 +22,9 @@ Bu belge WhatsApp benzeri mesajlaşma uygulaması + diyetisyen paneli için kron
 ### 2. Telefon Numarası Giriş Sayfası *(5-10 Ağustos 2025)*
 **Amaç:** Kullanıcıların telefon numarasıyla sisteme giriş yapmasını sağlamak ve hesap oluşturmak.
 
+**Ayrıntılar:**
+WhatsApp benzeri telefon numarası tabanlı kimlik doğrulama sistemi. 248 farklı ülke kodu desteği ile global kullanıcı erişimi sağlar. Numara formatı otomatik kontrol edilir ve geçersiz numaralar için anlık uyarı verilir. Firebase Auth entegrasyonu sayesinde güvenli SMS doğrulama işlemi başlatılır. Kullanıcı dostu arayüz ile hızlı ve kolay numara girişi mümkündür.
+
 **İşlemler:**
 - Kullanıcı ülke kodu seçer (248 farklı ülke desteği)
 - Telefon numarasını girer (gerçek zamanlı format doğrulama)
@@ -29,6 +35,9 @@ Bu belge WhatsApp benzeri mesajlaşma uygulaması + diyetisyen paneli için kron
 ### 3. SMS Doğrulama Sayfası *(5-10 Ağustos 2025)*
 **Amaç:** Telefon numarasının gerçekten kullanıcıya ait olduğunu doğrulamak ve güvenliği sağlamak.
 
+**Ayrıntılar:**
+Güvenlik odaklı 6 haneli doğrulama kodu giriş sayfası. Android cihazlarda SMS otomatik okuma özelliği ile kullanıcı deneyimi optimize edilmiştir. 60 saniyelik geri sayım timer'ı ile kod yeniden gönderme imkanı sunulur. Yanlış kod girişlerinde kullanıcı dostu hata mesajları gösterilir. Numara değiştirme seçeneği ile esneklik sağlanır. Firebase backend entegrasyonu ile yüksek güvenlik standartlarına uygun çalışır.
+
 **İşlemler:**
 - SMS ile gelen 6 haneli kodu kullanıcı girer
 - Kod otomatik algılanabilir (Android SMS Auto-Read)
@@ -37,8 +46,66 @@ Bu belge WhatsApp benzeri mesajlaşma uygulaması + diyetisyen paneli için kron
 - Doğru kod girişinde hesap aktivasyonu tamamlanır
 - Numara değiştirme imkanı sunar
 
-### 4. Ana Sohbet Listesi Sayfası *(10-15 Ağustos 2025)*
+### 3.1. Yedek Kontrol ve Geri Yükleme Sayfası *(5-10 Ağustos 2025)*
+**Amaç:** SMS doğrulaması sonrası kullanıcının daha önce yedekleme yapıp yapmadığını kontrol etmek.
+
+**Ayrıntılar:**
+SMS doğrulaması tamamlandıktan sonra kullanıcı bu sayfaya yönlendirilir. Sistem, kullanıcının daha önce Google Drive'da yedekleme yapıp yapmadığını otomatik kontrol eder. Eğer yedek varsa kullanıcıya "Daha önce mesajlarınızı yedeklemiş görünüyorsunuz. Yedeğinizi geri yüklemek istiyor musunuz?" sorusu sorulur. Kullanıcı isterse Google hesabıyla giriş yaparak yedeğini geri yükleyebilir. Yedekleme yoksa veya kullanıcı geri yükleme istemezse profil sayfasına yönlendirilir.
+
+**İşlemler:**
+- Google Drive'da yedek kontrolü yapma
+- Yedek bulunursa kullanıcıya bilgi verme
+- Google hesabı ile giriş seçeneği sunma
+- Yedek geri yükleme işlemi başlatma
+- Yedek yoksa profil sayfasına yönlendirme
+
+### 4. Profil Sayfası *(15-20 Ağustos 2025)*
+**Amaç:** Kullanıcının kişisel bilgilerini yönetmesi ve diğer kullanıcılara kendini tanıtması.
+
+**Ayrıntılar:**
+Yedek kontrol sayfasından sonra kullanıcının yönlendirildiği profil kurulum sayfası. Eğer kullanıcının daha önce profili varsa bilgiler önceden doldurulmuş halde gelir, sadece güncellemeler yapabilir. Yeni kullanıcılar için profil bilgileri zorunlu olarak doldurulmalıdır. Profil fotoğrafı ekleme/değiştirme için kamera ve galeri entegrasyonu mevcuttur. Fotoğraf düzenleme araçları (kırpma, boyutlandırma) ile kullanıcı istediği görünümü elde edebilir. Ad, soyad ve 'hakkımda' bilgileri kolaylıkla güncellenebilir. Profil tamamlandıktan sonra ana ekrana yönlendirilir ve arka planda rehber servisi çalışmaya başlar.
+
+**İşlemler:**
+- Önceki profil bilgilerini otomatik doldurma (varsa)
+- Profil fotoğrafı ekleme/değiştirme/silme (kamera veya galeriden)
+- Fotoğraf düzenleme (kırpma, boyutlandırma)
+- Ad ve soyad bilgilerini güncelleme (zorunlu)
+- Hakkımda bölümünü düzenleme (durum mesajı)
+- Telefon numarasını görüntüleme (değiştirilemez)
+- Profil tamamlandıktan sonra ana ekrana yönlendirme
+
+### 5. Ana Sayfa (TabBar İskeleti) *(10-15 Ağustos 2025)*
+**Amaç:** Uygulamanın merkezi navigasyon hub'ı olarak üç ana sekme arasında geçiş sağlamak.
+
+**Ayrıntılar:**
+Profil kurulumundan sonra kullanıcının yönlendirildiği ana uygulama iskeletidir. DiyetKent branding'li AppBar, sağlık göstergeleri (AppBarHealthIndicators), yedekleme durumu widget'ı (BackupStatusWidget) ve seçim modu için toplu işlem özellikleri içerir. TabController ile 3 ana sekme: "SOHBETLER" (ChatListPageNew), "DURUM" (StoriesPage), "ARAMALAR" (CallsPage). Her sekme için özel FloatingActionButton davranışı - sohbetlerde yeni chat, durumda story ekleme, aramalarda arama başlatma. RefreshIndicator ile manuel senkronizasyon ve optimized performance için Firebase listeners minimize edilmiş durumda.
+
+**Ana Sekmeleri:**
+- **📱 Sohbetler Tab'ı:** ChatListPageNew - optimize edilmiş sohbet listesi
+- **📖 Durumlar Tab'ı:** StoriesPage - 24 saatlik hikayeler yönetimi
+- **📞 Aramalar Tab'ı:** CallsPage - arama geçmişi ve yönetimi
+
+**İskelet Özellikleri:**
+- **Optimize AppBar:** Sağlık göstergeleri, yedekleme durumu, seçim modu
+- **TabController:** 3 sekme ile dinamik geçiş (length: 3, initialIndex: 0)
+- **Smart FloatingActionButton:** Sekme bazlı farklı eylemler (chat/story/call)
+- **Pull-to-Refresh:** Manuel sync tetikleme ile veri güncellemesi
+- **Selection Mode:** Toplu sohbet işlemleri için çoklu seçim
+- **Background Sync:** Firebase Background Sync Service entegrasyonu
+
+**İşlemler:**
+- DiyetKent ana navigasyon TabBar'ını görüntüleme
+- TabBarView ile SOHBETLER, DURUM, ARAMALAR yönetimi
+- AppBarHealthIndicators ile sistem durumu gösterimi
+- Sekme bazlı FloatingActionButton eylem değişimi
+- RefreshIndicator ile manuel senkronizasyon tetikleme
+- Seçim modu etkinleştirme ve toplu işlemler
+
+### 6. Ana Sohbet Listesi Sayfası *(10-15 Ağustos 2025)*
 **Amaç:** Tüm sohbetleri merkezi bir yerde görmek ve hızlı erişim sağlamak.
+
+**Ayrıntılar:**
+Uygulamanın kalbi olan ana sohbet listesi. Gerçek zamanlı güncellemelerle canlı tutulan sohbet listesi, son mesaj tarihine göre otomatik sıralanır. Her sohbet için son mesaj önizlemesi, okunmamış mesaj sayısı rozeti ve mesaj durumu görüntülenir. Sabitleme, arşivleme ve silme işlemleri kaydırma hareketleriyle kolayca erişilebilir. Uzun basışla çoklu seçim modu etkinleştirilerek toplu işlemler yapılabilir.
 
 **İşlemler:**
 - Aktif sohbetleri son mesaj tarihine göre sıralama
@@ -50,83 +117,61 @@ Bu belge WhatsApp benzeri mesajlaşma uygulaması + diyetisyen paneli için kron
 - Uzun basarak çoklu seçim yapma
 - Yeni sohbet başlatma
 
-### 5. Sohbet Sayfası *(10-15 Ağustos 2025)*
-**Amaç:** İki kullanıcı arasında gerçek zamanlı mesajlaşma deneyimi sunmak.
+### 7. Sohbet Sayfası *(10-15 Ağustos 2025)*
+**Amaç:** İki kullanıcı arasında kapsamlı ve gerçek zamanlı mesajlaşma deneyimi sunmak.
 
-**İşlemler:**
-- Mesajları kronolojik sırada gösterme
-- Gönderilen ve alınan mesajları farklı taraflarda gösterme
-- Mesaj durumunu gösterme (gönderiliyor, gönderildi, okundu)
-- Karşı tarafın çevrimiçi durumunu gösterme
-- Yazıyor göstergesini gösterme
-- Mesajlara uzun basarak menü açma
-- Mesaj gönderme, silme, kopyalama, yanıtlama, iletme
-- Günlük tarih ayraçları gösterme
+**Ayrıntılar:**
+WhatsApp kalitesinde gelişmiş mesajlaşma deneyimi sunan ana sohbet ekranı. Tüm modern mesajlaşma özelliklerini içeren kapsamlı bir iletişim merkezi.
 
-### 6. Profil Sayfası *(15-20 Ağustos 2025)*
-**Amaç:** Kullanıcının kişisel bilgilerini yönetmesi ve diğer kullanıcılara kendini tanıtması.
+**Ana Özellikler:**
 
-**İşlemler:**
-- Profil fotoğrafı ekleme/değiştirme/silme (kamera veya galeriden)
-- Fotoğraf düzenleme (kırpma, boyutlandırma)
-- Ad ve soyad bilgilerini güncelleme
-- Hakkımda bölümünü düzenleme (durum mesajı)
-- Telefon numarasını görüntüleme (değiştirilemez)
-- Tüm değişiklikleri kaydetme
+**📱 Temel Mesajlaşma:**
+- Mesajlar gerçek zamanlı olarak görüntülenir ve otomatik kaydırma ile son mesaja odaklanır
+- Her mesaj için durum göstergesi (gönderiliyor, gönderildi, okundu) mevcuttur
+- Günlük tarih ayraçları ile geçmiş mesajlarda gezinme kolaylaştırılır
 
-### 7. Sohbet Arama ve Filtreleme *(15-20 Ağustos 2025)*
+**👤 Kullanıcı Durumu:**
+- Karşı tarafın çevrimiçi/çevrimdışı durumu gerçek zamanlı gösterilir
+- Son görülme zamanı bilgisi (gizlilik ayarlarına göre)
+- 'Yazıyor...' göstergesi canlı olarak güncellenir
+- Grup sohbetlerinde 'kim okudu' bilgisi
+
+**💬 Gelişmiş Mesaj Özellikleri:**
+- **Mesaj Yanıtlama:** Belirli mesajlara referans vererek yanıt verme
+- **Mesaj Silme:** "Benden sil" ve "Herkesten sil" (24 saat içinde) seçenekleri
+- **Mesaj Kopyalama:** Panoya kopyalama ve çoklu seçim desteği
+- **Mesaj İletme:** Seçili mesajları diğer kişi/gruplara iletme
+
+**🎨 Zengin İçerik Desteği:**
+- **Rich Text:** Kalın (**metin**), italik (_metin_), üstü çizili (~metin~) formatlar
+- **Link/Telefon/Email Algılama:** Otomatik algılama ve tıklanabilir linkler
+- **Medya Paylaşımı:** Fotoğraf, video, doküman gönderme ve önizleme
+- **Sesli Mesaj:** Mikrofona basılı tutarak ses kaydı, oynatma, hız kontrolü (1x, 1.5x, 2x)
+- **Konum Paylaşımı:** Mevcut konum veya harita üzerinden seçilen konum
+- **Kişi Kartı:** Rehberden kişi bilgilerini paylaşma
+
+**🎤 Sesli Mesaj Özellikleri:**
+- Mikrofon butonuna basılı tutarak kayıt başlatma
+- Kayıt süresini gerçek zamanlı gösterme
+- Kaydı iptal etme (sola kaydırma)
+- Kaydı gönderme (butonu bırakma)
+- Kayıt kalitesi ayarlama
+- Sesli mesajları oynatma/duraklatma
+- Oynatma hızı değiştirme (1x, 1.5x, 2x)
+- Sesli mesaj süresini gösterme
+
+### 8. Sohbet Arama ve Filtreleme *(15-20 Ağustos 2025)*
 **Amaç:** Çok sayıda sohbet arasında hızlı arama yapabilmek ve kategorilere göre filtreleme.
+
+**Ayrıntılar:**
+Akıllı arama motoru ile çok boyutlu arama imkanı sunar. İsim, telefon numarası, mesaj içeriği ve medya dosyaları içinde arama yapılabilir. Arama sonuçlarında eşleşen kısımlar vurgulanır. Filtre seçenekleri: tüm sohbetler, okunmamış mesajlar, gruplar, arşivlenen sohbetler ve etiket bazında kategorizasyon. Gerçek zamanlı arama sonuçları ile anlık geri bildirim verilir. Canlı öneriler ve geçmiş arama geçmişi kaydedilir.
 
 **İşlemler:**
 - Gerçek zamanlı arama (isim, telefon no, medya, ve mesaj içeriği)
 - Arama sonuçlarında eşleşen kısımları vurgulama
 - Filtre uygulama (tüm sohbetler, okunmamış, gruplar, arşivlenen, etiketler)
 
-### 8. Okundu/Yazıyor/Çevrimiçi Bilgisi *(15-20 Ağustos 2025)*
-**Amaç:** Karşı tarafın durumunu bilmek ve mesajlaşma deneyimini iyileştirmek.
-
-**İşlemler:**
-- Kullanıcının çevrimiçi/çevrimdışı durumunu gösterme
-- Son görülme zamanını gösterme
-- "Yazıyor..." göstergesini gerçek zamanlı güncelleme
-- Mesaj okundu bilgisini işaretleme
-- Gizlilik ayarlarına göre bilgi paylaşımını kontrol etme
-- Grup sohbetlerinde kim okudu bilgisini gösterme
-
-### 9. Mesaj Yanıtlama *(15-20 Ağustos 2025)*
-**Amaç:** Belirli bir mesaja referans vererek yanıt verebilmek ve bağlamı korumak.
-
-**İşlemler:**
-- Mesaja uzun basarak yanıt seçeneği gösterme
-- Yanıtlanacak mesajı vurgulama
-- Yanıt yazma alanında referans mesajı gösterme
-- Yanıt gönderme
-- Referans mesaja tıklayarak orijinal mesaja gitme
-- Yanıt zinciri oluşturma
-
-### 10. Mesaj Silme/Kopyalama *(15-20 Ağustos 2025)*
-**Amaç:** Mesaj yönetimi ve istenmeyen içerikleri kaldırabilmek.
-
-**İşlemler:**
-- Mesajı kopyalama (panoya)
-- "Benden sil" seçeneği
-- "Herkesten sil" seçeneği (24 saat içinde)
-- Çoklu mesaj seçimi
-- Toplu silme işlemi
-- Silinen mesaj yerine bilgi mesajı gösterme
-- Silme işlemini onaylama
-
-### 11. Günler Arası Tarih Ayracı *(15-20 Ağustos 2025)*
-**Amaç:** Mesajları tarih bazında organize etmek ve geçmiş mesajlarda gezinmeyi kolaylaştırmak.
-
-**İşlemler:**
-- Günlük geçişlerde tarih ayracı ekleme
-- "Bugün", "Dün" gibi göreli tarihler gösterme
-- Eski tarihler için tam tarih gösterme
-- Tarih ayracına tıklayarak o güne atlama
-- Uzun sohbetlerde tarih bazlı navigasyon
-
-### 12. Sohbet Arşivleme/Arşivden Çıkarma *(20-22 Ağustos 2025)*
+### 9. Sohbet Arşivleme/Arşivden Çıkarma *(20-22 Ağustos 2025)*
 **Amaç:** Eski veya az kullanılan sohbetleri ana listeden kaldırarak düzen sağlamak.
 
 **İşlemler:**
@@ -136,7 +181,7 @@ Bu belge WhatsApp benzeri mesajlaşma uygulaması + diyetisyen paneli için kron
 - Yeni mesaj geldiğinde otomatik arşivden çıkarma
 - Arşiv bildirimi ayarları yönetme
 
-### 13. Sohbet Silme *(20-22 Ağustos 2025)*
+### 10. Sohbet Silme *(20-22 Ağustos 2025)*
 **Amaç:** İstenmeyen sohbetleri kalıcı olarak sistemden kaldırmak.
 
 **İşlemler:**
@@ -146,7 +191,7 @@ Bu belge WhatsApp benzeri mesajlaşma uygulaması + diyetisyen paneli için kron
 - Grup sohbeti için ek seçenekler (gruptan ayrılma)
 - Silme işlemi sonrası ana listeyi güncelleme
 
-### 14. Sohbet Sabitleme *(20-22 Ağustos 2025)*
+### 11. Sohbet Sabitleme *(20-22 Ağustos 2025)*
 **Amaç:** Önemli sohbetleri her zaman üstte tutarak kolay erişim sağlamak.
 
 **İşlemler:**
@@ -156,7 +201,7 @@ Bu belge WhatsApp benzeri mesajlaşma uygulaması + diyetisyen paneli için kron
 - Sabitleme limitine ulaşıldığında uyarı
 - Sabitlemeyi kaldırma seçeneği
 
-### 15. Arşivlenmiş Sohbetler Sayfası *(20-22 Ağustos 2025)*
+### 12. Arşivlenmiş Sohbetler Sayfası *(20-22 Ağustos 2025)*
 **Amaç:** Kullanıcının arşivlediği sohbetleri yönetmek ve gerektiğinde geri getirmek.
 
 **İşlemler:**
@@ -168,86 +213,7 @@ Bu belge WhatsApp benzeri mesajlaşma uygulaması + diyetisyen paneli için kron
 - Arşiv boyutu bilgisi
 - Otomatik arşivleme kuralları
 
-### 16. Mesaj İletme *(20-25 Ağustos 2025)*
-**Amaç:** Bir mesajı başka kişi veya gruplara hızlıca iletebilmek.
-
-**İşlemler:**
-- İletilecek mesajı seçme
-- Alıcı listesi gösterme (kişiler ve gruplar)
-- Çoklu alıcı seçimi yapma
-- İletim onayı alma
-- İletilen mesajda "İletildi" etiketini gösterme
-- İletim başarısını bildirme
-
-### 17. Mesaj İletme Sayfası *(20-25 Ağustos 2025)*
-**Amaç:** Seçili mesajları birden fazla kişi ve gruba aynı anda iletebilmek.
-
-**İşlemler:**
-- İletilecek mesajların önizlemesini gösterme
-- Kişi ve grup listesini gösterme
-- Son sohbet edilen kişileri üstte gösterme
-- Çoklu alıcı seçimi yapma
-- Seçilen alıcı sayısını gösterme
-- Arama yaparak alıcı bulma
-- Toplu iletim işlemini başlatma
-
-### 18. Link/Telefon/Email Algılama *(20-25 Ağustos 2025)*
-**Amaç:** Mesajlardaki özel içerikleri otomatik algılayıp tıklanabilir hale getirmek.
-
-**İşlemler:**
-- URL linklerini otomatik algılama ve tıklanabilir yapma
-- Telefon numaralarını algılayıp arama seçeneği sunma
-- Email adreslerini algılayıp mail gönderme seçeneği sunma
-- Web linkler için önizleme oluşturma
-- Link güvenlik kontrolü yapma
-- Kötü amaçlı linkler için uyarı
-
-### 19. Rich Text Mesajları *(20-25 Ağustos 2025)*
-**Amaç:** Mesajlarda format kullanarak daha etkili iletişim kurabilmek.
-
-**İşlemler:**
-- Kalın yazı formatı (**metin**)
-- İtalik yazı formatı (_metin_)
-- Üstü çizili yazı formatı (~metin~)
-- Sabit genişlikli yazı formatı (```metin```)
-- Format önizlemesi gösterme
-
-### 20. Medya Gönderme (fotoğraf, video, doküman) *(25-30 Ağustos 2025)*
-**Amaç:** Multimedya içeriklerini paylaşarak zengin iletişim kurabilmek.
-
-**İşlemler:**
-- Medya seçim menüsünü açma (kamera, galeri, doküman)
-- Çoklu medya seçimi yapma
-- Seçilen medyalara açıklama ekleme
-- Medya önizlemesi gösterme
-- Medya sıkıştırma seçenekleri
-- Büyük dosyalar için uyarı verme
-- Medya gönderim ilerlemesi gösterme
-
-### 21. Konum Gönderme *(25-30 Ağustos 2025)*
-**Amaç:** Bulunulan yeri veya belirli bir adresi karşı tarafa iletebilmek.
-
-**İşlemler:**
-- Mevcut konumu otomatik algılama
-- Harita üzerinde konum seçme
-- Konum arama yapma
-- Canlı konum paylaşımı başlatma
-- Canlı konum süresini belirleme (15dk, 1sa, 8sa)
-- Statik konum gönderme
-- Konum doğruluğunu gösterme
-
-### 22. Kişi Kartı Gönderme *(25-30 Ağustos 2025)*
-**Amaç:** Rehberdeki kişilerin bilgilerini paylaşabilmek.
-
-**İşlemler:**
-- Rehber listesinden kişi seçme
-- Kişi bilgilerini önizleme
-- Paylaşılacak bilgileri seçme
-- Kişi kartını gönderme
-- Alıcının kişiyi rehberine ekleme seçeneği
-- Kişi kartı formatını standartlaştırma
-
-### 23. Kamera Sayfası *(25-30 Ağustos 2025)*
+### 13. Kamera Sayfası *(25-30 Ağustos 2025)*
 **Amaç:** Uygulama içinden fotoğraf/video çekerek hızlı paylaşım yapmak.
 
 **İşlemler:**
@@ -261,7 +227,7 @@ Bu belge WhatsApp benzeri mesajlaşma uygulaması + diyetisyen paneli için kron
 - Çekilen medyayı önizleme
 - Doğrudan gönderme veya kaydetme
 
-### 24. Kamera Sayfası (Extended Features) *(25-30 Ağustos 2025)*
+### 14. Kamera Sayfası (Extended Features) *(25-30 Ağustos 2025)*
 **Amaç:** Profesyonel fotoğrafçılık özelliklerini sunarak kaliteli içerik üretimi sağlamak.
 
 **İşlemler:**
@@ -275,7 +241,7 @@ Bu belge WhatsApp benzeri mesajlaşma uygulaması + diyetisyen paneli için kron
 - Pozlama ayarlama
 - ISO değeri ayarlama
 
-### 25. Medya Galerisi Sayfası *(25-30 Ağustos 2025)*
+### 15. Medya Galerisi Sayfası *(25-30 Ağustos 2025)*
 **Amaç:** Cihazda bulunan medya dosyalarını görüntülemek ve seçim yapmak.
 
 **İşlemler:**
@@ -288,33 +254,21 @@ Bu belge WhatsApp benzeri mesajlaşma uygulaması + diyetisyen paneli için kron
 - Paylaşılacak medyaları seçme
 - Medya boyutlarını gösterme
 
-### 26. Kişiler Sayfası *(25-30 Ağustos 2025)*
-**Amaç:** Merkezi bir rehber sistemi ile tüm kişileri yönetmek.
+### 16. Kişiler Sayfası ve Merkezi Rehber Yönetimi *(25-30 Ağustos 2025)*
+**Amaç:** Merkezi bir rehber sistemi ile tüm kişileri yönetmek ve uygulama genelinde kişi seçimlerinde kullanmak.
+
+**Ayrıntılar:**
+Kullanıcı profili tamamlandıktan sonra ana ekrana geldiğinde rehber servisi arka planda çalışmaya başlar. Telefon rehberindeki numaralar ve isimler yerel veritabanına çekilir. Uygulamayı kullananları hızlıca ayırt etmek ve büyük rehberleri taramayı beklememek için bu işlem arka planda yavaş yavaş yapılır. Rehber sayfası özel bir sayfa olarak tasarlanır ve kullanıcı arama, yeni mesaj gibi tüm işlemlerde bu sayfayı kullanarak kişi veya kişileri seçer.
 
 **İşlemler:**
-- Telefon rehberini senkronize etme
-- DiyetKent kullanıcılarını üstte gösterme
-- Alfabetik sıralama yapma
-- Hızlı arama ve filtreleme
-- Yeni kişi ekleme
-- Kişi bilgilerini düzenleme
-- Kişileri silme
-- Toplu işlemler yapma
-
-### 27. Merkezi Rehber Yönetimi *(25-30 Ağustos 2025)*
-**Amaç:** Profesyonel düzeyde kişi yönetimi ve Firebase ile senkronizasyon sağlamak.
-
-**İşlemler:**
-- Gerçek zamanlı rehber senkronizasyonu
-- Çapraz cihaz kişi erişimi
-- Otomatik yedekleme
-- Çakışma çözümleme (aynı kişi birden fazla kayıt)
-- Akıllı kişi önerileri
-- Duplicate kişi tespiti ve birleştirme
-- Sosyal medya profili bağlama
-- Kişi doğrulama sistemi
-
-
+- **Arka Plan Senkronizasyonu:** Profil tamamlandıktan sonra otomatik başlama
+- **Telefon Rehberi Entegrasyonu:** Numara ve isimleri yerel veritabanına çekme
+- **DiyetKent Kullanıcı Tespiti:** Uygulamayı kullananları otomatik ayırt etme
+- **Akıllı Sıralama:** DiyetKent kullanıcılarını üstte gösterme
+- **Hızlı Arama:** Alfabetik sıralama ve gerçek zamanlı filtreleme
+- **Çoklu Seçim:** Grup oluşturma ve toplu mesaj için
+- **Duplicate Yönetimi:** Aynı kişi birden fazla kayıt tespiti ve birleştirme
+- **Çapraz Platform:** Firebase ile çoklu cihaz senkronizasyonu
 ---
 
 ## 🚀 FAZ 2: ANA ÖZELLİKLER (1 Eylül - 30 Eylül 2025)
@@ -345,20 +299,7 @@ Bu belge WhatsApp benzeri mesajlaşma uygulaması + diyetisyen paneli için kron
 - Grup ayarlarını yönetme
 - Gruptan ayrılma
 
-### 30. Sesli Mesaj Gönderme *(7-10 Eylül 2025)*
-**Amaç:** Metinden daha hızlı ve kişisel ses mesajları gönderebilmek.
-
-**İşlemler:**
-- Mikrofon butonuna basılı tutarak kayıt başlatma
-- Kayıt süresini gerçek zamanlı gösterme
-- Kaydı iptal etme (sola kaydırma)
-- Kaydı gönderme (butonu bırakma)
-- Kayıt kalitesi ayarlama
-- Sesli mesajları oynatma/duraklatma
-- Oynatma hızı değiştirme (1x, 1.5x, 2x)
-- Sesli mesaj süresini gösterme
-
-### 31. Durumlar Sayfası *(14-18 Eylül 2025)*
+### 30. Durumlar Sayfası *(14-18 Eylül 2025)*
 **Amaç:** 24 saat içinde kaybolacak hikayeler paylaşmak ve görmek.
 
 **İşlemler:**
@@ -371,7 +312,7 @@ Bu belge WhatsApp benzeri mesajlaşma uygulaması + diyetisyen paneli için kron
 - Eski durumları silme
 - Durum tepkileri gönderme
 
-### 32. Durum Gizlilik Ayarları *(14-18 Eylül 2025)*
+### 31. Durum Gizlilik Ayarları *(14-18 Eylül 2025)*
 **Amaç:** Durumların kimler tarafından görülebileceğini kontrol etmek.
 
 **İşlemler:**
@@ -382,7 +323,7 @@ Bu belge WhatsApp benzeri mesajlaşma uygulaması + diyetisyen paneli için kron
 - Gizlilik ayarlarını kaydetme
 - Mevcut durumlar için geçmişe dönük uygulama
 
-### 33. Durum Görüntüleme Sayfası *(14-18 Eylül 2025)*
+### 32. Durum Görüntüleme Sayfası *(14-18 Eylül 2025)*
 **Amaç:** Durumları tam ekran görüntülemek ve etkileşim kurmak.
 
 **İşlemler:**
@@ -395,7 +336,7 @@ Bu belge WhatsApp benzeri mesajlaşma uygulaması + diyetisyen paneli için kron
 - Duruma yanıt yazma
 - Paylaşım yapma
 
-### 34. Aramalar Sayfası *(18-22 Eylül 2025)*
+### 33. Aramalar Sayfası *(18-22 Eylül 2025)*
 **Amaç:** Arama geçmişini yönetmek ve yeni aramalar başlatmak.
 
 **İşlemler:**
@@ -408,7 +349,7 @@ Bu belge WhatsApp benzeri mesajlaşma uygulaması + diyetisyen paneli için kron
 - Arama kayıtlarını filtreleme
 - İstatistik görüntüleme
 
-### 35. Gelen/Giden Çağrı Sayfası *(18-22 Eylül 2025)*
+### 34. Gelen/Giden Çağrı Sayfası *(18-22 Eylül 2025)*
 **Amaç:** Aktif arama sırasında gerekli kontrolleri sağlamak.
 
 **İşlemler:**
@@ -421,7 +362,7 @@ Bu belge WhatsApp benzeri mesajlaşma uygulaması + diyetisyen paneli için kron
 - Çağrı beklemeye alma
 - Çağrı transferi yapma
 
-### 36. Gelen/Giden Çağrı Yönetim Sayfası *(18-22 Eylül 2025)*
+### 35. Gelen/Giden Çağrı Yönetim Sayfası *(18-22 Eylül 2025)*
 **Amaç:** WebRTC tabanlı sesli ve görüntülü arama sistemi yönetmek.
 
 **İşlemler:**
@@ -434,7 +375,7 @@ Bu belge WhatsApp benzeri mesajlaşma uygulaması + diyetisyen paneli için kron
 - ICE server konfigürasyonu
 - Bandwidth optimizasyonu
 
-### 37. Ana Ayarlar Sayfası *(22-26 Eylül 2025)*
+### 36. Ana Ayarlar Sayfası *(22-26 Eylül 2025)*
 **Amaç:** Tüm uygulama ayarlarına merkezi erişim sağlamak.
 
 **İşlemler:**
@@ -445,7 +386,7 @@ Bu belge WhatsApp benzeri mesajlaşma uygulaması + diyetisyen paneli için kron
 - Ayar önizlemeleri gösterme
 - Alt sayfalara yönlendirme
 
-### 38. Hakkında/Yardım Sayfası *(22-26 Eylül 2025)*
+### 37. Hakkında/Yardım Sayfası *(22-26 Eylül 2025)*
 **Amaç:** Uygulama hakkında bilgi vermek ve kullanıcı desteği sağlamak.
 
 **İşlemler:**
@@ -459,7 +400,7 @@ Bu belge WhatsApp benzeri mesajlaşma uygulaması + diyetisyen paneli için kron
 - Kullanım kılavuzu gösterme
 
 
-### 39. Gizlilik Ayarları Sayfası *(22-26 Eylül 2025)*
+### 38. Gizlilik Ayarları Sayfası *(22-26 Eylül 2025)*
 **Amaç:** Kişisel verilerin gizliliğini korumak ve paylaşım kontrolü sağlamak.
 
 **İşlemler:**
@@ -472,7 +413,7 @@ Bu belge WhatsApp benzeri mesajlaşma uygulaması + diyetisyen paneli için kron
 - Okundu bilgisi kontrolü
 - Grup ekleme izinleri
 
-### 40. Hesap Ayarları Sayfası *(22-26 Eylül 2025)*
+### 39. Hesap Ayarları Sayfası *(22-26 Eylül 2025)*
 **Amaç:** Temel hesap işlemlerini yönetmek ve güvenlik sağlamak.
 
 **İşlemler:**
@@ -485,7 +426,7 @@ Bu belge WhatsApp benzeri mesajlaşma uygulaması + diyetisyen paneli için kron
 - Veri indirme talebi
 - Hesap dondurma
 
-### 41. Bildirim Ayarları Sayfası *(22-26 Eylül 2025)*
+### 40. Bildirim Ayarları Sayfası *(22-26 Eylül 2025)*
 **Amaç:** Bildirim tercihleri yönetmek ve rahatsız edici bildirimleri engellemek.
 
 **İşlemler:**
@@ -498,7 +439,7 @@ Bu belge WhatsApp benzeri mesajlaşma uygulaması + diyetisyen paneli için kron
 - Bildirim önizleme ayarları
 - Özel kişiler için özel sesler
 
-### 42. Etiketler Sayfası *(26-30 Eylül 2025)*
+### 41. Etiketler Sayfası *(26-30 Eylül 2025)*
 **Amaç:** Diyetisyenlerin danışanlarını kategorilere ayırarak organize etmesini sağlamak.
 
 **İşlemler:**
@@ -509,7 +450,7 @@ Bu belge WhatsApp benzeri mesajlaşma uygulaması + diyetisyen paneli için kron
 - Etiketleri renk ve isme göre sıralama
 - Etiket bazlı istatistikler gösterme
 
-### 43. Etiket Ekleme *(26-30 Eylül 2025)*
+### 42. Etiket Ekleme *(26-30 Eylül 2025)*
 **Amaç:** Yeni müşteri kategorileri oluşturarak sınıflandırma sistemi geliştirmek.
 
 **İşlemler:**
@@ -521,7 +462,7 @@ Bu belge WhatsApp benzeri mesajlaşma uygulaması + diyetisyen paneli için kron
 - Etiket önizlemesi gösterme
 - Oluşturma işlemini onaylama
 
-### 44. Etiket Düzenleme/Silme *(26-30 Eylül 2025)*
+### 43. Etiket Düzenleme/Silme *(26-30 Eylül 2025)*
 **Amaç:** Mevcut etiket sistemini güncel tutmak ve gereksiz etiketleri temizlemek.
 
 **İşlemler:**
@@ -535,7 +476,7 @@ Bu belge WhatsApp benzeri mesajlaşma uygulaması + diyetisyen paneli için kron
 
 ## 💊 FAZ 3: SAĞLIK ÖZELLİKLERİ (1 Ekim - 25 Ekim 2025)
 
-### 47. Sağlık Bilgilerim Sayfası *(1-5 Ekim 2025)*
+### 44. Sağlık Bilgilerim Sayfası *(1-5 Ekim 2025)*
 **Amaç:** Kullanıcının sağlık profilini oluşturmak ve diyetisyen için temel verileri sağlamak.
 
 **İşlemler:**
@@ -550,7 +491,7 @@ Bu belge WhatsApp benzeri mesajlaşma uygulaması + diyetisyen paneli için kron
 - İlaç kullanım bilgileri
 - İlerleme grafikleri görüntüleme (FL Chart entegrasyonu)
 
-### 48. Form Doldurma Sayfası *(1-5 Ekim 2025)*
+### 45. Form Doldurma Sayfası *(1-5 Ekim 2025)*
 **Amaç:** Diyetisyen tarafından oluşturulan formları doldurmak ve değerlendirme sağlamak.
 
 **İşlemler:**
@@ -563,7 +504,7 @@ Bu belge WhatsApp benzeri mesajlaşma uygulaması + diyetisyen paneli için kron
 - Form gönderim onayı
 - Gönderilen formları görüntüleme
 
-### 49. Adım Sayar ve Aktivite Takibi Sayfası *(10-15 Ekim 2025)*
+### 46. Adım Sayar ve Aktivite Takibi Sayfası *(10-15 Ekim 2025)*
 **Amaç:** Günlük fiziksel aktiviteyi izlemek ve sağlık hedeflerini desteklemek.
 
 **İşlemler:**
@@ -577,7 +518,7 @@ Bu belge WhatsApp benzeri mesajlaşma uygulaması + diyetisyen paneli için kron
 - İstatistik grafikleri gösterme
 - Export ve paylaşım seçenekleri
 
-### 48. PDF Görüntüleme Sayfası *(20-25 Ekim 2025)*
+### 47. PDF Görüntüleme Sayfası *(20-25 Ekim 2025)*
 **Amaç:** Diyet planları, raporlar ve belgeler için kapsamlı PDF görüntüleyici sunmak.
 
 **İşlemler:**
@@ -595,7 +536,7 @@ Bu belge WhatsApp benzeri mesajlaşma uygulaması + diyetisyen paneli için kron
 
 ## 🏥 FAZ 4: DİYETİSYEN YÖNETİM PANELİ (26 Ekim - 20 Kasım 2025)
 
-### 49. Danışan Yönetim Sayfası *(26 Ekim - 1 Kasım 2025)*
+### 48. Danışan Yönetim Sayfası *(26 Ekim - 1 Kasım 2025)*
 **Amaç:** Uygulama ve medya verilerinin disk kullanımını optimize etmek.
 
 **İşlemler:**
@@ -608,7 +549,7 @@ Bu belge WhatsApp benzeri mesajlaşma uygulaması + diyetisyen paneli için kron
 - Depolama uyarıları ayarlama
 - Toplu temizlik önerileri
 
-### 50. Diyet Paketleri Yönetim Sayfası *(1-5 Kasım 2025)*
+### 49. Diyet Paketleri Yönetim Sayfası *(1-5 Kasım 2025)*
 **Amaç:** Sohbet verilerini güvenli bir şekilde yedeklemek ve geri yüklemek.
 
 **İşlemler:**
@@ -621,7 +562,7 @@ Bu belge WhatsApp benzeri mesajlaşma uygulaması + diyetisyen paneli için kron
 - Yedekleme şifreleme
 - Yedek geçmişi görüntüleme
 
-### 51. Oto-Diyetler Botu Sayfası *(5-8 Kasım 2025)*
+### 50. Oto-Diyetler Botu Sayfası *(5-8 Kasım 2025)*
 **Amaç:** Sistem dosyalarını otomatik olarak işlemek ve organize etmek.
 
 **İşlemler:**
@@ -634,7 +575,7 @@ Bu belge WhatsApp benzeri mesajlaşma uygulaması + diyetisyen paneli için kron
 - Otomatik backup oluşturma
 - Sistem temizlik işlemleri
 
-### 52. Spor Seansları Yönetim Sayfası *(8-10 Kasım 2025)*
+### 51. Spor Seansları Yönetim Sayfası *(8-10 Kasım 2025)*
 **Amaç:** Geliştirme ve test süreçleri için sample veri oluşturma ve yönetme.
 
 **İşlemler:**
@@ -647,7 +588,7 @@ Bu belge WhatsApp benzeri mesajlaşma uygulaması + diyetisyen paneli için kron
 - Performance test veri setleri
 - A/B test veri yönetimi
 
-### 53. Randevu Yönetim Sayfası *(10-12 Kasım 2025)*
+### 52. Randevu Yönetim Sayfası *(10-12 Kasım 2025)*
 **Amaç:** Uygulama performansını izlemek ve optimize etmek için geliştirici araçları sunmak.
 
 **İşlemler:**
@@ -661,7 +602,7 @@ Bu belge WhatsApp benzeri mesajlaşma uygulaması + diyetisyen paneli için kron
 - Connection-aware sync
 - Firebase kullanım takibi
 
-### 54. Form Oluşturma Sayfası *(12-15 Kasım 2025)*
+### 53. Form Oluşturma Sayfası *(12-15 Kasım 2025)*
 **Amaç:** Diyetisyenlerin tüm danışanlarına veya belirli gruplara toplu mesaj göndermesini sağlamak.
 
 **İşlemler:**
@@ -679,7 +620,7 @@ Bu belge WhatsApp benzeri mesajlaşma uygulaması + diyetisyen paneli için kron
 
 ## 🔧 FAZ 5: OPTİMİZASYON VE TEST (21 Kasım - 15 Aralık 2025)
 
-### 55. Danışan Analiz Sayfası *(15-18 Kasım 2025)*
+### 54. Danışan Analiz Sayfası *(15-18 Kasım 2025)*
 **Amaç:** Diyetisyenlerin tüm müşteri ilişkilerini merkezi olarak yönetmesini sağlamak.
 
 **İşlemler:**
@@ -694,7 +635,7 @@ Bu belge WhatsApp benzeri mesajlaşma uygulaması + diyetisyen paneli için kron
 - Danışan arama ve filtreleme
 - Randevu planlama
 
-### 56. Oto-Mesajlar Botu Sayfası (Geliştirilmiş) *(18-20 Kasım 2025)*
+### 55. Oto-Mesajlar Botu Sayfası (Geliştirilmiş) *(18-20 Kasım 2025)*
 **Amaç:** Diyet içeriklerini düzenlemek ve otomatik dağıtım sistemi kurmak.
 
 **İşlemler:**
@@ -736,7 +677,7 @@ Ana klasör adı → Paketin adı (örnek: Detoks Paketi)
 │       └── akdeniz_obez.docx
 ```
 
-### 57. Oto-Yanıtlar Botu Sayfası *(20 Kasım 2025)*
+### 56. Oto-Yanıtlar Botu Sayfası *(20 Kasım 2025)*
 **Amaç:** Danışan rolündeki kullanıcıların paket bazlı diyet programlarını otomatik olarak almasını sağlamak.
 
 **İşlemler:**
@@ -755,7 +696,7 @@ Ana klasör adı → Paketin adı (örnek: Detoks Paketi)
   - 35-45 yaş: Boy² × 22
   - 45 yaş üstü: Boy² × 23
 
-### 58. Depolama Yönetimi Sayfası *(21-25 Kasım 2025)*
+### 57. Depolama Yönetimi Sayfası *(21-25 Kasım 2025)*
 **Amaç:** Egzersiz programları oluşturmak ve danışanlara atamak.
 
 **İşlemler:**
@@ -770,7 +711,7 @@ Ana klasör adı → Paketin adı (örnek: Detoks Paketi)
 - Tamamlanma bildirimleri
 - Performans analizleri
 
-### 59. Yedekleme Sayfası *(25-28 Kasım 2025)*
+### 58. Yedekleme Sayfası *(25-28 Kasım 2025)*
 **Amaç:** Profesyonel randevu sistemini otomatize etmek ve müşteri deneyimini iyileştirmek.
 
 **İşlemler:**
@@ -785,7 +726,7 @@ Ana klasör adı → Paketin adı (örnek: Detoks Paketi)
 - İptal işlemleri
 - Randevu geçmişi
 
-### 60. Directory Parser ve Otomatik Sistem Sayfası *(28 Kasım - 5 Aralık 2025)*
+### 59. Directory Parser ve Otomatik Sistem Sayfası *(28 Kasım - 5 Aralık 2025)*
 **Amaç:** Danışan değerlendirmesi için özelleştirilmiş formlar tasarlamak.
 
 **İşlemler:**
@@ -800,7 +741,7 @@ Ana klasör adı → Paketin adı (örnek: Detoks Paketi)
 - Cevap analizi araçları
 - Form performans metrikleri
 
-### 61. Test Data Yönetim Sayfası *(5-10 Aralık 2025)*
+### 60. Test Data Yönetim Sayfası *(5-10 Aralık 2025)*
 **Amaç:** Veri odaklı yaklaşımla danışan ilerlemesini analiz etmek ve raporlamak.
 
 **İşlemler:**
@@ -816,7 +757,7 @@ Ana klasör adı → Paketin adı (örnek: Detoks Paketi)
 - Özelleştirilebilir rapor şablonları
 - Excel/PDF export işlemleri
 
-### 62. Performans Optimizasyon Sayfası *(10-12 Aralık 2025)*
+### 61. Performans Optimizasyon Sayfası *(10-12 Aralık 2025)*
 **Amaç:** Toplu mesajlaşma sistemini otomatize etmek ve hedefli iletişim sağlamak.
 
 **İşlemler:**
@@ -832,7 +773,7 @@ Ana klasör adı → Paketin adı (örnek: Detoks Paketi)
 - Zaman dilimi farkında teslimat
 - Teslimat analitikleri
 
-### 63. Toplu Mesaj Gönderme Sayfası *(12-15 Aralık 2025)*
+### 62. Toplu Mesaj Gönderme Sayfası *(12-15 Aralık 2025)*
 **Amaç:** Akıllı otomatik yanıt sistemi ile müşteri hizmetlerini iyileştirmek.
 
 **İşlemler:**
@@ -864,62 +805,7 @@ Ana klasör adı → Paketin adı (örnek: Detoks Paketi)
 - Kullanıcı yetkilendirme kontrolü
 
 ---
-
-## 📊 SÜRÜM PLANLARI VE ÖNCELIKLER
-
-### 🎯 **v1.0 (15 Aralık 2025)** - Tam Platform
-- ✅ Core messaging sistemi (Sayfa 1-53)
-- ✅ Sağlık takibi özellikleri
-- ✅ Diyetisyen yönetim paneli (Sayfa 54-63)
-- ✅ Toplu mesaj gönderme
-- ✅ Performance optimizasyonu
-
-### 🚀 **v1.1 (Q1 2026)** - Optimizasyon
-- 🔧 Performance iyileştirmeleri
-- 🐛 Bug fixes ve stabilizasyon
-- 📱 UI/UX geliştirmeleri
-- 🔒 Güvenlik güncellemeleri
-
-### 💪 **v2.0 (Q2 2026)** - AI & Analytics
-- ⌚ Wearable cihaz entegrasyonları
-- 🔗 Fitness tracker bağlantıları
-- 🤖 Gelişmiş AI öneriler
-- 📊 İleri analytics
-
-### 🏥 **v2.5 (Q3 2026)** - Telemedicine
-- 🎥 Video konsültasyon sistemi
-- 💊 Telemedicine özellikleri
-- 🩺 Uzaktan sağlık monitörü
-- 📋 Elektronik reçete sistemi
-
-### 🌍 **v3.0 (Q4 2026)** - Global Expansion
-- 🌐 Multi-language support
-- 🌎 International nutritionist standards
-- 📱 Platform expansion (Web, Desktop)
-- 🌐 Global compliance
-
----
-
-## 📅 PROJE ROADMAP VE GELECEK PLANLAR
-
-### 🎯 2025 Yılı Hedefleri:
-- **Q3 2025**: Core messaging ve sağlık özelliklerinin tamamlanması (Sayfa 1-53)
-- **Q4 2025**: Diyetisyen panel eklenmesi (Sayfa 54-63)
-- **15 Aralık 2025**: Tam platform ile App Store ve Google Play'de yayın
-
-### 🚀 Gelecek Sürümler (2026+):
-- **v1.1 (Q1 2026)**: Optimizasyon ve stabilizasyon
-- **v2.0 (Q2 2026)**: AI & wearable entegrasyonları
-- **v2.5 (Q3 2026)**: Telemedicine özellikleri
-- **v3.0 (Q4 2026)**: Global expansion
-
-### 📊 Başarı Metrikleri:
-- **Kullanıcı Hedefi**: 10,000+ aktif kullanıcı (2025 sonu)
-- **Performance**: <2 saniye açılma süresi
-- **Reliability**: %99.5 uptime hedefi
-- **User Satisfaction**: 4.5+ App Store rating
-
-### Teknik Stack Özeti:
+# Teknik Stack Özeti:
 - **Frontend**: Flutter 3.3.0+ (Dart)
 - **Backend**: Firebase (Auth, Firestore, Storage, Messaging)
 - **Database**: Drift ORM (SQLite) + Cloud Firestore
@@ -927,264 +813,10 @@ Ana klasör adı → Paketin adı (örnek: Detoks Paketi)
 - **Charts**: FL Chart
 - **State Management**: Provider Pattern
 - **Testing**: Mockito, Golden Toolkit, Coverage 70%+
-
 ---
 
-## 📋 SAYFA DETAYLARI VE İMPLEMENTASYON DURUMU
-
-### 🟢 **İMPLEMENTE EDİLMİŞ SAYFALAR (27/63)**
-
-#### **1. Auth Wrapper** `lib/pages/auth_wrapper.dart`
-- **Durum**: ✅ Tamamlandı
-- **İşlev**: Firebase Auth durumuna göre login/home sayfası yönlendirme
-- **Özellikler**: Auto-login, session management
-
-#### **2. Login Sayfası** `lib/pages/login_page.dart`
-- **Durum**: ✅ Tamamlandı
-- **İşlev**: Telefon numarası ile giriş sistemi
-- **Özellikler**: Ülke kodu seçimi, SMS doğrulama entegrasyonu
-
-#### **3. Ana Sayfa (Home)** `lib/pages/home_page.dart` & `lib/pages/optimized_home_page.dart`
-- **Durum**: ✅ Tamamlandı (2 versiyon)
-- **İşlev**: TabBar ile ana navigasyon (Sohbetler, Durumlar, Aramalar)
-- **Özellikler**: Real-time chat listesi, story viewer, call logs
-
-#### **4. Sohbet Listesi** `lib/pages/chat_list_page_new.dart`
-- **Durum**: ✅ Tamamlandı
-- **İşlev**: Tüm chat'leri listeleme ve yönetme
-- **Özellikler**: Arama, filtreleme, sabitleme, arşivleme
-
-#### **5. Sohbet Sayfası** `lib/pages/chat_page.dart`
-- **Durum**: ✅ Tamamlandı
-- **İşlev**: Birebir ve grup mesajlaşma
-- **Özellikler**: Real-time messaging, medya paylaşımı, sesli mesaj, forward
-
-#### **6. Yeni Sohbet Sayfası** `lib/pages/new_chat_page.dart` & `lib/pages/new_chat_page_updated.dart`
-- **Durum**: ✅ Tamamlandı (2 versiyon)
-- **İşlev**: Yeni sohbet başlatma
-- **Özellikler**: Kişi seçimi, grup oluşturma yönlendirme
-
-#### **7. Grup Oluşturma** `lib/pages/create_group_page.dart` & `lib/pages/create_group_page_updated.dart`
-- **Durum**: ✅ Tamamlandı (2 versiyon)
-- **İşlev**: Yeni grup oluşturma
-- **Özellikler**: Üye seçimi, grup profili ayarlama
-
-#### **8. Grup Detay Sayfası** `lib/pages/group_info_page.dart`
-- **Durum**: ✅ Tamamlandı
-- **İşlev**: Grup bilgilerini yönetme
-- **Özellikler**: Üye yönetimi, admin yetkileri, grup ayarları
-
-#### **9. Mesaj İletme Sayfası** `lib/pages/forward_message_page.dart`
-- **Durum**: ✅ Tamamlandı
-- **İşlev**: Mesajları diğer sohbetlere iletme
-- **Özellikler**: Çoklu alıcı seçimi, toplu iletim
-
-#### **10. Arşivlenmiş Sohbetler** `lib/pages/archived_chats_page.dart`
-- **Durum**: ✅ Tamamlandı
-- **İşlev**: Arşivlenmiş chat'leri yönetme
-- **Özellikler**: Arşivden çıkarma, silme
-
-#### **11. Durumlar Sayfası** `lib/pages/stories_page.dart`
-- **Durum**: ✅ Tamamlandı
-- **İşlev**: 24 saatlik story sistemi
-- **Özellikler**: Story görüntüleme, kendi story yönetimi
-
-#### **12. Durum Görüntüleyici** `lib/pages/story_viewer_page.dart`
-- **Durum**: ✅ Tamamlandı
-- **İşlev**: Story'leri tam ekran görüntüleme
-- **Özellikler**: Otomatik ilerleme, tepki gönderme
-
-#### **13. Aramalar Sayfası** `lib/pages/calls_page.dart`
-- **Durum**: ✅ Tamamlandı
-- **İşlev**: Arama geçmişi ve yeni arama başlatma
-- **Özellikler**: Gelen/giden call logs, yeniden arama
-
-#### **14. Gelen Çağrı Sayfası** `lib/pages/incoming_call_page.dart`
-- **Durum**: ✅ Tamamlandı
-- **İşlev**: Gelen aramaları yönetme
-- **Özellikler**: Yanıtlama/reddetme, çağrı bilgileri
-
-#### **15. Sesli Arama Sayfası** `lib/pages/voice_call_page.dart`
-- **Durum**: ✅ Tamamlandı
-- **İşlev**: WebRTC sesli arama
-- **Özellikler**: Mikrofon/hoparlör kontrolü, arama sonlandırma
-
-#### **16. Kamera Sayfası** `lib/pages/camera_page.dart`
-- **Durum**: ✅ Tamamlandı
-- **İşlev**: Fotoğraf/video çekme
-- **Özellikler**: Ön/arka kamera, flash, zoom
-
-#### **17. Ayarlar Sayfası** `lib/pages/settings_page.dart`
-- **Durum**: ✅ Tamamlandı
-- **İşlev**: Ana ayarlar menüsü
-- **Özellikler**: Profil, gizlilik, bildirim, yedekleme ayarları
-
-#### **18. Profil Ayarları** `lib/pages/profile_settings_page.dart`
-- **Durum**: ✅ Tamamlandı
-- **İşlev**: Kullanıcı profili yönetimi
-- **Özellikler**: Profil fotoğrafı, ad/soyad, hakkımda
-
-#### **19. Profil Kurulum** `lib/pages/profile_setup_page.dart`
-- **Durum**: ✅ Tamamlandı
-- **İşlev**: İlk kayıt sonrası profil oluşturma
-- **Özellikler**: Zorunlu profil bilgileri girişi
-
-#### **20. Sağlık Sayfası** `lib/pages/health_page.dart`
-- **Durum**: ✅ Tamamlandı
-- **İşlev**: Sağlık verileri takibi
-- **Özellikler**: BMI hesaplama, kilo takibi, adım sayar
-
-#### **21. Öğün Hatırlatıcı Ayarları** `lib/pages/meal_reminder_settings_page.dart`
-- **Durum**: ✅ Tamamlandı
-- **İşlev**: Yemek hatırlatıcıları kurma
-- **Özellikler**: Zaman ayarlama, bildirim özelleştirme
-
-#### **22. Etiketler Sayfası** `lib/pages/tags_page_new.dart`
-- **Durum**: ✅ Tamamlandı
-- **İşlev**: Chat etiketleme sistemi
-- **Özellikler**: Etiket oluşturma, düzenleme, chat atama
-
-#### **23. Yedekleme Sayfası** `lib/pages/backup_page.dart`
-- **Durum**: ✅ Tamamlandı
-- **İşlev**: Google Drive yedekleme sistemi
-- **Özellikler**: Otomatik/manuel yedek, geri yükleme
-
-#### **24. Sohbet Yardımcıları** `lib/pages/chat_page_forward_helpers.dart`
-- **Durum**: ✅ Tamamlandı
-- **İşlev**: Chat sayfası yardımcı fonksiyonları
-- **Özellikler**: Forward işlemleri, medya işleme
-
----
-
-### 🔴 **EKSİK SAYFALAR (36/63)**
-
-#### **FAZ 1: TEMEL ALTYAPI (11 Eksik)**
-
-**1. Hizmet Koşulları Onay Ekranı** ❌
-- İlk açılışta terms of service onay sayfası
-
-**2. SMS Doğrulama Sayfası** ❌
-- 6 haneli SMS kod girişi, zamanlayıcı
-
-**3. Profil Sayfası** ❌
-- Detaylı profil görüntüleme ve düzenleme
-
-**4. Sohbet Arama ve Filtreleme** ❌
-- Gelişmiş arama ve filtre sistemi
-
-**5. Medya Galerisi Sayfası** ❌
-- Cihazdan medya seçimi için galeri
-
-**6. Kişiler Sayfası** ❌
-- Merkezi rehber yönetimi
-
-**7. Konum Gönderme Sayfası** ❌
-- Harita entegrasyonu ve konum paylaşımı
-
-**8. Kişi Kartı Gönderme** ❌
-- Rehber kişilerini paylaşma
-
-**9. Link/Email Algılama Sayfası** ❌
-- Mesajlarda özel içerik algılama
-
-**10. Rich Text Editörü** ❌
-- Mesajlarda format desteği
-
-**11. Merkezi Rehber Yönetimi** ❌
-- Profesyonel kişi yönetimi
-
-#### **FAZ 2: ANA ÖZELLİKLER (3 Eksik)**
-
-**28. Sesli Mesaj Sayfası** ❌
-- Ses kaydı ve oynatma interface
-
-**29. Durum Gizlilik Ayarları** ❌
-- Story gizlilik kontrolü
-
-**30. Gizlilik Ayarları Sayfası** ❌
-- Kapsamlı gizlilik kontrolleri
-
-#### **FAZ 3: SAĞLIK ÖZELLİKLERİ (2 Eksik)**
-
-**47. Form Doldurma Sayfası** ❌
-- Dinamik form sistemi
-
-**48. PDF Görüntüleme Sayfası** ❌
-- Diyet planları için PDF viewer
-
-#### **FAZ 4: DİYETİSYEN PANELİ (10 Eksik)**
-
-**49. Danışan Yönetim Sayfası** ❌
-- Müşteri profilleri ve rol yönetimi
-
-**50. Diyet Paketleri Yönetimi** ❌
-- Diyet içerikleri ve paket sistemi
-
-**51. Oto-Diyetler Botu** ❌
-- Otomatik diyet atama sistemi
-
-**52. Spor Seansları Yönetimi** ❌
-- Egzersiz programları
-
-**53. Randevu Yönetimi** ❌
-- Takvim bazlı randevu sistemi
-
-**54. Form Oluşturma** ❌
-- Diyetisyen form editörü
-
-**55. Danışan Analiz** ❌
-- İlerleme analiz ve raporlama
-
-**56. Oto-Mesajlar Botu** ❌
-- Otomatik mesaj sistemi
-
-**57. Oto-Yanıtlar Botu** ❌
-- AI destekli yanıt sistemi
-
-**58. Toplu Mesaj Gönderme** ❌
-- Bulk messaging sistem
-
-#### **FAZ 5: OPTİMİZASYON (10 Eksik)**
-
-**59-68. Yönetim ve Optimizasyon Sayfaları** ❌
-- Depolama, yedekleme, test data, performans vb.
-
----
-
-### 📊 **İMPLEMENTASYON İSTATİSTİKLERİ**
-
-- **Toplam Planlanan Sayfa**: 63
-- **İmplemente Edilen**: 27 sayfa (%43)
-- **Eksik Olan**: 36 sayfa (%57)
-
-#### **Faz Bazında Durum**:
-- **FAZ 1 (Temel Altyapı)**: 16/27 (%59 tamamlandı)
-- **FAZ 2 (Ana Özellikler)**: 8/11 (%73 tamamlandı)
-- **FAZ 3 (Sağlık)**: 3/5 (%60 tamamlandı)
-- **FAZ 4 (Diyetisyen Paneli)**: 0/10 (%0 tamamlandı)
-- **FAZ 5 (Optimizasyon)**: 0/10 (%0 tamamlandı)
-
-#### **Öncelikli Eksikler**:
-1. **SMS Doğrulama Sistemi** - Kritik güvenlik özelliği
-2. **Diyetisyen Paneli** - Ana business logic
-3. **Form Sistemleri** - Veri toplama altyapısı
-4. **PDF Görüntüleyici** - Diyet planları için gerekli
-5. **Gelişmiş Arama** - Kullanıcı deneyimi için önemli
-
----
-
-**Son Güncelleme:** 2025-01-15
-
-**Geliştirme Başlangıcı:** 2 Ağustos 2025 \
-**v1.0 Release:** 15 Aralık 2025 \
-**Toplam Sayfa Sayısı:** 63 (v1.0: 53 sayfa, v2.0+: 10 sayfa) \
-**v1.0 Geliştirme Süresi:** ~4.5 ay (135 gün) \
-**Platform:** Flutter (Android/iOS) \
-**v1.0 Özellikler:** Sağlık Takibi + WhatsApp-benzeri Mesajlaşma + Performance Optimizations \
-**Gelecek Sürümler:** Diyetisyen Panel + AI + Telemedicine (2026+)
 
 ### 👨‍💻 Geliştirici Bilgileri:
 - **Lead Developer**: Kenan Kanat (kenankanat93@gmail.com)
 - **Repository**: https://github.com/Kenfrozz/diyetkent.git
 - **Branch Strategy**: Main branch (production-ready)
-- **Development Methodology**: Agile, 5-faz iterative development
